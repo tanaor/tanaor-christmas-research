@@ -1,0 +1,1096 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Christmas Avatar Research</title>
+<style>
+:root{
+  color-scheme: light;
+  --bg:#fbfaf7; --surface:#ffffff; --surface-2:#f3f1ec; --line:#e4e0d7;
+  --ink:#1b1a17; --ink-2:#4f4c45; --ink-3:#7a766d;
+  --accent:#8a1c2b; --accent-soft:#f6e9ea; --gold:#9a6b12;
+  --series-1:#2a78d6; --series-2:#eb6834;
+  --seen:#0f6b3a; --seen-bg:#e5f3ea; --inf:#6b5410; --inf-bg:#f7efd9; --caution:#8a1c2b; --caution-bg:#f9e6e8;
+  --radius:12px;
+}
+@media (prefers-color-scheme: dark){
+  :root:where(:not([data-theme="light"])){
+    color-scheme: dark;
+    --bg:#141311; --surface:#1c1b19; --surface-2:#24231f; --line:#34322d;
+    --ink:#f0eee9; --ink-2:#c6c2b8; --ink-3:#9a958a;
+    --accent:#e07a86; --accent-soft:#3a2226; --gold:#d6a84a;
+    --series-1:#3987e5; --series-2:#d95926;
+    --seen:#7fd3a2; --seen-bg:#16301f; --inf:#e3c46b; --inf-bg:#2f2812; --caution:#f19aa4; --caution-bg:#3a1d21;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --bg:#141311; --surface:#1c1b19; --surface-2:#24231f; --line:#34322d;
+  --ink:#f0eee9; --ink-2:#c6c2b8; --ink-3:#9a958a;
+  --accent:#e07a86; --accent-soft:#3a2226; --gold:#d6a84a;
+  --series-1:#3987e5; --series-2:#d95926;
+  --seen:#7fd3a2; --seen-bg:#16301f; --inf:#e3c46b; --inf-bg:#2f2812; --caution:#f19aa4; --caution-bg:#3a1d21;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;-webkit-text-size-adjust:100%}
+a{color:var(--accent)}
+header.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topin{max-width:1180px;margin:0 auto;padding:10px 16px;display:flex;gap:12px;align-items:center}
+.brand{font-weight:700;white-space:nowrap;font-size:15px}
+.brand small{font-weight:500;color:var(--ink-3);margin-left:6px}
+nav.toc{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1}
+nav.toc::-webkit-scrollbar{display:none}
+nav.toc a{white-space:nowrap;text-decoration:none;color:var(--ink-2);font-size:13.5px;padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:var(--surface)}
+nav.toc a.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.themebtn{border:1px solid var(--line);background:var(--surface);color:var(--ink-2);border-radius:999px;padding:6px 10px;font-size:13px;cursor:pointer}
+main{max-width:1180px;margin:0 auto;padding:8px 16px 80px}
+section{padding:28px 0 8px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:0}
+h1{font-size:clamp(26px,4.5vw,40px);line-height:1.15;margin:18px 0 6px;letter-spacing:-.01em}
+h2{font-size:clamp(21px,3vw,28px);margin:0 0 6px;letter-spacing:-.01em}
+h2 .n{color:var(--accent);margin-right:8px}
+h3{font-size:18px;margin:22px 0 8px}
+h4{font-size:15.5px;margin:16px 0 6px;color:var(--ink-2)}
+p{margin:8px 0}
+.lede{color:var(--ink-2);max-width:820px}
+.meta{color:var(--ink-3);font-size:13.5px}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.badge{display:inline-block;max-width:100%;font-size:11.5px;font-weight:600;letter-spacing:.02em;padding:2px 8px;border-radius:999px;white-space:normal;vertical-align:1px;line-height:1.35}
+.badge.seen{background:var(--seen-bg);color:var(--seen)}
+.badge.inf{background:var(--inf-bg);color:var(--inf)}
+.badge.caution{background:var(--caution-bg);color:var(--caution)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;margin:12px 0}
+.callout{background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:8px;padding:12px 14px;margin:12px 0}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px}
+.stat .big{font-size:28px;font-weight:750;letter-spacing:-.02em;line-height:1.1}
+.stat .lbl{color:var(--ink-2);font-size:14px;margin-top:4px}
+.stat .src{color:var(--ink-3);font-size:12px;margin-top:6px}
+ul,ol{padding-left:22px;margin:8px 0}
+li{margin:5px 0}
+blockquote{margin:8px 0;padding:8px 12px;border-left:3px solid var(--gold);background:var(--surface-2);border-radius:6px;font-family:Georgia,"Times New Roman",serif;font-size:16px}
+q.v{font-style:italic}
+.quote{font-family:Georgia,"Times New Roman",serif;font-style:italic;color:var(--ink)}
+table{border-collapse:collapse;width:100%;font-size:14.5px}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);margin:10px 0}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--surface-2);font-weight:650;font-size:13.5px;color:var(--ink-2);position:sticky;top:0}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+.vgroup{margin-top:26px;color:var(--accent)}
+.vgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}
+.vgrid>*,.grid2>*,.grid3>*{min-width:0}
+.vcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;display:flex;flex-direction:column}
+.vref{font-weight:700;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.kjv{font-size:11px;font-weight:700;color:var(--gold);border:1px solid var(--gold);border-radius:4px;padding:0 5px}
+.src{font-size:12px;font-weight:500;margin-left:auto}
+.vcard dl{margin:6px 0 0}
+.vcard dt{font-size:12px;font-weight:700;color:var(--ink-3);text-transform:uppercase;letter-spacing:.04em;margin-top:8px}
+.vcard dd{margin:2px 0 0;font-size:14.5px;color:var(--ink-2)}
+.vtag{margin-top:10px}
+.he{direction:rtl;text-align:right;font-family:-apple-system,"Arial Hebrew","Segoe UI",Arial,sans-serif}
+.he ol,.he ul{padding-right:22px;padding-left:0}
+.he .card{font-size:17px;line-height:1.7}
+.he h2 .n{margin-right:0;margin-left:8px}
+main{overflow-wrap:anywhere}
+.he li{margin:9px 0}
+.bets li{margin:12px 0}
+.hook{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:8px 0}
+.hook .h{font-weight:650;font-size:16px}
+.hook .why{font-size:13px;color:var(--ink-3);margin-top:4px}
+.chart{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:12px 12px 6px;margin:12px 0;position:relative}
+.chart h4{margin:2px 4px 6px;color:var(--ink)}
+.chart .sub{margin:0 4px 6px;font-size:13px;color:var(--ink-3)}
+.chart svg{width:100%;height:auto;display:block;overflow:visible}
+.chart .lg{display:flex;gap:14px;margin:4px 6px 8px;font-size:13px;color:var(--ink-2);flex-wrap:wrap}
+.chart .lg i{display:inline-block;width:14px;height:3px;border-radius:2px;vertical-align:middle;margin-right:6px}
+.tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--bg);font-size:12.5px;padding:6px 8px;border-radius:6px;white-space:nowrap;transform:translate(-50%,-110%);opacity:0;transition:opacity .08s}
+.axis text{fill:var(--ink-3);font-size:11px}
+.axis line,.grid line{stroke:var(--line)}
+details{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:10px 14px;margin:10px 0}
+details summary{cursor:pointer;font-weight:650}
+.small{font-size:13.5px;color:var(--ink-2)}
+.pill{display:inline-block;font-size:12px;border:1px solid var(--line);border-radius:999px;padding:1px 8px;color:var(--ink-2);margin:2px 4px 2px 0;background:var(--surface-2)}
+footer{max-width:1180px;margin:0 auto;padding:20px 16px 60px;color:var(--ink-3);font-size:13px}
+@media (max-width:640px){
+  body{font-size:15.5px}
+  .brand small{display:none}
+  .vgrid{grid-template-columns:1fr}
+  th,td{padding:7px 8px}
+  .stat .big{font-size:24px}
+}
+@media print{header.top{position:static}}
+</style>
+</head>
+<body>
+<header class="top"><div class="topin">
+  <div class="brand">🎄 Christmas Research <small>Tanaor US · v1</small></div>
+  <nav class="toc" id="toc">
+    <a href="#insights">מה זה אומר לנו</a>
+    <a href="#rmbc">RMBC 1</a>
+    <a href="#verses">Verse map</a>
+    <a href="#gifts">Gifts & budgets</a>
+    <a href="#thanksgiving">Thanksgiving</a>
+    <a href="#data">Our 2025 data</a>
+    <a href="#angles">Angles & hooks</a>
+    <a href="#lp">LP inputs</a>
+    <a href="#sources">Sources</a>
+    <a href="#gaps">Not found</a>
+  </nav>
+  <button class="themebtn" id="themebtn" type="button" aria-label="Toggle dark mode">◐</button>
+</div></header>
+<main>
+<h1>Christmas × our avatar</h1>
+<p class="lede">Deep research for Holiday 2026 (with Thanksgiving), built with the RMBC 1 research method. It feeds the Christmas creative and the Christmas landing page. Built 2026-10-21 14:04 IDT by the Creative Strategist session.</p>
+<div class="legend"><span class="badge seen">SEEN</span> <span class="small">= sourced or measured (link or file given)</span> <span class="badge inf">INFERRED</span> <span class="small">= my reading of the evidence, not measured</span> <span class="badge caution">CAUTION</span> <span class="small">= compliance or truth risk</span></div>
+
+<section id="insights" class="he" dir="rtl"><h2><span class="n">1</span>מה זה אומר לנו</h2>
+<p class="lede">בעברית פשוטה. כל מספר כאן מגיע מהמחקר למטה, עם מקור. רעיונות ל-hooks נמצאים בחלק 7, והם הצעות בלבד.</p>
+
+<div class="card" style="border-color:var(--accent)">
+<b>⚠️ שתי בעיות אמת לפני שבונים דף:</b>
+<ol>
+<li><b>מה יש על השבב?</b> באתר כתוב "כל הביבליה, 66 ספרים". אבל בדף של צלב ה-Sacred Cross כתוב "הברית החדשה", ובמכתב של הכומר מוריס כתוב "הברית החדשה בתרגום KJV". דף כריסמס שכולו "כל הביבליה" חייב תשובה ברורה מהייצור.</li>
+<li><b>החזר כספי.</b> באתר כתוב גם "30 יום החזר כספי, בלי שאלות" וגם "פריטים בהנחה של 20% ומעלה לא מוחזרים". רוב האתר בהנחה. עד שמחליטים, הדף אומר רק "אחריות לכל החיים על השבב".</li>
+</ol>
+</div>
+
+<h3>10 תובנות</h3>
+<div class="card"><ol>
+<li><b>כריסמס שלנו לא קורה בבלאק פריידי.</b> בשנה שעברה 58% מכל ההזמנות של נובמבר–דצמבר הגיעו בין 5 ל-19 בדצמבר. שלושת הימים הכי חזקים: 16, 17 ו-18 בדצמבר, כ-560 הזמנות ביום. בבלאק פריידי היו 363.</li>
+<li><b>אחרי 19 בדצמבר המכירות צונחות.</b> ב-22 בדצמבר היו רק 150 הזמנות. אנשים מפסיקים לקנות כשהם חושבים שזה לא יגיע בזמן. לפי מדיניות המשלוח שלנו היום, משלוח חינם (5–10 ימי עסקים) מחייב להזמין עד בערך 8 בדצמבר כדי להיות בטוחים. זה מוקדם בתשעה ימים מהדואר האמריקאי (17 בדצמבר). הדף חייב להגיד את התאריך, אחרי שה-ops מאשרים.</li>
+<li><b>בדצמבר כמעט כולם חדשים.</b> 92–94% מהלקוחות בדצמבר קנו אצלנו בפעם הראשונה, ו-87% מהכניסות היו מהטלפון. הדף צריך להסביר הכול מאפס (מה זה, שזה אמיתי, למה זו מתנה) ולעבוד מעולה בנייד.</li>
+<li><b>הרעיון שרק לנו יש.</b> כריסמס הוא החג שבו "המילה נעשתה בשר" (יוחנן 1:14). השרשרת שלנו היא המילה עצמה. אף מתנה אחרת מתחת לעץ לא יכולה להגיד את זה.</li>
+<li><b>"אני לא לבד" הוא גם הלב של כריסמס.</b> זו הסיבה מספר 1 שהן קונות. השם של ישו בכריסמס הוא עמנואל, "אלוהים איתנו". והדאגה מספר 1 של אמריקאים בחגים היא געגוע למישהו שאיננו (48%).</li>
+<li><b>בכריסמס גברים קונים לנשים שלהם.</b> בביקורות של כריסמס הכי הרבה מוזכרת "אשתי" (110 פעמים), אחריה "הבת" (53) ו"בעלי" (33). היום רוב התקציב שלנו מכוון לנשים, אז כנראה שאנחנו מפספסים את הקונה הזה בכריסמס.</li>
+<li><b>הרגע שמוכר:</b> היא רואה שרשרת יפה, מספרים לה מה יש בפנים, והיא בוכה. זה חוזר בעשרות ביקורות. הדף והסרטונים צריכים להיבנות בסדר הזה: קודם היופי, אחר כך מה בפנים, ואז התגובה.</li>
+<li><b>כמה מוציאים.</b> אמריקאי מוציא בממוצע כ-628 דולר על מתנות בחג, וכ-320–360 דולר על בן או בת הזוג. תכשיט אחד שלנו (127–228 דולר היום) נכנס בתקציב של אדם קרוב אחד. בני 62–80 הם הדור היחיד שמתכנן להוציא פחות השנה, אבל 47% מעדיפים לתת מתנה אחת משמעותית ולא הרבה קטנות. זו בדיוק ההבטחה שלנו.</li>
+<li><b>הפחד הכי עמוק שלה: שהילדים והנכדים יתרחקו מהאמונה.</b> 64% מהצעירים שגדלו בכנסייה עזבו אותה. סבתא שקונה לנכדה קונה המשך של האמונה. יש לזה פסוק: האמונה "שישבה קודם בסבתך לואיס" (טימותיאוס ב 1:5).</li>
+<li><b>חג ההודיה הוא לא חג של מתנות.</b> מביאים אוכל, או מתנה קטנה של 10–50 דולר. אבל סוף השבוע שאחריו פותח את קניות הכריסמס: 203 מיליון קונים, ושני שלישים מהכסף הולך למתנות. אז בחג ההודיה משתמשים בהודיה כמסר, ולא עושים "מבצע חג הודיה".</li>
+</ol></div>
+
+<h3>5 ההימורים שלי</h3>
+<div class="card bets"><ol>
+<li><b>דף הכריסמס בנוי על "המילה שנעשתה בשר":</b> המתנה היחידה שהיא המילה עצמה. בראש הדף תאריך ברור של "להזמין עד", אחרי אישור ops.</li>
+<li><b>לבדוק פנייה לגברים מעל 55 שקונים לאשתם:</b> "אף פעם לא יודע מה לקנות לה?". זה הקונה של כריסמס לפי הביקורות, וכמעט לא מדברים אליו.</li>
+<li><b>"לא לבד בחגים":</b> לאישה שקונה לעצמה, ולמי שקונה למישהו שעובר תקופה קשה (מחלה, אובדן, ריחוק).</li>
+<li><b>סבתא לנכדים:</b> מורשת של אמונה (טימותיאוס ב 1:5), עם עץ החיים והצלב.</li>
+<li><b>מתנה לו + "אחד לך ואחד לה":</b> צמיד הסרניטי היה המוצר הרביעי בכריסמס שעבר (1,317 הזמנות), וסטים מכרו 634 הזמנות. זה המנוף להגדיל את ההזמנה, רק אחרי שגל מחליט על ההצעה של כריסמס.</li>
+</ol></div>
+</section>
+<section id="rmbc"><h2><span class="n">2</span>RMBC 1 research doc: our avatar at Christmas</h2>
+<p class="lede">Stefan Georgi's RMBC 1 research questions (Module 1–2), answered for one woman at one moment: a faithful American Christian woman, 55–75, in the weeks before Christmas. Question structure taken from the FASCINA M2 doc; content is Tanaor's only. Vault sources are named by file; web sources are in section 9.</p>
+
+<h3>I. Insights into the demographic</h3>
+
+<h4>Who is she?</h4>
+<ul>
+<li><b>A woman 55–75+.</b> Women are 82.2% of Meta spend since July 2026; women 55+ 59.7%; women 65+ alone 35.7%, the single biggest cell. <span class="badge seen">SEEN</span> Account Shift note / ICP Bible</li>
+<li><b>Married or widowed, church-connected, Middle America,</b> often a caregiver (cancer, elderly parents, deployed children). <span class="badge seen">SEEN</span> ICP Bible</li>
+<li><b>A grandmother more often than our copy admits.</b> 14 of 65 Fairing "Other" answers name grandchildren, at faith milestones (baptism, profession of faith, 18th birthday, engagement). <span class="badge seen">SEEN</span> ICP Bible</li>
+<li><b>She reads before she buys.</b> "I looked at it like 72 times before I actually pulled the trigger." (Donna Bennett, CS call) <span class="badge seen">SEEN</span> CS56</li>
+<li><b>She buys for herself more than half the time in summer</b> (Fairing Jul–Sep: 54.1% myself, AOV $332; gifts ≈ $480). December is more gift-heavy, but no December survey exists. <span class="badge seen">SEEN</span> summer · <span class="badge inf">INFERRED</span> December</li>
+<li><b>In December she is new to us.</b> 92–94% of December 2025 customers were first-time buyers, and 87% of sessions were on a phone. <span class="badge seen">SEEN</span> Shopify</li>
+</ul>
+<div id="rmbc-demo-web"><h4>Population data for her age group</h4><ul>
+<li>Christian identity by age: <b>80% at 74+</b> vs 46% at 18–24. Daily prayer 58% vs 27%; monthly attendance 49% vs 25%. Pew Religious Landscape Study, Feb 26 2025. <span class="badge seen">SEEN</span></li>
+<li>Christmas as a mainly religious holiday: about two-thirds of 65+ (vs 39% under 30); women 57% vs men 46%. Pew, Dec 2013. <span class="badge seen">SEEN</span></li>
+<li>90% of Americans celebrate Christmas; 58% call it strongly or somewhat religious for them (67% in 2019). Gallup, Dec 20 2024. <span class="badge seen">SEEN</span></li>
+<li>Over half of grandparents have at least one grandchild more than 200 miles away. AARP grandparenting study (fielded 2018, updated Aug 2024). <span class="badge seen">SEEN</span></li>
+</ul></div>
+
+<h4>Her attitudes: religious, political, social, economic</h4>
+<ul>
+<li><b>Religious.</b> Wearing the Bible is obedience, not fashion: "Many reference Deuteronomy 6:8 … as the literal reason they bought." She wants the KJV ("Some ask about 1611 specifically"). She answers the idolatry worry herself: "you can't really idolize it … it's definitely like a reminder that you're wearing the word of God and he should be leading you." (Renee) <span class="badge seen">SEEN</span> ICP Bible, CS56</li>
+<li><b>Political.</b> Pro-Israel for many ("I love Jesus Christ. I love the Holy Bible. I love Israel."), yet some distrust a foreign company ("now you're from Israel. So it kind of makes me think."). She wants it kept apolitical. Some fear a day when "carrying God's WORD on your person will be illegal." <span class="badge seen">SEEN</span> Main Avatar List, CS56, Sub-Avatar List</li>
+<li><b>Social.</b> Faith shown quietly: "It's not too gaudy. It's not sanctimonious." Church is the word-of-mouth engine: "Three different people asked me about my necklace at church last Sunday." She signs off with "Blessings". <span class="badge seen">SEEN</span> CS56, ICP Bible</li>
+<li><b>Economic.</b> Price is the most common reason non-buyers give: "I'll have to save up for it." · "I just keep putting in the cart, but never buying." <span class="badge seen">SEEN</span> CS56</li>
+</ul>
+<div id="rmbc-att-web"><h4>What the surveys say about believers at Christmas</h4><ul>
+<li><b>Christ in Christmas:</b> 55% celebrate Christmas as a religious holiday; white evangelicals 92%. Most say religious aspects are emphasized less than before; 59% of white evangelicals are bothered by it, and adults 50+ are more bothered than younger adults. Pew, Dec 12 2017. <span class="badge seen">SEEN</span></li>
+<li>"Christmas should be more about Jesus": 65% agree (79% in 2014); Christians 81%, evangelicals 97%. Lifeway, Dec 11 2018. <span class="badge seen">SEEN</span></li>
+<li>"Happy holidays" instead of "Merry Christmas" offends 32% of adults: evangelicals 65%, adults 50+ 42%. Lifeway 2018. PRRI 2016: 54% of seniors want stores to say "Merry Christmas". <span class="badge seen">SEEN</span></li>
+<li>Church at Christmas: 47% of US adults typically attend; evangelicals 72%. Of attenders, 60% go to honor Jesus. Lifeway, Dec 3 2024. <span class="badge seen">SEEN</span></li>
+<li>Nativity belief: 57% believe all four nativity elements (65% in 2014); Christians 76%, white evangelicals about 90%. Pew 2017. <span class="badge seen">SEEN</span></li>
+<li>Gifts are part of her Christmas: 93% exchange gifts and 78% reflect on Christ's birth. Gallup 2010 (old). <span class="badge seen">SEEN</span></li>
+<li><b>The culture-war feeling is real but easing:</b> 80% said religion was losing influence in 2024 (Pew, record), but only 61% in May 2026; 48% saw conflict between their beliefs and mainstream culture (2024). <span class="badge seen">SEEN</span> → speak to her feeling; don't claim things are getting worse.</li>
+</ul></div>
+
+<h4>Hopes and dreams</h4>
+<ul>
+<li>To feel close to God all day, not only at church: "I try to read my Bible everyday but after that I'm just not sure how to connect with God throughout the day." (Reddit) <span class="badge seen">SEEN</span></li>
+<li>Her children and grandchildren coming to (or back to) faith: "one day hopefully they'll question it and come to the knowledge of Christ." (Mary Bird) · "I hope it will inspire my grandson and encourage him in his Christian testimony." <span class="badge seen">SEEN</span> CS56, Sub-Avatar List</li>
+<li>Peace in a chaotic world: "bring calm to such a chaotic world that we live in." <span class="badge seen">SEEN</span> CS56</li>
+<li>A legacy that outlives her: "a piece that could last for generations." <span class="badge seen">SEEN</span> ICP Bible</li>
+<li><b>At Christmas specifically:</b> the whole family around one table, everyone in church on Christmas Eve, a gift that makes someone cry for the right reason ("She teared up when she opened it"). <span class="badge inf">INFERRED</span> from ICP reveal language</li>
+</ul>
+
+<h4>Victories and failures</h4>
+<ul>
+<li><b>Victories she talks about:</b> a prodigal coming home ("My daughter was estranged from me for 4 years, a self-professed atheist… has finally accepted that she has a Creator."), a husband finishing cancer treatment, a grandson graduating Bible college. <span class="badge seen">SEEN</span> Sub-Avatar List, Pastor avatar</li>
+<li><b>Failures she confesses:</b> distance from God ("I feel like I'm so far away from God"), sons not active in faith, a daughter who moved away and stopped going to church. <span class="badge seen">SEEN</span> CS56</li>
+<li><b>Losses that make December hard:</b> "I recently lost my husband…" · "My oldest son died 6 weeks ago suddenly and I'm heart broken." <span class="badge seen">SEEN</span> Sub-Avatar List</li>
+<li><b>Gift failures:</b> for the men in her life she "has bought ties, wallets, watches, cologne. None of them landed." <span class="badge seen">SEEN</span> Men avatar file (file's own summary)</li>
+</ul>
+
+<h4>Outside forces she believes stand in her way</h4>
+<ul>
+<li><b>Christ being pushed out of Christmas</b> (commercialization, "Happy Holidays", busyness). <span class="badge inf">INFERRED</span> for her personally; population data below.</li>
+<li><b>Distance.</b> Grandchildren far away, adult children who moved, a son deployed ("In my husband's job, he can't physically have his Bible at all times"). <span class="badge seen">SEEN</span> Sub-Avatar List</li>
+<li><b>Grief and illness at the holidays</b> (empty chair, hospital stays). <span class="badge seen">SEEN</span> verbatims above</li>
+<li><b>A culture turning against open faith</b> and, for some, end-times technology fears ("why I wouldn't make the purchase is the nanotechnology… because of the advancement of AI"). <span class="badge seen">SEEN</span> CS56</li>
+<li><b>Scams on Facebook</b> ("I almost bought the fake. Was warned by Tanaor customer service."). <span class="badge seen">SEEN</span> Sub-Avatar List</li>
+<li><b>Shipping at Christmas</b>: "Shipping delays — one of the highest complaint triggers, especially around Christmas." <span class="badge seen">SEEN</span> ICP Bible</li>
+</ul>
+<div id="rmbc-forces-web"><h4>The forces, measured</h4><ul>
+<li><b>Commercialization:</b> 65% say Christmas is over-commercialized (Rasmussen, Dec 16 2022). About a third named commercialization or materialism as what they like least about Christmas (Pew 2013). <span class="badge seen">SEEN</span></li>
+<li><b>Grief and missing someone:</b> the #1 holiday worry, 48% (American Psychiatric Association, Nov 18 2025; 47% in 2024). Loneliness 31%. The American Psychological Association (Nov 2023): 89% feel holiday stress; 72% say the season can feel bittersweet. <span class="badge seen">SEEN</span></li>
+<li><b>Loneliness at her age:</b> 40% of adults 45+ are lonely (AARP 2025 via WTOP, Dec 3 2025). 31% of adults felt lonely during the holidays in the past five years (AARP 2017). <span class="badge seen">SEEN</span></li>
+<li><b>Distance:</b> over half of grandparents have a grandchild 200+ miles away; phone contact fell from 70% (2011) to 46% (2018). AARP. <span class="badge seen">SEEN</span></li>
+<li><b>Estrangement:</b> 27% of US adults have cut off a family member; 10% from a parent or child. Cornell (Pillemer), Sep 2020. <span class="badge seen">SEEN</span></li>
+<li><b>Children leaving the faith (her deepest fear):</b> 64% of 18–29-year-olds who were active in church as kids later dropped out (Barna, Sep 2019). 22% of US adults were raised Christian and no longer identify as Christian (Pew RLS, Feb 2025). 51% of practicing Christian parents are "very" concerned about their children's spiritual development (Barna, 2022). <span class="badge seen">SEEN</span></li>
+<li><b>Less Scripture at home:</b> Scripture-engaged adults fell to 17% (2026); 62% don't read the Bible (American Bible Society via Baptist Press, Apr 14 2026). Only 14% of parents read the Bible with their children daily or often (ABS via Christian Post, May 2026). <span class="badge seen">SEEN</span></li>
+<li><b>Phones at the table:</b> 89% used a phone at their last social gathering; 45% of people over 50 say it frequently hurts the conversation. Pew, Aug 2015 (old). <span class="badge seen">SEEN</span></li>
+<li><b>Her voice (Reddit, paraphrased; read via archive, younger skew):</b> a first Christmas without a grandfather: "there was always something missing, a chair, a plate, a cup" (r/GriefSupport, Dec 27 2024). A widow staring for three weeks at gifts her husband wrapped two days before he died (r/widowers). An older woman: the family is scattered and Christmas feels flat (r/AskOldPeople). A Catholic mother who wants her fallen-away children back in the pew (National Catholic Register, Jan 2024). <span class="badge seen">SEEN</span></li>
+</ul></div>
+
+<h4>Her prejudices (about groups and things)</h4>
+<ul>
+<li>Against modern translations: "How do I know the Bible isn't altered to this new wave stuff?" <span class="badge seen">SEEN</span> Objections Research</li>
+<li>Against selling faith with sex appeal: "So you use sexy images to sell the Bible like it is some kind of expensive makeup?" <span class="badge seen">SEEN</span> Objections Research</li>
+<li>Against showy faith and against celebrity or political endorsers. <span class="badge seen">SEEN</span> CS56</li>
+<li>Against symbols without substance: "It is much, much easier to wear a cross than to bear a cross." (Reddit) <span class="badge seen">SEEN</span></li>
+<li>Against unknown or foreign companies and "Chinese knockoffs" on Amazon. <span class="badge seen">SEEN</span> CS56, Sub-Avatar List</li>
+<li>Against "luxury / premium" language. <span class="badge seen">SEEN</span> ICP Bible</li>
+</ul>
+
+<h4>Her core beliefs about life, love and family (summed up)</h4>
+<div class="callout">God is in charge, and He never leaves: "When I feel anxious I reach up and rub the necklace and I remember who is really in charge of my LIFE, GOD." Family is held together by faith ("Our faith is what holds us together."), and her job is to hand that faith to the next generation before it's too late. Christmas is about Jesus, not things. <span class="badge seen">SEEN</span> quotes · <span class="badge inf">INFERRED</span> summary</div>
+
+<h3>II. Existing solutions: what she gives and wears now</h3>
+<div id="rmbc-exist-web"><h4>What she gives at Christmas now, and what goes wrong (web)</h4>
+<div class="tablewrap"><table><thead><tr><th>Existing solution</th><th>What's wrong with it (evidence)</th></tr></thead><tbody>
+<tr><td>Cheap faith jewelry from ad-driven shops (Holy Faith, Viole Grace)</td><td>Trustpilot 2.3/5 and 2.6/5: cheap, thin, broken on arrival, copper showing through, rings turning fingers green, "scammed". <span class="badge seen">SEEN</span></td></tr>
+<tr><td>James Avery crosses</td><td>Trustpilot 3.1/5 (14 reviews): a cross arrived scratched (Dec 20 2025); reviewers say quality dropped; "overpriced costume jewelry". <span class="badge seen">SEEN</span></td></tr>
+<tr><td>Christianbook, DaySpring (books, devotionals, décor)</td><td>Trustpilot 1.5/5 (Christianbook, months-long backorders) and 2.4/5 (DaySpring: Christmas products made in China; half an order missing). <span class="badge seen">SEEN</span></td></tr>
+<tr><td>Devotionals (Jesus Calling and similar)</td><td>Huge sellers (about 45M copies, unconfirmed); theological criticism from some pastors and a PCA study. <span class="badge caution">UNCONFIRMED</span></td></tr>
+<tr><td>Other "nano Bible" sellers</td><td>The "Jerusalem Nano Bible" holds the New Testament in Greek and needs a special microscope (NBC, Dec 2014); nano-Bible pendants at Walmart for about $100 (unconfirmed). <span class="badge seen">SEEN</span>/<span class="badge caution">UNCONFIRMED</span></td></tr>
+<tr><td>"She needs nothing" gifts for an older churchgoing woman: lotion, puzzles, a Bible-quotes booklet, a tea-towel calendar</td><td>Reddit gift threads (Dec 2024): budgets $30–50; a newly widowed preacher's wife "isn't a huge jewelry person" and wears jewelry only on Sundays. <span class="badge seen">SEEN</span></td></tr>
+</tbody></table></div>
+<p class="small">No data found on whether faith gifts or devotionals actually get used. Amazon, Etsy and Facebook reviews could not be read. <span class="badge inf">INFERRED</span>: her "existing solution" fails on two counts: it's cheap (it breaks, it tarnishes, it disappoints), or it's forgettable (a booklet, a lotion). Our counter: the whole Bible, a certificate, and a piece people say they never take off.</p></div>
+<h4>From our own customers (vault)</h4>
+<div class="tablewrap"><table>
+<thead><tr><th>What she uses / gives</th><th>What she likes</th><th>What she dislikes / fears</th></tr></thead>
+<tbody>
+<tr><td>A physical Bible</td><td>"Holding the Bible and praying has always helped me"</td><td>Too big to carry to work, the hospital, a deployment</td></tr>
+<tr><td>Bible apps, devotionals, journaling</td><td>Daily structure</td><td>"it just feels like learning"; the phone distracts; nothing to touch at 3am</td></tr>
+<tr><td>A cross necklace</td><td>A visible sign; sons ask for one before deploying</td><td>"a symbol, not the thing itself"; some worry about graven images</td></tr>
+<tr><td>One-verse jewelry / scripture bracelets</td><td>She can read the verse</td><td>Only one verse; Elizabeth Palmer wants both a readable verse and the whole Bible</td></tr>
+<tr><td>Flowers, cards, gift cards (esp. for a pastor or someone sick)</td><td>Easy</td><td>"Flowers and cards aren't enough"; pastors: "most gifts… hold little sentimental value and are usually somewhat lame" (r/pastors)</td></tr>
+<tr><td>Gold-plated jewelry</td><td>Price</td><td>"I had some gold plated jewelry in the past that did that [wore off]"</td></tr>
+<tr><td>Other nano-Bible sellers on Amazon</td><td>Price</td><td>"I almost bought the fake"</td></tr>
+</tbody></table></div>
+<p class="small">Sources: Avatar Research — Problems & What They Tried Before; CS56; Pastor avatar; Objections Research; Sub-Avatar List. <span class="badge seen">SEEN</span></p>
+
+<h3>III. Curiosity</h3>
+<div id="rmbc-cur-web"><ul>
+<li><b>The Lunar Bible (1971).</b> A 1.5 × 1.5 inch microfilm holding all 1,245 King James pages, readable only under a microscope. The Apollo Prayer League sent about 100 to the Moon with Edgar Mitchell on Apollo 14; one sold for $75,000 in 2014 (AP via Bangor Daily News, May 2014). Counts differ by source (RNS 2018: "one of 11"). <span class="badge seen">SEEN</span> The Word has been made tiny to be carried before.</li>
+<li><b>Heart Shield Bibles (WWII).</b> Pocket Bibles carried over the heart, some with metal covers and an FDR note inside; a soldier at the Battle of the Bulge found a bullet lodged in his. The Museum of the Bible itself says even metal covers were "unlikely to stop a bullet" (Jun 2021). <span class="badge seen">SEEN</span> <span class="badge caution">CAUTION</span> never imply protection.</li>
+<li><b>Thumb Bibles (1601 onward).</b> Tiny Bibles made to be carried; one 1693 edition about 50 mm. <span class="badge caution">UNCONFIRMED</span></li>
+<li><b>Phylacteries and Deuteronomy 6:8.</b> Scripture literally bound on the hand and head in small leather boxes; the earliest found near the Dead Sea date to the 1st–early 2nd century AD (Library of Congress). <span class="badge seen">SEEN</span></li>
+<li><b>The first Christmas gifts.</b> Irenaeus (2nd century) read the Magi's gold as kingship, frankincense as divinity, myrrh as His humanity and death (Catholic Answers, May 2023). St Nicholas's bags of gold for three poor daughters landed in stockings by the fire, the origin of Christmas stockings (St Nicholas Center). <span class="badge seen">SEEN</span></li>
+<li><b>Christmas was once banned.</b> Massachusetts fined anyone "observing any such day as Christmas" five shillings from 1659 to 1681 (Mass Moments). <span class="badge seen">SEEN</span></li>
+<li><b>The 1914 Christmas Truce:</b> about 30,000 British soldiers; "Silent Night" was sung across the lines (NPR via KUNC, Dec 2023). <span class="badge seen">SEEN</span> "Silent Night" was first sung on Christmas Eve 1818 in Oberndorf. <span class="badge caution">UNCONFIRMED</span></li>
+<li><b>"Xmas" is not secular.</b> The X is the Greek letter Chi, the first letter of Christós; used in an 11th-century Anglo-Saxon Chronicle passage (EWTN, Dec 2023). <span class="badge seen">SEEN</span></li>
+<li><b>The first nano Bible (history only).</b> In 2007 the Technion in Haifa etched about 300,000 words of the Hebrew Bible onto gold-coated silicon (AP via Deseret News, Dec 24 2007). <span class="badge seen">SEEN</span> <span class="badge caution">CAUTION</span> Never connect this to Tanaor's certification.</li>
+<li><b>⚠ Brand-risk find:</b> an Israel21c article (Dec 10 2020, still online) says Tanaor "worked with scientists at the Tel Aviv University Center for Nanoscience and Nanotechnology". That is exactly the claim our copy must never make; a skeptical buyer who googles us can find it. <span class="badge seen">SEEN</span> — for Gal, not for copy.</li>
+<li><b>Existing vault Big Idea, "the biblical pattern of concentration"</b> (Mechanism Lab v2): God keeps choosing the smallest thing (a mustard seed, a shepherd boy, a baby in a manger). The chip is a physical example of that pattern. Guardrail in the same file: never call the chip mustard-seed sized; "smaller than a grain of rice" is the safe claim. <span class="badge seen">SEEN</span></li>
+</ul></div>
+
+<h3>IV. Corruption</h3>
+<div id="rmbc-cor-web"><ul>
+<li><b>"It didn't used to be like this" is partly true.</b> The Christian share of US adults fell from 78% (2007) to 62% (2023–24); Christian women from 82% to 66% (Pew RLS, Feb 2025). <span class="badge seen">SEEN</span></li>
+<li><b>But the slide has stopped:</b> stable at 60–64% since about 2019 (same Pew study); "religion is losing influence" fell from 80% (2024) to 61% (2026). Bible use rose in 2025, then fell back in 2026. <span class="badge seen">SEEN</span> → Corruption copy should name what she feels (Christ crowded out of Christmas by shopping and screens), not claim a measured decline.</li>
+<li><b>Christmas got more commercial and started earlier:</b> 65% say it's over-commercialized (Rasmussen 2022). 46% started holiday shopping before November in 2022 vs 39% in 2019 (NRF, Oct 2023); 43% plan to in 2026 (NRF). US holiday retail passed $1 trillion for the first time in the 2026 forecast (NRF, Oct 15 2026). <span class="badge seen">SEEN</span></li>
+<li><b>Less Scripture in daily life:</b> Bible users were "almost half" of adults from 2011 to 2021, a record-low 38% in 2024 (ABS via Christian Post, Apr 2025); Scripture-engaged 17% in 2026. <span class="badge seen">SEEN</span></li>
+<li><b>Retail "Happy Holidays":</b> American Family Association claims about its 2005 list and Walmart's 2006 return to "Christmas" are only in secondary coverage. <span class="badge caution">UNCONFIRMED</span></li>
+<li><b>Who's to blame, in her eyes:</b> stores, screens, a secular culture, busyness. <span class="badge inf">INFERRED</span> The angle: Christmas is the one season the whole family hears Luke 2; a gift that IS the Word keeps it in the house after December.</li>
+</ul></div>
+
+<h3>V. Our own Christmas voice (real reviews)</h3>
+<div id="rmbc-reviews"><p class="lede">Swept all 128 product pages plus the full Loox feed (one thread, 1.6 s apart, no rate-limit hits): <b>7,061 unique reviews</b> (Dec 2019 – Oct 2026). <b>412 mention Christmas (5.8%)</b>; in December, 14–16% of all reviews do. 385 of the 412 are 5-star. Raw files: <code>raw/christmas_reviews.jsonl</code>, <code>raw/reviews_unique_combined.json</code>. <span class="badge seen">SEEN</span></p>
+<div class="grid3">
+<div class="stat"><div class="big">110 vs 33</div><div class="lbl">"wife" vs "husband" named in the 412 Christmas reviews</div><div class="src">Then daughter 53, grandchild 29, friend 28, mom 26, son 21, in-law 15, sister 14, self 13, pastor 4. Keyword counts, not verified recipients. Reviews from 2022–25, when the account was majority men. <span class="badge seen">SEEN</span></div></div>
+<div class="stat"><div class="big">Beauty → tears</div><div class="lbl">the reveal pattern: first she sees a pretty necklace, then she's told what's inside, then she cries</div><div class="src">129 reviews pair a gift with a reaction word. <span class="badge seen">SEEN</span> pattern · <span class="badge inf">INFERRED</span> LP structure</div></div>
+<div class="stat"><div class="big">16 of 56</div><div class="lbl">holiday shipping reviews are complaints (late, missed Christmas)</div><div class="src">12 of them still gave 5 stars. Local files hold harsher ones. <span class="badge seen">SEEN</span></div></div>
+</div>
+<p class="small"><b>Most-gifted pieces at Christmas</b> (share of each piece's reviews that mention Christmas): Infinity Bracelet 9.5% · Tree of Life Necklace 9.3% (47) · Classic Necklace 8.9% (43) · Infinity Necklace 7.4% (46) · Cross Bracelet 7.5% · V Shiny 7.5% · The Cross Necklace 6.9% · Serenity 6.1% (19) · Eternal Love 4.7% · Sacred Cross 3.4% (launched Nov 2025, one Christmas only). <span class="badge seen">SEEN</span></p>
+
+<h4>Christmas reveals</h4>
+<blockquote class="quote">She had seen the ad on Facebook, and I had no idea she knew anything about the product. As soon as she opened it, she started crying. It was a beautiful moment. Thanks for making our Christmas special!<br><span class="small" style="font-style:normal">— Toby B., 2025-12-30, 5★, Infinity Necklace</span></blockquote>
+<blockquote class="quote">My wife Kim usually doesn&#x27;t like jewelry but I took a chance and bought her the necklace for Christmas she was shocked when she opened it her eyes lit up like I haven&#x27;t seen in years<br><span class="small" style="font-style:normal">— Jeffrey S., 2024-12-28, 5★, Infinity Necklace</span></blockquote>
+<blockquote class="quote">My husband got me this for Christmas and I cried. I love it so much!<br><span class="small" style="font-style:normal">— Leeann G., 2022-12-22, 5★, Eternal Love Necklace</span></blockquote>
+<blockquote class="quote">Bought this for my mom at Christmas and she literally cried and said it&#x27;s the best gift she has ever received!<br><span class="small" style="font-style:normal">— Wise S., 2024-01-05, 5★</span></blockquote>
+<blockquote class="quote">My husband bought me a necklace for Christmas and it is the best gift I’ve ever received. It is beautiful and dainty, but most importantly, a constant reminder of God’s written love letters to His children in Scripture.<br><span class="small" style="font-style:normal">— Marie D., 2024-12-29, 5★, TANAOR Shiny Necklace</span></blockquote>
+<blockquote class="quote">Christmas present for my wife. She’s not a big necklace/jewelry person but I don’t think she’s gone a day since without wearing it.<br><span class="small" style="font-style:normal">— Bill M., 2026-01-01, 5★, Classic TANAOR Necklace</span></blockquote>
+<blockquote class="quote">My wife read thru the Bible last year for the first time, and I got her this necklace for Christmas, as a reward. She LOVES it! […] She actually got another gorgeous necklace, but hasn&#x27;t worn it yet- she has only worn the Tanaor Bible necklace!<br><span class="small" style="font-style:normal">— Lindsay P., 2024-01-02, 5★, V Shiny Necklace</span></blockquote>
+<blockquote class="quote">Was a Christmas gift for my daughter-in-law, she said “it’s the best gift I’ve ever gotten!”<br><span class="small" style="font-style:normal">— Melody H., 2025-12-28, 5★, Infinity Necklace</span></blockquote>
+<blockquote class="quote">I purchased 13, for myself and family for Christmas.<br><span class="small" style="font-style:normal">— Brenda, 2023-12-29, 5★, Classic TANAOR Necklace</span></blockquote>
+
+<h4>The reveal moment (any occasion)</h4>
+<blockquote class="quote">At first she was like “oh wow, this is a beautiful necklace”. I then read to her what it is, what is on the nano-chip, what it means […] The tears started falling and she LOVED IT!<br><span class="small" style="font-style:normal">— Pablo C., 2024-05-17, 5★, Infinity Necklace (Mother&#x27;s Day)</span></blockquote>
+<blockquote class="quote">My wife said “this is the most beautiful thing I have ever gotten.” Once she found out the entire Bible is in the square she cried!<br><span class="small" style="font-style:normal">— Brandon S., 2026-05-21, 5★, The Cross Bracelet</span></blockquote>
+<blockquote class="quote">I am 75, my lady friend is 70, when she opened the box, she already seen it on Facebook, but would not have bought it for herself. As I hung it around her lovely neck, the tears started flowing.<br><span class="small" style="font-style:normal">— Charles J., 2025-02-26, 5★</span></blockquote>
+
+<h4>For him, for the grandchildren, for a hard season</h4>
+<blockquote class="quote">We bought the serenity bracelet for our son this Christmas. He was overwhelmed by the packaging and the way it was presented, but even more overwhelmed by the lovely bracelet inside. […] He loves it and has worn it every day since he opened it.<br><span class="small" style="font-style:normal">— Tamara H., 2024-01-04, 5★, Serenity Bracelet</span></blockquote>
+<blockquote class="quote">My husband is actually not one to wear jewelry often but this bracelet is so different.<br><span class="small" style="font-style:normal">— Tena M., 2026-01-20, 5★</span></blockquote>
+<blockquote class="quote">So this year I purchased the two men’s bracelets for my son and grandson and one for my granddaughter for Christmas. I want them to feel the peace that I feel wearing mine.<br><span class="small" style="font-style:normal">— Dena M., 2025-11-27, 5★, Set of 2 Serenity Bracelets</span></blockquote>
+<blockquote class="quote">Its a gift for my daughter at Christmas, who, in time will pass it down to her daughter.<br><span class="small" style="font-style:normal">— Pamela M., 2023-07-15, 5★, Infinity Necklace</span></blockquote>
+<blockquote class="quote">This was a Christmas gift for our granddaughter. She had a difficult first semester at university with a dormmate. Her necklace so touched her that she has a constant reminder that God is always with her. She has not taken it off.<br><span class="small" style="font-style:normal">— Kathy B., 2025-12-30, 3★</span></blockquote>
+<blockquote class="quote">It is a Christmas gift for our son who will be leaving for the military. We wanted to give him a way to carry God&#x27;s word with him closer to his heart all the time.<br><span class="small" style="font-style:normal">— George M., 2025-10-30, 5★, The Cross Necklace</span></blockquote>
+<blockquote class="quote">I bought this for myself for Christmas, and I am so happy I did!<br><span class="small" style="font-style:normal">— Dianna G., 2023-12-05, 5★, Infinity Necklace</span></blockquote>
+
+<h4>Objections overcome</h4>
+<blockquote class="quote">I will admit I was sceptical at first but as soon as it arrived I put it under my microscope and low and behold I saw the pages and paragraphs.<br><span class="small" style="font-style:normal">— Matt H., 2025-05-13, 5★, Eternal Love Necklace</span></blockquote>
+<blockquote class="quote">No signs of tarnishing or turning my skin green or black.<br><span class="small" style="font-style:normal">— Patrice S., 2025-05-24, 5★, Infinity Necklace</span></blockquote>
+<blockquote class="quote">I was hesitant on the extra purchase of the delivery box. But the box only adds to the beauty.<br><span class="small" style="font-style:normal">— Frank B., 2025-12-16, 5★, Gift Box</span></blockquote>
+
+<h4>What went wrong at Christmas (the LP must prevent these)</h4>
+<blockquote class="quote">Your ads promised that this would arrive before Christmas. It didn’t. My daughter didn’t get to see it until almost New Year’s.<br><span class="small" style="font-style:normal">— Grover Bruce T., 2026-01-04, 4★, Classic TANAOR Necklace</span></blockquote>
+<blockquote class="quote">The necklace arrived after Christmas even though the website said it would arrive in time. My mom thought it was a neat gift but was disappointed at not having it during our family Christmas.<br><span class="small" style="font-style:normal">— Andrea S., 2026-01-30, 1★</span></blockquote>
+<blockquote class="quote">I paid for guaranteed by Christmas shipping but didn’t get it until 2 business days after<br><span class="small" style="font-style:normal">— Brandon A., 2024-01-18, 5★</span></blockquote>
+<p class="small">Local survey/doc files add harsher ones ("ordering on December 14th, the product will not be here before Christmas as promised") and a price complaint ("went on sale at 40 percent off two days after Christmas… I feel that I got ripped off"). <span class="badge seen">SEEN</span> → <b>A post-Christmas sale deeper than the Christmas offer creates refund-feel anger.</b> <span class="badge inf">INFERRED</span></p>
+<p class="small"><span class="badge caution">CAUTION</span> <b>Do not reuse:</b> the Funnelish Christmas "reviews" (not found in 7,061 real reviews); one real review that mentions "Tel Aviv University" (Carolyn O., 2024-12-31); and the "anxious… rub the necklace" quote filed as a man's voice in Top Reviews — Men Receiving From Women (the reviewer is Karen C.). The 499-row Top 500 doc's text is tracked deletions; 4 of its 5 Christmas rows missing from Loox are negative.</p></div>
+</section>
+<section id="verses">
+<h2><span class="n">3</span>Verse map</h2>
+<p class="lede">50 passages. Every verse text below was pulled from Bible Gateway's KJV page on 21.10.2026 and pasted by script, not typed (link on each card). Meanings and angles are proposals for Gal, not approved copy.</p>
+<h3 class="vgroup">The Word came close (Christmas = the Word)</h3><div class="vgrid">
+<article class="vcard"><div class="vref">John 1:14 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=John%201%3A14&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>And the Word was made flesh, and dwelt among us, (and we beheld his glory, the glory as of the only begotten of the Father,) full of grace and truth.</blockquote><dl><dt>What it means to her</dt><dd>Christmas is the night the Word of God came close enough to touch. Her own words for the product are &quot;God&#x27;s Word close to my heart&quot; (ICP Bible). At Christmas the two sentences become one.</dd><dt>Angle (proposal)</dt><dd>The Word that came at Christmas, worn close to her heart. The only Christmas gift that is literally the Word.</dd><dt>Piece that fits</dt><dd>Classic TANAOR Necklace or Infinity (chip is the visible centre). Any piece.</dd></dl><div class="vtag"><span class="badge seen">SEEN customer phrase; INFERRED link</span></div></article>
+<article class="vcard"><div class="vref">John 1:1 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=John%201%3A1-5&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>In the beginning was the Word, and the Word was with God, and the Word was God.</blockquote><dl><dt>What it means to her</dt><dd>The theological root of John 1:14. Jesus = the Word (see also Revelation 19:13).</dd><dt>Angle (proposal)</dt><dd>Pair with 1:14 in the LP hero or the verse block: In the beginning was the Word … and the Word was made flesh.</dd><dt>Piece that fits</dt><dd>Any</dd></dl><div class="vtag"><span class="badge inf">INFERRED</span></div></article>
+<article class="vcard"><div class="vref">Revelation 19:13 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=Revelation%2019%3A13&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>And he was clothed with a vesture dipped in blood: and his name is called The Word of God.</blockquote><dl><dt>What it means to her</dt><dd>Scripture itself names Jesus &quot;The Word of God&quot;. Supports the claim that wearing the Word is wearing His name, without our copy having to make it.</dd><dt>Angle (proposal)</dt><dd>Support line only (credibility for the John 1 angle). Not a hook.</dd><dt>Piece that fits</dt><dd>Any</dd></dl><div class="vtag"><span class="badge inf">INFERRED</span></div></article>
+<article class="vcard"><div class="vref">1 John 1:1 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=1%20John%201%3A1&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>That which was from the beginning, which we have heard, which we have seen with our eyes, which we have looked upon, and our hands have handled, of the Word of life;</blockquote><dl><dt>What it means to her</dt><dd>&quot;our hands have handled, of the Word of life&quot;. This is the touch habit in Scripture. Reviews: &quot;I find myself touching it several times a day&quot;, &quot;I reach for it without thinking&quot; (ICP Bible).</dd><dt>Angle (proposal)</dt><dd>The Word you can hold. When the holidays get heavy, her hand goes to it.</dd><dt>Piece that fits</dt><dd>Necklaces (touch at the chest). Infinity, Eternal Love, Classic.</dd></dl><div class="vtag"><span class="badge seen">SEEN customer behaviour; INFERRED link</span></div></article>
+</div>
+<h3 class="vgroup">Immanuel: God with us (never alone)</h3><div class="vgrid">
+<article class="vcard"><div class="vref">Matthew 1:23 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=Matthew%201%3A23&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>Behold, a virgin shall be with child, and shall bring forth a son, and they shall call his name Emmanuel, which being interpreted is, God with us.</blockquote><dl><dt>What it means to her</dt><dd>The Christmas name of Jesus is a promise of presence. Driver #1 in the ICP Bible is &quot;God is with me always / I am not alone&quot;.</dd><dt>Angle (proposal)</dt><dd>&quot;God with us&quot; is not a December slogan. A gift that says it every day after the tree comes down.</dd><dt>Piece that fits</dt><dd>Eternal Love Necklace; The Cross Necklace; Serenity Bracelet for him</dd></dl><div class="vtag"><span class="badge seen">SEEN driver; INFERRED link</span></div></article>
+<article class="vcard"><div class="vref">Isaiah 7:14 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=Isaiah%207%3A14&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>Therefore the Lord himself shall give you a sign; Behold, a virgin shall conceive, and bear a son, and shall call his name Immanuel.</blockquote><dl><dt>What it means to her</dt><dd>The prophecy behind Matthew 1:23. &quot;the Lord himself shall give you a sign&quot;. A sign you wear (Deut 6:8 &quot;for a sign upon thine hand&quot;).</dd><dt>Angle (proposal)</dt><dd>The sign God gave; the sign she wears. Use for bracelets (Deut 6:8 pairing).</dd><dt>Piece that fits</dt><dd>The Cross Bracelet; Classic TANAOR Bracelet; Serenity</dd></dl><div class="vtag"><span class="badge inf">INFERRED</span></div></article>
+<article class="vcard"><div class="vref">Hebrews 13:5 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=Hebrews%2013%3A5&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>Let your conversation be without covetousness; and be content with such things as ye have: for he hath said, I will never leave thee, nor forsake thee.</blockquote><dl><dt>What it means to her</dt><dd>&quot;I will never leave thee, nor forsake thee&quot;. Her language: &quot;He will never leave me&quot; (ICP Bible).</dd><dt>Angle (proposal)</dt><dd>For the first Christmas after a loss, a move, a diagnosis.</dd><dt>Piece that fits</dt><dd>Any</dd></dl><div class="vtag"><span class="badge seen">SEEN phrase</span></div></article>
+<article class="vcard"><div class="vref">Matthew 28:20 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=Matthew%2028%3A20&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>Teaching them to observe all things whatsoever I have commanded you: and, lo, I am with you always, even unto the end of the world. Amen.</blockquote><dl><dt>What it means to her</dt><dd>Bible Gateway&#x27;s KJV prints &quot;always&quot;; many printed KJVs read &quot;alway&quot;. If used on screen, quote Bible Gateway&#x27;s text exactly.</dd><dt>Angle (proposal)</dt><dd>Support line.</dd><dt>Piece that fits</dt><dd>Any</dd></dl><div class="vtag"><span class="badge seen">SEEN (text check)</span></div></article>
+</div>
+<h3 class="vgroup">Peace and light in a hard season</h3><div class="vgrid">
+<article class="vcard"><div class="vref">Isaiah 9:6 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=Isaiah%209%3A6&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>For unto us a child is born, unto us a son is given: and the government shall be upon his shoulder: and his name shall be called Wonderful, Counsellor, The mighty God, The everlasting Father, The Prince of Peace.</blockquote><dl><dt>What it means to her</dt><dd>The most quoted Christmas prophecy (Handel&#x27;s Messiah). &quot;The Prince of Peace&quot; speaks to the anxiety driver: &quot;It helps me feel at peace and more centered no matter what&#x27;s going on around me.&quot;</dd><dt>Angle (proposal)</dt><dd>Peace for the most stressful month of her year. The Prince of Peace, close enough to touch.</dd><dt>Piece that fits</dt><dd>Infinity; Serenity Bracelet (the name itself)</dd></dl><div class="vtag"><span class="badge seen">SEEN driver; INFERRED link</span></div></article>
+<article class="vcard"><div class="vref">Isaiah 9:2 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=Isaiah%209%3A2&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>The people that walked in darkness have seen a great light: they that dwell in the land of the shadow of death, upon them hath the light shined.</blockquote><dl><dt>What it means to her</dt><dd>For the buyer whose loved one is in a dark season (cancer, grief, prodigal child). ICP: &quot;I know you&#x27;re going through hell and I want God to be with you.&quot;</dd><dt>Angle (proposal)</dt><dd>A Christmas gift for someone walking in darkness: the light they can carry.</dd><dt>Piece that fits</dt><dd>Any; gift to someone in crisis (avatar C2)</dd></dl><div class="vtag"><span class="badge seen">SEEN avatar; INFERRED link</span></div></article>
+<article class="vcard"><div class="vref">John 8:12 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=John%208%3A12&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>Then spake Jesus again unto them, saying, I am the light of the world: he that followeth me shall not walk in darkness, but shall have the light of life.</blockquote><dl><dt>What it means to her</dt><dd>Christmas lights as a picture of Christ, the light of the world.</dd><dt>Angle (proposal)</dt><dd>Visual bridge: tree lights reflecting off the piece.</dd><dt>Piece that fits</dt><dd>Shiny Necklace; Star Drop</dd></dl><div class="vtag"><span class="badge inf">INFERRED</span></div></article>
+<article class="vcard"><div class="vref">Psalm 119:105 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=Psalm%20119%3A105&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>Thy word is a lamp unto my feet, and a light unto my path.</blockquote><dl><dt>What it means to her</dt><dd>Her favourite kind of verse about the Word itself. Often quoted by Bible readers.</dd><dt>Angle (proposal)</dt><dd>The lamp she carries into the new year.</dd><dt>Piece that fits</dt><dd>Any</dd></dl><div class="vtag"><span class="badge inf">INFERRED</span></div></article>
+<article class="vcard"><div class="vref">Psalm 34:18 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=Psalm%2034%3A18&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>The Lord is nigh unto them that are of a broken heart; and saveth such as be of a contrite spirit.</blockquote><dl><dt>What it means to her</dt><dd>Grief at Christmas: the empty chair.</dd><dt>Angle (proposal)</dt><dd>For the first Christmas without someone (gift or self).</dd><dt>Piece that fits</dt><dd>Any; Eternal Love</dd></dl><div class="vtag"><span class="badge inf">INFERRED</span></div></article>
+<article class="vcard"><div class="vref">Matthew 5:4 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=Matthew%205%3A4&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>Blessed are they that mourn: for they shall be comforted.</blockquote><dl><dt>What it means to her</dt><dd>Same grief lane.</dd><dt>Angle (proposal)</dt><dd>Support line.</dd><dt>Piece that fits</dt><dd>Any</dd></dl><div class="vtag"><span class="badge inf">INFERRED</span></div></article>
+<article class="vcard"><div class="vref">John 14:27 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=John%2014%3A27&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>Peace I leave with you, my peace I give unto you: not as the world giveth, give I unto you. Let not your heart be troubled, neither let it be afraid.</blockquote><dl><dt>What it means to her</dt><dd>&quot;not as the world giveth, give I unto you&quot;. A gift that is not like the world&#x27;s gifts: a direct answer to commercialization.</dd><dt>Angle (proposal)</dt><dd>Contrast gift: the world gives stuff; He gives peace.</dd><dt>Piece that fits</dt><dd>Any</dd></dl><div class="vtag"><span class="badge inf">INFERRED</span></div></article>
+<article class="vcard"><div class="vref">Isaiah 41:10 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=Isaiah%2041%3A10&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>Fear thou not; for I am with thee: be not dismayed; for I am thy God: I will strengthen thee; yea, I will help thee; yea, I will uphold thee with the right hand of my righteousness.</blockquote><dl><dt>What it means to her</dt><dd>Cancer / fear lane (ICP driver #3).</dd><dt>Angle (proposal)</dt><dd>For the loved one facing a diagnosis this Christmas.</dd><dt>Piece that fits</dt><dd>Any</dd></dl><div class="vtag"><span class="badge seen">SEEN avatar</span></div></article>
+</div>
+<h3 class="vgroup">The reason for the season (against commercialization)</h3><div class="vgrid">
+<article class="vcard"><div class="vref">Luke 2:10-11 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=Luke%202%3A10-14&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>And the angel said unto them, Fear not: for, behold, I bring you good tidings of great joy, which shall be to all people. For unto you is born this day in the city of David a Saviour, which is Christ the Lord.</blockquote><dl><dt>What it means to her</dt><dd>The Christmas announcement she knows by heart (A Charlie Brown Christmas, Linus). &quot;Fear not&quot; + &quot;a Saviour&quot;. Keeps Christ in Christmas.</dd><dt>Angle (proposal)</dt><dd>The gift that puts the reason for the season back under the tree.</dd><dt>Piece that fits</dt><dd>The Cross Necklace; Sacred Cross (no chip-content claim, see open question a)</dd></dl><div class="vtag"><span class="badge inf">INFERRED</span></div></article>
+<article class="vcard"><div class="vref">Luke 2:14 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=Luke%202%3A10-14&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>Glory to God in the highest, and on earth peace, good will toward men.</blockquote><dl><dt>What it means to her</dt><dd>Peace at the family table.</dd><dt>Angle (proposal)</dt><dd>Support line for family gatherings.</dd><dt>Piece that fits</dt><dd>Any</dd></dl><div class="vtag"><span class="badge inf">INFERRED</span></div></article>
+<article class="vcard"><div class="vref">Luke 2:7 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=Luke%202%3A7&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>And she brought forth her firstborn son, and wrapped him in swaddling clothes, and laid him in a manger; because there was no room for them in the inn.</blockquote><dl><dt>What it means to her</dt><dd>&quot;no room for them in the inn&quot;. The busy season has no room for Him; she feels it.</dd><dt>Angle (proposal)</dt><dd>Making room for Him in the busiest month. Use as a curiosity line, not a hook.</dd><dt>Piece that fits</dt><dd>Any</dd></dl><div class="vtag"><span class="badge inf">INFERRED</span></div></article>
+<article class="vcard"><div class="vref">John 3:16 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=John%203%3A16&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life.</blockquote><dl><dt>What it means to her</dt><dd>The first Christmas gift: God gave. The most known verse in America.</dd><dt>Angle (proposal)</dt><dd>Gift theology: we give because He gave.</dd><dt>Piece that fits</dt><dd>The Cross Necklace; Cross Bracelet</dd></dl><div class="vtag"><span class="badge inf">INFERRED</span></div></article>
+</div>
+<h3 class="vgroup">The first Christmas gifts and every good gift</h3><div class="vgrid">
+<article class="vcard"><div class="vref">Matthew 2:11 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=Matthew%202%3A10-11&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>And when they were come into the house, they saw the young child with Mary his mother, and fell down, and worshipped him: and when they had opened their treasures, they presented unto him gifts; gold, and frankincense and myrrh.</blockquote><dl><dt>What it means to her</dt><dd>The first Christmas gifts were gold, chosen for a King, and they were &quot;treasures&quot; that were &quot;opened&quot;. Gives the gold pieces a biblical reason, and the reveal moment (&quot;she teared up when she opened it&quot;) a biblical picture.</dd><dt>Angle (proposal)</dt><dd>A gift fit for the King: why gold was the first Christmas gift. Premium / 14K solid gold lane.</dd><dt>Piece that fits</dt><dd>14K solid gold pieces (Radiant, Tree of Life, Infinity, Sacred Cross 14K)</dd></dl><div class="vtag"><span class="badge inf">INFERRED</span></div></article>
+<article class="vcard"><div class="vref">Matthew 2:10 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=Matthew%202%3A10-11&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>When they saw the star, they rejoiced with exceeding great joy.</blockquote><dl><dt>What it means to her</dt><dd>&quot;When they saw the star, they rejoiced with exceeding great joy.&quot; The reveal reaction.</dd><dt>Angle (proposal)</dt><dd>Star Drop Necklace + the star of Bethlehem.</dd><dt>Piece that fits</dt><dd>Star Drop Necklace (96 orders Nov–Dec 2025) / 14k Star Drop</dd></dl><div class="vtag"><span class="badge seen">SEEN product sales; INFERRED link</span></div></article>
+<article class="vcard"><div class="vref">James 1:17 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=James%201%3A17&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>Every good gift and every perfect gift is from above, and cometh down from the Father of lights, with whom is no variableness, neither shadow of turning.</blockquote><dl><dt>What it means to her</dt><dd>&quot;Every good gift … is from above&quot;. The theology of a gift that points back to the Giver.</dd><dt>Angle (proposal)</dt><dd>Gift-guide headline lane: a gift that points back to the Giver.</dd><dt>Piece that fits</dt><dd>Any</dd></dl><div class="vtag"><span class="badge inf">INFERRED</span></div></article>
+<article class="vcard"><div class="vref">2 Corinthians 9:15 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=2%20Corinthians%209%3A15&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>Thanks be unto God for his unspeakable gift.</blockquote><dl><dt>What it means to her</dt><dd>&quot;Thanks be unto God for his unspeakable gift.&quot; Bridges Thanksgiving to Christmas in one verse.</dd><dt>Angle (proposal)</dt><dd>Thanksgiving-week email/LP line: from thanks to the Gift.</dd><dt>Piece that fits</dt><dd>Any</dd></dl><div class="vtag"><span class="badge inf">INFERRED</span></div></article>
+<article class="vcard"><div class="vref">Romans 6:23 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=Romans%206%3A23&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>For the wages of sin is death; but the gift of God is eternal life through Jesus Christ our Lord.</blockquote><dl><dt>What it means to her</dt><dd>&quot;the gift of God is eternal life&quot;. Evangelistic; for the prodigal/fallen-away recipient (ICP driver #8).</dd><dt>Angle (proposal)</dt><dd>Gift for someone you are praying for.</dd><dt>Piece that fits</dt><dd>Any</dd></dl><div class="vtag"><span class="badge seen">SEEN avatar</span></div></article>
+<article class="vcard"><div class="vref">Luke 1:37 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=Luke%201%3A37&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>For with God nothing shall be impossible.</blockquote><dl><dt>What it means to her</dt><dd>The angel to Mary. Can frame the wonder of 1,189 chapters smaller than a grain of rice WITHOUT calling the product a miracle.</dd><dt>Angle (proposal)</dt><dd>Curiosity frame only. Caution: never present the product as a substitute for faith.</dd><dt>Piece that fits</dt><dd>Any</dd></dl><div class="vtag"><span class="badge caution">INFERRED (caution)</span></div></article>
+</div>
+<h3 class="vgroup">Scripture asks her to wear it (the command lane)</h3><div class="vgrid">
+<article class="vcard"><div class="vref">Proverbs 3:3 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=Proverbs%203%3A3&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>Let not mercy and truth forsake thee: bind them about thy neck; write them upon the table of thine heart:</blockquote><dl><dt>What it means to her</dt><dd>&quot;bind them about thy neck; write them upon the table of thine heart&quot;. A necklace literally obeys this verse. Same lane as Deut 6:8, which the ICP Bible says many buyers cite as the reason they bought.</dd><dt>Angle (proposal)</dt><dd>The verse that tells you where to wear His Word. Necklace version of the Deut 6 winner (Museum / Quote VSL).</dd><dt>Piece that fits</dt><dd>All necklaces</dd></dl><div class="vtag"><span class="badge seen">SEEN (Deut 6:8 lane wins: W2, W3); INFERRED for Prov 3:3</span></div></article>
+<article class="vcard"><div class="vref">Proverbs 6:21-22 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=Proverbs%206%3A21-22&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>Bind them continually upon thine heart, and tie them about thy neck. When thou goest, it shall lead thee; when thou sleepest, it shall keep thee; and when thou awakest, it shall talk with thee.</blockquote><dl><dt>What it means to her</dt><dd>&quot;tie them about thy neck. When thou goest, it shall lead thee; when thou sleepest, it shall keep thee&quot;. Protection for someone leaving: grandkids, a son deploying, a child far away.</dd><dt>Angle (proposal)</dt><dd>For the one who is leaving home: it goes where you can&#x27;t.</dd><dt>Piece that fits</dt><dd>Necklaces; The Cross Necklace for him</dd></dl><div class="vtag"><span class="badge seen">SEEN avatar (military, grandkids)</span></div></article>
+<article class="vcard"><div class="vref">Proverbs 7:3 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=Proverbs%207%3A3&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>Bind them upon thy fingers, write them upon the table of thine heart.</blockquote><dl><dt>What it means to her</dt><dd>&quot;Bind them upon thy fingers&quot;. The ring version.</dd><dt>Angle (proposal)</dt><dd>Ring lane.</dd><dt>Piece that fits</dt><dd>TANAOR Classic Ring; Cross Bible Ring; Reflection Ring</dd></dl><div class="vtag"><span class="badge inf">INFERRED</span></div></article>
+<article class="vcard"><div class="vref">Deuteronomy 6:6-8 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=Deuteronomy%206%3A6-9&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>And these words, which I command thee this day, shall be in thine heart: And thou shalt teach them diligently unto thy children, and shalt talk of them when thou sittest in thine house, and when thou walkest by the way, and when thou liest down, and when thou risest up. And thou shalt bind them for a sign upon thine hand, and they shall be as frontlets between thine eyes.</blockquote><dl><dt>What it means to her</dt><dd>Proven lane (W2 Quote VSL, W3 Museum). Note 6:7 &quot;teach them diligently unto thy children&quot;: the grandmother passing faith down at Christmas.</dd><dt>Angle (proposal)</dt><dd>Bracelet lane (&quot;upon thine hand&quot;) + the grandmother teaching the next generation.</dd><dt>Piece that fits</dt><dd>The Cross Bracelet; Classic Bracelet; Serenity (him)</dd></dl><div class="vtag"><span class="badge seen">SEEN winner lane</span></div></article>
+<article class="vcard"><div class="vref">Psalm 119:11 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=Psalm%20119%3A11&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>Thy word have I hid in mine heart, that I might not sin against thee.</blockquote><dl><dt>What it means to her</dt><dd>&quot;Thy word have I hid in mine heart&quot;. The Bible is hidden inside a chip that rests over the heart.</dd><dt>Angle (proposal)</dt><dd>Hidden Word: the whole Bible hidden where only she knows it is.</dd><dt>Piece that fits</dt><dd>Necklaces</dd></dl><div class="vtag"><span class="badge inf">INFERRED</span></div></article>
+<article class="vcard"><div class="vref">Song of Solomon 8:6 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=Song%20of%20Solomon%208%3A6&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>Set me as a seal upon thine heart, as a seal upon thine arm: for love is strong as death; jealousy is cruel as the grave: the coals thereof are coals of fire, which hath a most vehement flame.</blockquote><dl><dt>What it means to her</dt><dd>&quot;Set me as a seal upon thine heart, as a seal upon thine arm&quot;. A couples verse: heart (necklace) + arm (bracelet).</dd><dt>Angle (proposal)</dt><dd>Husband and wife: one on her heart, one on his arm.</dd><dt>Piece that fits</dt><dd>Couples Sets; necklace for her + Serenity for him</dd></dl><div class="vtag"><span class="badge inf">INFERRED</span></div></article>
+</div>
+<h3 class="vgroup">Family, distance, generations</h3><div class="vgrid">
+<article class="vcard"><div class="vref">Proverbs 31:10-11 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=Proverbs%2031%3A10-11&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>Who can find a virtuous woman? for her price is far above rubies. The heart of her husband doth safely trust in her, so that he shall have no need of spoil.</blockquote><dl><dt>What it means to her</dt><dd>&quot;her price is far above rubies&quot;. The husband-to-wife verse. Christmas reviews name &quot;wife&quot; 110 times (the most-named recipient).</dd><dt>Angle (proposal)</dt><dd>For the husband who never knows what to get her (X10).</dd><dt>Piece that fits</dt><dd>Infinity, Tree of Life, Classic, Eternal Love</dd></dl><div class="vtag"><span class="badge seen">SEEN (review counts); INFERRED link</span></div></article>
+<article class="vcard"><div class="vref">Proverbs 31:28-30 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=Proverbs%2031%3A28-30&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>Her children arise up, and call her blessed; her husband also, and he praiseth her. Favour is deceitful, and beauty is vain: but a woman that feareth the Lord, she shall be praised.</blockquote><dl><dt>What it means to her</dt><dd>&quot;Her children arise up, and call her blessed&quot; + &quot;a woman that feareth the Lord, she shall be praised&quot;. Children and husband honouring the mother/grandmother.</dd><dt>Angle (proposal)</dt><dd>Adult children giving to mom at Christmas; Thanksgiving gratitude to mom.</dd><dt>Piece that fits</dt><dd>Any; sets for Her</dd></dl><div class="vtag"><span class="badge inf">INFERRED</span></div></article>
+<article class="vcard"><div class="vref">Genesis 31:49 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=Genesis%2031%3A49&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>And Mizpah; for he said, The Lord watch between me and thee, when we are absent one from another.</blockquote><dl><dt>What it means to her</dt><dd>The Mizpah blessing. Families apart at Christmas; grandkids far away. Already scripted as TOF10.</dd><dt>Angle (proposal)</dt><dd>Matching pieces for two people who can&#x27;t be together this Christmas.</dd><dt>Piece that fits</dt><dd>Sets / two matching pieces</dd></dl><div class="vtag"><span class="badge inf">INFERRED</span></div></article>
+<article class="vcard"><div class="vref">2 Timothy 1:5 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=2%20Timothy%201%3A5&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>When I call to remembrance the unfeigned faith that is in thee, which dwelt first in thy grandmother Lois, and thy mother Eunice; and I am persuaded that in thee also.</blockquote><dl><dt>What it means to her</dt><dd>Grandmother Lois → mother Eunice → Timothy. The grandmother avatar (14 of 65 Fairing &#x27;Other&#x27; answers name grandchildren) buying at faith milestones.</dd><dt>Angle (proposal)</dt><dd>Grandmother to granddaughter: the faith that &quot;dwelt first in thy grandmother&quot;.</dd><dt>Piece that fits</dt><dd>Tree of Life Necklace / Set; matching pieces</dd></dl><div class="vtag"><span class="badge seen">SEEN avatar (Fairing)</span></div></article>
+<article class="vcard"><div class="vref">Psalm 145:4 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=Psalm%20145%3A4&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>One generation shall praise thy works to another, and shall declare thy mighty acts.</blockquote><dl><dt>What it means to her</dt><dd>Heirloom: &quot;One generation shall praise thy works to another&quot;. ICP: &quot;a piece that could last for generations&quot;.</dd><dt>Angle (proposal)</dt><dd>Heirloom Christmas: the piece that gets handed down.</dd><dt>Piece that fits</dt><dd>14K solid gold; Tree of Life</dd></dl><div class="vtag"><span class="badge seen">SEEN phrase</span></div></article>
+<article class="vcard"><div class="vref">Psalm 103:17 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=Psalm%20103%3A17&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>But the mercy of the Lord is from everlasting to everlasting upon them that fear him, and his righteousness unto children&#x27;s children;</blockquote><dl><dt>What it means to her</dt><dd>&quot;unto children&#x27;s children&quot;. Grandchildren.</dd><dt>Angle (proposal)</dt><dd>Support line for the grandmother lane.</dd><dt>Piece that fits</dt><dd>Any</dd></dl><div class="vtag"><span class="badge inf">INFERRED</span></div></article>
+<article class="vcard"><div class="vref">Proverbs 17:6 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=Proverbs%2017%3A6&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>Children&#x27;s children are the crown of old men; and the glory of children are their fathers.</blockquote><dl><dt>What it means to her</dt><dd>&quot;Children&#x27;s children are the crown of old men&quot;. Grandparent pride.</dd><dt>Angle (proposal)</dt><dd>Support line.</dd><dt>Piece that fits</dt><dd>Any</dd></dl><div class="vtag"><span class="badge inf">INFERRED</span></div></article>
+<article class="vcard"><div class="vref">Ecclesiastes 4:12 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=Ecclesiastes%204%3A12&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>And if one prevail against him, two shall withstand him; and a threefold cord is not quickly broken.</blockquote><dl><dt>What it means to her</dt><dd>Husband, wife and God. Already scripted as TOF9 (Couples Set).</dd><dt>Angle (proposal)</dt><dd>Couples Christmas.</dd><dt>Piece that fits</dt><dd>The Cross Necklaces (Couples Set) / Classic Couples Set</dd></dl><div class="vtag"><span class="badge inf">INFERRED</span></div></article>
+<article class="vcard"><div class="vref">Ruth 1:16 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=Ruth%201%3A16&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>And Ruth said, Intreat me not to leave thee, or to return from following after thee: for whither thou goest, I will go; and where thou lodgest, I will lodge: thy people shall be my people, and thy God my God:</blockquote><dl><dt>What it means to her</dt><dd>Mother-in-law / daughter-in-law bond. Fairing: &quot;Daughter-in-law, daughter, granddaughter, and myself&quot;.</dd><dt>Angle (proposal)</dt><dd>The gift for the daughter-in-law (a recipient nobody writes to).</dd><dt>Piece that fits</dt><dd>Any; sets</dd></dl><div class="vtag"><span class="badge seen">SEEN (Fairing verbatim)</span></div></article>
+</div>
+<h3 class="vgroup">Forever (vs gifts that fade)</h3><div class="vgrid">
+<article class="vcard"><div class="vref">Isaiah 40:8 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=Isaiah%2040%3A8&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>The grass withereth, the flower fadeth: but the word of our God shall stand for ever.</blockquote><dl><dt>What it means to her</dt><dd>Most Christmas gifts are forgotten by spring. The Word stands for ever. Pairs with the lifetime warranty on the Bible chip (the only allowed risk line).</dd><dt>Angle (proposal)</dt><dd>The gift that won&#x27;t end up in a drawer by January.</dd><dt>Piece that fits</dt><dd>Any; gold for heirloom</dd></dl><div class="vtag"><span class="badge inf">INFERRED</span></div></article>
+<article class="vcard"><div class="vref">Matthew 24:35 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=Matthew%2024%3A35&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>Heaven and earth shall pass away, but my words shall not pass away.</blockquote><dl><dt>What it means to her</dt><dd>Same lane.</dd><dt>Angle (proposal)</dt><dd>Support line.</dd><dt>Piece that fits</dt><dd>Any</dd></dl><div class="vtag"><span class="badge inf">INFERRED</span></div></article>
+</div>
+<h3 class="vgroup">Thanksgiving: gratitude</h3><div class="vgrid">
+<article class="vcard"><div class="vref">1 Thessalonians 5:18 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=1%20Thessalonians%205%3A18&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>In every thing give thanks: for this is the will of God in Christ Jesus concerning you.</blockquote><dl><dt>What it means to her</dt><dd>The core gratitude verse.</dd><dt>Angle (proposal)</dt><dd>Thanksgiving week: gratitude gift / &quot;thank you for your faith&quot; to mom or grandma.</dd><dt>Piece that fits</dt><dd>Any</dd></dl><div class="vtag"><span class="badge inf">INFERRED</span></div></article>
+<article class="vcard"><div class="vref">Psalm 100:4-5 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=Psalm%20100%3A4-5&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>Enter into his gates with thanksgiving, and into his courts with praise: be thankful unto him, and bless his name. For the Lord is good; his mercy is everlasting; and his truth endureth to all generations.</blockquote><dl><dt>What it means to her</dt><dd>Thanksgiving + &quot;his truth endureth to all generations&quot;. Links gratitude to generations.</dd><dt>Angle (proposal)</dt><dd>Gratitude across generations (grandmother lane).</dd><dt>Piece that fits</dt><dd>Tree of Life</dd></dl><div class="vtag"><span class="badge inf">INFERRED</span></div></article>
+<article class="vcard"><div class="vref">Psalm 107:1 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=Psalm%20107%3A1&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>O give thanks unto the Lord, for he is good: for his mercy endureth for ever.</blockquote><dl><dt>What it means to her</dt><dd>Table-grace verse.</dd><dt>Angle (proposal)</dt><dd>Support line.</dd><dt>Piece that fits</dt><dd>Any</dd></dl><div class="vtag"><span class="badge inf">INFERRED</span></div></article>
+<article class="vcard"><div class="vref">Colossians 3:15-17 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=Colossians%203%3A15-17&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>And let the peace of God rule in your hearts, to the which also ye are called in one body; and be ye thankful. Let the word of Christ dwell in you richly in all wisdom; teaching and admonishing one another in psalms and hymns and spiritual songs, singing with grace in your hearts to the Lord.</blockquote><dl><dt>What it means to her</dt><dd>&quot;Let the word of Christ dwell in you richly&quot; + &quot;be ye thankful&quot;. The Word dwelling in her, thankfulness.</dd><dt>Angle (proposal)</dt><dd>Thanksgiving-to-Advent bridge.</dd><dt>Piece that fits</dt><dd>Any</dd></dl><div class="vtag"><span class="badge inf">INFERRED</span></div></article>
+<article class="vcard"><div class="vref">Philippians 4:6-7 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=Philippians%204%3A6-7&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>Be careful for nothing; but in every thing by prayer and supplication with thanksgiving let your requests be made known unto God. And the peace of God, which passeth all understanding, shall keep your hearts and minds through Christ Jesus.</blockquote><dl><dt>What it means to her</dt><dd>Anxiety answered with prayer &quot;with thanksgiving&quot;. The anxiety driver meets Thanksgiving.</dd><dt>Angle (proposal)</dt><dd>Holiday-stress lane.</dd><dt>Piece that fits</dt><dd>Infinity; Serenity</dd></dl><div class="vtag"><span class="badge seen">SEEN driver; INFERRED link</span></div></article>
+</div>
+<h3 class="vgroup">Armor (him)</h3><div class="vgrid">
+<article class="vcard"><div class="vref">Ephesians 6:17 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=Ephesians%206%3A17&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>And take the helmet of salvation, and the sword of the Spirit, which is the word of God:</blockquote><dl><dt>What it means to her</dt><dd>&quot;the sword of the Spirit, which is the word of God&quot;. ICP driver #9 (armor). Men&#x27;s pieces bought by wives.</dd><dt>Angle (proposal)</dt><dd>Gift for him: the Word as armor (VSL-28 Shield of Faith lane).</dd><dt>Piece that fits</dt><dd>Serenity Bracelet; Stability; The Cross &amp; Serenity Set For Him</dd></dl><div class="vtag"><span class="badge seen">SEEN driver</span></div></article>
+<article class="vcard"><div class="vref">Hebrews 4:12 <span class="kjv">KJV</span> <a class="src" href="https://www.biblegateway.com/passage/?search=Hebrews%204%3A12&amp;version=KJV" target="_blank" rel="noopener">Bible Gateway ✓</a></div><blockquote>For the word of God is quick, and powerful, and sharper than any twoedged sword, piercing even to the dividing asunder of soul and spirit, and of the joints and marrow, and is a discerner of the thoughts and intents of the heart.</blockquote><dl><dt>What it means to her</dt><dd>Same lane.</dd><dt>Angle (proposal)</dt><dd>Support line.</dd><dt>Piece that fits</dt><dd>Men&#x27;s pieces</dd></dl><div class="vtag"><span class="badge inf">INFERRED</span></div></article>
+</div>
+</section>
+<section id="gifts"><h2><span class="n">4</span>Gift behavior and budgets</h2>
+<p class="lede">US holiday data 2024–2026. Every number has its source and date in the line; full URLs are in section 9. "CONFIRMED" there means the page was opened; "(secondary)" means the number was confirmed on a re-publisher. My own readings are marked INFERRED.</p>
+
+<div class="callout"><b>What this means for us:</b> one piece ($127–$228 live list price today, variant 1 on products.json) sits inside what Americans spend on <i>one</i> close person, a spouse or a parent. Most sets ($293–$354) is about what they spend on the whole family. The pressure point is that <b>Boomers are the only generation planning to spend less in 2026</b>, and <b>47% would rather give one meaningful, higher-cost gift than several small ones</b>. That is exactly our pitch: one gift that means more than five. <span class="badge inf">INFERRED</span> from the numbers below.</div>
+
+<h3>4.1 How much people spend</h3>
+<div class="grid3">
+<div class="stat"><div class="big">$627.93</div><div class="lbl">planned per person on gifts, 2025 (of $890.49 total holiday spend)</div><div class="src">NRF/Prosper, n=8,247, Oct 1–7 2025, pub. Oct 16 2025. 2024 total was the record $901.99. <span class="badge seen">SEEN</span></div></div>
+<div class="stat"><div class="big">$1,007</div><div class="lbl">expected Christmas gift spend, Gallup Oct 2025 (fell to $778 in the Nov 2025 re-poll)</div><div class="src">Gallup, pub. Oct 28 and Dec 4 2025. $100K+ income: $1,479 (Oct). <span class="badge seen">SEEN</span></div></div>
+<div class="stat"><div class="big">$1,654</div><div class="lbl">expected holiday spend per household, 2026 (+4%)</div><div class="src">Deloitte 2026 Holiday Retail Survey, n=4,000, pub. Oct 15 2026. Retail goods $988, activities $666. <span class="badge seen">SEEN</span></div></div>
+<div class="stat"><div class="big">$1,353</div><div class="lbl">Boomers (62–80) expected spend 2026, down from $1,615 in 2025</div><div class="src">Deloitte 2026. The only generation with a drop; their share of total spend fell to 20%. <span class="badge seen">SEEN</span></div></div>
+<div class="stat"><div class="big">$858</div><div class="lbl">Boomer (61–79) gift budget, late-Oct 2025 re-survey (up from $671 in June)</div><div class="src">PwC via Talk Business &amp; Politics, Dec 16 2025 (secondary). <span class="badge seen">SEEN</span></div></div>
+<div class="stat"><div class="big">8</div><div class="lbl">gifts per shopper expected in 2026 (same as 2025)</div><div class="src">Deloitte 2026. <span class="badge seen">SEEN</span></div></div>
+</div>
+<p class="small">Also: NRF forecasts Nov–Dec 2026 retail sales of $1.013T (+4.2%), pub. Oct 15 2026. Adobe forecasts US online Nov 1–Dec 31 2026 at $275.1B (+6.7%), pub. Sep 28 2026. KPMG 2025: $847 average holiday spend. PwC 2026 (June survey): $708 average gift spend (secondary). <span class="badge seen">SEEN</span></p>
+
+<h3>4.2 Spend per recipient</h3>
+<div class="tablewrap"><table>
+<thead><tr><th>Recipient</th><th class="num">Spend</th><th>Source and caveat</th></tr></thead>
+<tbody>
+<tr><td>Family (all, among those who buy for family)</td><td class="num">$496.70</td><td>NRF/Prosper Oct 2025 via Medill Spiegel (secondary). 94.7% buy for family.</td></tr>
+<tr><td>Children</td><td class="num">$473.71</td><td>Empower via GOBankingRates, pub. Dec 17 2025; survey year unclear (may be 2024).</td></tr>
+<tr><td>Spouse / partner</td><td class="num">$322.47</td><td>Empower, same caveat. Tawkify Dec 2025: $359 average (women $315); Boomers $179, but only ~90 Boomers in the sample.</td></tr>
+<tr><td>Parents</td><td class="num">$179.03</td><td>Empower, same caveat.</td></tr>
+<tr><td>Friends</td><td class="num">$121.50</td><td>NRF/Prosper Oct 2025 (secondary). 68.3% buy for friends.</td></tr>
+<tr><td>Co-workers</td><td class="num">$102.27</td><td>NRF/Prosper Oct 2025 (secondary).</td></tr>
+<tr><td>Grandchildren</td><td class="num">$805 / yr on gifts</td><td>AARP 2018 study (pub. Apr 2019): 86% of grandparents buy gifts; $805 a year on gifts, all occasions. AARP 2026: $2,654 a year per grandparent on grandchildren, all spending, not only gifts. No clean per-grandchild Christmas figure.</td></tr>
+<tr><td>Pastor / clergy</td><td class="num">no data</td><td>No survey exists. An unscientific Church Answers poll: cash worth about a week's pay, or nothing (UNCONFIRMED).</td></tr>
+</tbody></table></div>
+<p class="small"><b>Our own gift baskets for comparison:</b> Fairing Jul–Sep 2026 gift AOV ≈ $480 (spouse $488, son/daughter $485, friends $494); multi-person "Other" baskets $520 average. <span class="badge seen">SEEN</span> ICP Bible. <b>Reading:</b> our gift buyer already spends at or above what an average American spends on a spouse; she is not a price-first shopper when the gift is for someone she loves. <span class="badge inf">INFERRED</span></p>
+
+<h3>4.3 Jewelry as a gift</h3>
+<ul>
+<li>US jewelry sales rose <b>1.6%</b> year over year for Nov 1–Dec 21 2025 (apparel +7.8%). Mastercard SpendingPulse, pub. Dec 23 2025. <span class="badge seen">SEEN</span></li>
+<li>Signet (the largest US jeweler): holiday quarter = about <b>34%</b> of annual sales (FY2026, my calculation from its Mar 19 2026 release). Census: December was ~19.8% of 2016 jewelry-store sales. <span class="badge seen">SEEN</span></li>
+<li>Deloitte 2026: 49% will consider luxury gifts; of those, 49% name jewelry and watches. Boomers: 29% will consider luxury gifts. <span class="badge seen">SEEN</span></li>
+<li>Who wants jewelry: 28% of women vs 12% of men; the share falls from 32% in the youngest group to 12% in the oldest (NRF data, year not stated, via Exploding Topics). <span class="badge seen">SEEN</span> on aggregator. <b>Reading:</b> generic jewelry is not what older women ask for. Faith is the reason she wants this one. <span class="badge inf">INFERRED</span></li>
+<li>Average holiday jewelry gift spend: <b>not found</b> in any 2024–2026 survey.</li>
+</ul>
+
+<h3>4.4 Meaningful vs material</h3>
+<ul>
+<li><b>47%</b> prefer to give "one meaningful, higher-cost gift versus several smaller gifts". Deloitte 2026. <span class="badge seen">SEEN</span></li>
+<li>50% plan to gift an experience in 2026 (39% in 2024), and 79% of them will pair it with a physical item. Personalized/monogrammed gifts: 20% overall, Boomers 5%. Deloitte 2026. <span class="badge seen">SEEN</span></li>
+<li>Unwanted gifts: 53% of US adults expected to open at least one unwanted present; $10.1B spent on unwanted gifts; average unwanted gift $72; clothing is the top unwanted category (43%). Finder 2024 forecast (built on 2022–23 surveys), updated Dec 17 2024. <span class="badge seen">SEEN</span></li>
+<li>Gift cards are still the most-wanted gift (NRF 2026: 47%), and <b>65+ are the biggest buyers of gift cards</b> (53% plan to buy one; 59% want one; $58 per card). NRF, Dec 2025. <span class="badge seen">SEEN</span> → our gift cards matter in the last week.</li>
+</ul>
+
+<h3>4.5 When they buy</h3>
+<div class="tablewrap"><table>
+<thead><tr><th>Measure</th><th>Value</th><th>Source</th></tr></thead>
+<tbody>
+<tr><td>Plan to start before November (2026)</td><td>43%</td><td>NRF, Oct 20 2026</td></tr>
+<tr><td>Will wait until Thanksgiving weekend for most of their shopping (2026)</td><td>64%</td><td>NRF, Oct 20 2026</td></tr>
+<tr><td>Expect to finish in December (2025)</td><td>60.3% (November 27.6%)</td><td>NRF/Prosper Oct 2025 (secondary)</td></tr>
+<tr><td>Done by early December (2025)</td><td>51% of their shopping</td><td>NRF, Dec 2025 (secondary)</td></tr>
+<tr><td>Share of 2026 budget by month</td><td>Nov 36% · Dec 32% (early Dec $330, late Dec $204) · Oct 20%</td><td>Deloitte 2026, p.13</td></tr>
+<tr><td>Super Saturday 2025 (Dec 20)</td><td>158.9M shoppers expected</td><td>NRF, Dec 2025 (secondary)</td></tr>
+<tr><td>Store pickup share of online orders peaks</td><td>39.0% on Dec 23 2025 (Adobe) · 35% on Dec 22 (Salesforce, global)</td><td>Adobe via EasyPost; Salesforce, Jan 2026</td></tr>
+</tbody></table></div>
+<p class="small"><b>Our store vs the market:</b> the market's peak spending is in the Thanksgiving–Cyber Monday window; ours was Dec 5–19 (section 6). Our buyer meets us through ads in December and decides fast. <span class="badge seen">SEEN</span> both · <span class="badge inf">INFERRED</span> reason</p>
+
+<h3>4.6 Shipping deadlines (carriers, 2026)</h3>
+<div class="tablewrap"><table>
+<thead><tr><th>Carrier / service</th><th>Last day to send for delivery before Christmas 2026</th><th>Source</th></tr></thead>
+<tbody>
+<tr><td>USPS Ground Advantage / First-Class (lower 48)</td><td><b>Thu Dec 17</b></td><td>usps.com holiday page; Dakota News Now Sep 23 2026 <span class="badge seen">SEEN</span></td></tr>
+<tr><td>USPS Priority Mail</td><td><b>Fri Dec 18</b></td><td>same</td></tr>
+<tr><td>USPS Priority Mail Express</td><td><b>Sat Dec 19</b></td><td>same</td></tr>
+<tr><td>USPS to Alaska / Hawaii, Ground Advantage</td><td>Wed Dec 16</td><td>same</td></tr>
+<tr><td>USPS military APO/FPO, Priority</td><td>Wed Dec 9 (Ground Nov 4)</td><td>same</td></tr>
+<tr><td>FedEx Ground, by transit days</td><td>5-day Dec 17 · 4-day Dec 18 · 3-day Dec 21 · 2-day Dec 22 · 1-day Dec 23</td><td>via Value Added Resource, Sep 24 2026 (secondary)</td></tr>
+<tr><td>FedEx Express Saver / 2Day / Overnight</td><td>Dec 21 / Dec 22 / Dec 23</td><td>same</td></tr>
+<tr><td>UPS</td><td>Not published yet (2025: 3 Day Select Dec 19, 2nd Day Air Dec 22, Next Day Air Dec 23)</td><td>secondary</td></tr>
+</tbody></table></div>
+<ul>
+<li><b>Our own policy is slower than the carriers.</b> Our standard is 5–10 business days + 1–2 days processing, so the safe order-by for free shipping is about Dec 8, nine days before USPS's Ground date. This is the single most important fact for the LP. <span class="badge inf">INFERRED</span> (computed in 8.5, needs ops)</li>
+<li>Stamps.com (Oct 2024, n=1,000): <b>53% of Boomers don't know holiday shipping cut-off dates</b> (millennials 32%), and only 27% of Boomers would pay for faster shipping (Gen Z 56%). Via DC Velocity, Dec 5 2024 (secondary). <span class="badge seen">SEEN</span> → the page must tell her the date; she won't look it up.</li>
+<li>A 2023 survey of 100 online retailers found a median standard-shipping Christmas cut-off of Dec 15 and Dec 18 for any method (Digital Commerce 360, UNCONFIRMED). <span class="badge caution">UNCONFIRMED</span></li>
+</ul>
+</section>
+<section id="thanksgiving"><h2><span class="n">5</span>Thanksgiving</h2>
+<div class="callout"><b>Verdict.</b> Thanksgiving is <b>not</b> a gifting occasion for a $200–$400 faith jewelry brand. On the day itself, people bring food or a small host gift, usually $10–$50. <b>The weekend after it is a big Christmas-gift buying window:</b> 202.9M Americans shopped Thursday–Monday in 2025, and about two-thirds of their holiday spend went to gifts for others. Use Thanksgiving for <b>gratitude framing</b> in Black Friday week, not for a "Thanksgiving gift" offer. Confidence: high on the first part, medium-high on the second. <span class="badge seen">SEEN</span> (sources below)</div>
+
+<h3>5.1 Do people give gifts at Thanksgiving?</h3>
+<ul>
+<li><b>Rarely, and small.</b> LendingTree 2025 (n=2,000, Oct 2–6, 2025): 64% of guests contribute something, but what they bring is mostly food: homemade sides 47%, desserts 42%, alcohol 22%. Only <b>10% bring a host/hostess gift</b> and 10% flowers. (2023: 7% host gift.) <span class="badge seen">SEEN</span></li>
+<li>Deloitte (Oct 2024): 92% of guests bring something, spending just over <b>$47</b>, but that figure includes food. <span class="badge seen">SEEN</span></li>
+<li>Circana (Nov 2023), in its own words: "Thanksgiving is not considered a gifting holiday." About 20% give food or alcohol as gifts. <span class="badge seen">SEEN</span></li>
+<li>Etiquette sources put a host gift at roughly $10–$40 (Scripps/WCPO) or $25–$50 (Diane Gottsman, May 2026). Emily Post gives no dollar amount and makes host gifts optional. <span class="badge seen">SEEN</span> · no survey average exists</li>
+<li>Cards sold per year (Greeting Card Association via USPS, 2019): Thanksgiving <b>15M</b> vs Christmas <b>1.6B</b> (Mother's Day 133M, Easter 57M). <span class="badge seen">SEEN</span></li>
+<li>Google Trends (US, weekly, pulled 21.10.2026): in Thanksgiving week 2025, "christmas gifts" scored <b>56</b> vs "thanksgiving gifts" <b>3</b>. "Thanksgiving gift" searches are about gift baskets, gift bags and gift cards, not jewelry. <span class="badge seen">SEEN</span></li>
+</ul>
+
+<h3>5.2 What is the budget?</h3>
+<ul>
+<li><b>Thanksgiving gift budget:</b> there is no survey average. Host gifts run about $10–$50 by etiquette guidance. <span class="badge seen">SEEN</span></li>
+<li><b>Dinner:</b> $55.18 for 10 people in 2025 (AFBF, Nov 19 2025); $58.08 in 2024. A host spends about $487 in total (LendingTree 2025; $431 in 2024). <span class="badge seen">SEEN</span></li>
+<li><b>The weekend:</b> NRF 2025: $337.86 holiday spend per shopper over Thanksgiving weekend, about $225.74 (67%) of it on gifts. Deloitte 2025: $622 planned BF–CM spend; Boomers planned 12% less than the year before. Deloitte 2024: Boomers (60–78) $487 vs $650 overall. <span class="badge seen">SEEN</span></li>
+</ul>
+
+<h3>5.3 Thanksgiving weekend = Christmas shopping starts</h3>
+<div class="grid3">
+<div class="stat"><div class="big">202.9M</div><div class="lbl">shoppers Thu–Mon, 2025 (record)</div><div class="src">NRF, Dec 2 2025. 2024: 197M. <span class="badge seen">SEEN</span></div></div>
+<div class="stat"><div class="big">63%</div><div class="lbl">planned to wait until Thanksgiving weekend to do most of their holiday shopping</div><div class="src">NRF holiday survey, Oct 16 2025 (59% the year before). <span class="badge seen">SEEN</span></div></div>
+<div class="stat"><div class="big">53%</div><div class="lbl">still had holiday shopping left after the weekend</div><div class="src">NRF, Dec 2 2025. <span class="badge seen">SEEN</span></div></div>
+<div class="stat"><div class="big">$6.4B</div><div class="lbl">US online spend on Thanksgiving Day 2025; 61.6% on mobile</div><div class="src">Adobe, Jan 7 2026. Black Friday $11.8B; Cyber Monday $14.25B. <span class="badge seen">SEEN</span></div></div>
+<div class="stat"><div class="big">29%</div><div class="lbl">of Boomers plan to buy themselves a gift on BF–CM (vs 69% Gen Z)</div><div class="src">Deloitte 2024. Our buyer mostly buys for others in this window. <span class="badge seen">SEEN</span></div></div>
+<div class="stat"><div class="big">97 → 100</div><div class="lbl">"cross necklace" searches: Thanksgiving week vs the Dec 7–13 peak (2025)</div><div class="src">Google Trends, relative index. October 2025 ran 51–62. <span class="badge seen">SEEN</span></div></div>
+</div>
+<p class="small"><b>Our own store:</b> Thanksgiving Day 2025 brought 139 orders; Black Friday 363; Cyber Monday (Dec 1) 318. December then tripled that (section 6). In 2026, Thanksgiving is Thu Nov 26, Black Friday Nov 27, Cyber Monday Nov 30, and Advent starts Sun Nov 29. <span class="badge seen">SEEN</span></p>
+
+<h3>5.4 The Christian gratitude frame (what she believes)</h3>
+<ul>
+<li>Pew (n=9,609, Nov 2024): 91% celebrate Thanksgiving (96% of 65+). <b>65%</b> say someone usually offers a prayer or blessing at dinner; among white evangelicals <b>91%</b>. <span class="badge seen">SEEN</span></li>
+<li>Lifeway 2015: 56% say the most important part of Thanksgiving is thanking God for their blessings (evangelicals 75%, weekly churchgoers 77%, women 64%). Only 1% say shopping. Lifeway 2016: 63% give thanks to God (evangelicals 94%). <span class="badge seen">SEEN</span></li>
+<li>Lincoln, Oct 3 1863: "They are the gracious gifts of the Most High God, who, while dealing with us in anger for our sins, hath nevertheless remembered mercy." The proclamation also asks the nation to commend to God's care "all those who have become widows, orphans, mourners or sufferers". (abrahamlincolnonline.org, from Basler) <span class="badge seen">SEEN</span></li>
+<li>Washington, Oct 3 1789: "it is the duty of all nations to acknowledge the providence of Almighty God, to obey His will, to be grateful for His benefits, and humbly to implore His protection and favor". (Yale Avalon Project) <span class="badge seen">SEEN</span></li>
+<li>Sarah Josepha Hale campaigned for a national Thanksgiving; her own letter to Lincoln (Sep 28 1863) says "For the last fifteen years". The often-repeated "17 years" conflicts with her letter. <span class="badge seen">SEEN</span></li>
+<li>The Pilgrims used the Geneva Bible (1560). William Bradford's 1592 Geneva Bible is on display at Pilgrim Hall; that it came on the Mayflower itself is believed, not documented. <span class="badge seen">SEEN</span> / <span class="badge caution">UNCONFIRMED</span> detail</li>
+<li>Verses (KJV, verified): 1 Thessalonians 5:18 · Psalm 100:4–5 · Psalm 107:1 · Psalm 136:1 · Colossians 3:15–17 · Philippians 4:6–7 · 2 Corinthians 9:15 (verse map).</li>
+</ul>
+
+<h3>5.5 Thanksgiving pain points</h3>
+<ul>
+<li>American Psychiatric Association (Morning Consult, Nov 2024): top holiday worries are <b>grieving a loss / missing a loved one 47%</b>, affording gifts 46% (38% of 65+), family dynamics 35%, talking politics 23%. <span class="badge seen">SEEN</span></li>
+<li>Pew 2024: 5% eat Thanksgiving dinner alone. YouGov Nov 2025: 15% think a political argument at their Thanksgiving is very or somewhat likely. <span class="badge seen">SEEN</span></li>
+<li>AAA: 81.8M Americans traveled 50+ miles for Thanksgiving 2025 (79.9M in 2024): families scattered and then gathered. <span class="badge seen">SEEN</span></li>
+</ul>
+
+<h3>5.6 What I'd do with Thanksgiving <span class="badge inf">INFERRED</span></h3>
+<ol>
+<li><b>No "Thanksgiving gift" product or offer.</b> The data says the occasion doesn't exist at our price point.</li>
+<li><b>Gratitude as the frame for Black Friday week copy:</b> "Thanks be unto God for his unspeakable gift" (2 Cor 9:15) bridges thanks to the Gift. Gratitude to the woman who handed down the faith (mother, grandmother) is a natural Thanksgiving-week gift reason.</li>
+<li><b>Family together = the moment people notice the necklace.</b> Word of mouth at church already sells; Thanksgiving dinner is the same kind of moment. A creative idea, not data.</li>
+<li><b>The grief line matters in November too</b> (47% worry about missing a loved one). Gentle only.</li>
+</ol>
+</section>
+<section id="data"><h2><span class="n">6</span>Our own data: Nov 1 – Dec 31, 2025</h2>
+<p class="lede">Shopify, read-only (store checked first: <code>get-shop-info</code> → TANAOR Jewelry US, 21.10.2026). ShopifyQL day rows, store time zone. 2024 shown for shape only. Raw rows: <code>~/tanaor-org/christmas-research/data/</code>.</p>
+
+<div class="callout"><b>The headline:</b> last year Christmas was not won on Black Friday. The 15 days from Dec 5 to Dec 19 brought <b>7,360 orders, 58% of all Nov–Dec orders</b>. The three biggest days were <b>Dec 16, 17 and 18</b> (558–564 orders each). Black Friday had 363. Orders then fell 32% on Dec 20 and were down to 150 by Dec 22. <span class="badge seen">SEEN</span></div>
+
+<div class="grid3">
+  <div class="stat"><div class="big">9,930</div><div class="lbl">orders in December 2025 · $2.36M net sales</div><div class="src">vs November: 2,845 orders · $654K. December = 3.6× November. <span class="badge seen">SEEN</span></div></div>
+  <div class="stat"><div class="big">Dec 18</div><div class="lbl">biggest day: 564 orders, $144K net</div><div class="src">Dec 16 558 · Dec 17 563 · Dec 8 541 · Dec 10 541 · Black Friday 363. <span class="badge seen">SEEN</span></div></div>
+  <div class="stat"><div class="big">Dec 19</div><div class="lbl">last big day (515 orders). Dec 20: 351 · Dec 21: 259 · Dec 22: 150 · Dec 23: 102</div><div class="src">The drop is the shipping cut-off in buyers' heads. <span class="badge seen">SEEN</span> numbers · <span class="badge inf">INFERRED</span> cause</div></div>
+  <div class="stat"><div class="big">92–94%</div><div class="lbl">of December customers were NEW customers (new ÷ customers, by week)</div><div class="src">Weekly new / returning / all customers: Dec 1: 2,209 / 263 / 2,405 · Dec 8: 3,035 / 318 / 3,249 · Dec 15: 2,965 / 298 / 3,167. <span class="badge seen">SEEN</span></div></div>
+  <div class="stat"><div class="big">$252</div><div class="lbl">average order (total sales ÷ orders), Nov–Dec 2025</div><div class="src">12,775 orders, $3.02M net. This year is higher (August 2026: $338 per memory note; prices and offer changed), so last year's AOV is not this year's. <span class="badge seen">SEEN</span></div></div>
+  <div class="stat"><div class="big">4% → 18%</div><div class="lbl">orders with a paid Gift Box, early Nov → Dec</div><div class="src">Weekly: Nov 3: 4.3% · Nov 10: 2.8% · Nov 17: 17.7% · Nov 24: 18.8% · Dec 1: 18.5% · Dec 8: 17.0% · Dec 15: 16.0%. Careful: in 2026 the same attach rate swung 77–80% (Jun–Jul) → 27% (Sep) with site changes (Account Shift note), so this is a site-mechanics signal first and gift intent second. <span class="badge seen">SEEN</span> · cause <span class="badge inf">NOT VERIFIED</span></div></div>
+</div>
+
+<div class="chart" id="ch-orders">
+  <h4>Orders per day, Nov 1 – Dec 31</h4>
+  <p class="sub">Both years peak in the second and third week of December and fall after Dec 19–20. Hover or tap for values.</p>
+  <div class="lg"><span><i style="background:var(--series-1)"></i>2025</span><span><i style="background:var(--series-2)"></i>2024</span></div>
+  <div class="plot"></div><div class="tip"></div>
+</div>
+
+<div class="chart" id="ch-ship">
+  <h4>Shipping paid per order ($), by December day, 2025</h4>
+  <p class="sub">Shipping charges ÷ orders. Near zero in early December (free standard), then buyers start paying to get it in time. <span class="badge seen">SEEN</span></p>
+  <div class="plot"></div>
+</div>
+<script>
+window.EXTRA_CHARTS=(window.EXTRA_CHARTS||[]).concat([function(){
+  barChart('ch-ship',['1','5','10','15','17','18','19','20','21','22'],[0.44,0.42,1.66,4.24,5.58,6.84,7.70,9.27,10.57,7.28],{unit:'',labels:true,aria:'Shipping dollars per order in December 2025'});
+}]);
+</script>
+<p class="small">Today's shipping prices (live policy page, 21.10.2026): Standard 5–10 business days free · Express 3–5 business days $9.99 · Priority 1–3 business days $35. Last year's checkout showed "Free Standard Shipping (5-8 Business Days)", "Express Shipping (3-6 Business Days)" and "Priority Shipping (1-3 Business Days)" (50-order sample, Dec 17, 2025). In that sample, 11 of 50 orders paid for Express or Priority. <span class="badge seen">SEEN</span> sample of 50, not the whole month.</p>
+
+<h3>What sold (Nov 1 – Dec 31, 2025, by net sales)</h3>
+<div class="tablewrap"><table>
+<thead><tr><th>Product</th><th class="num">Orders</th><th class="num">Net sales</th><th>Note</th></tr></thead>
+<tbody>
+<tr><td>Infinity Necklace</td><td class="num">2,127</td><td class="num">$372,517</td><td>#1</td></tr>
+<tr><td>Classic TANAOR Necklace</td><td class="num">1,989</td><td class="num">$320,343</td><td></td></tr>
+<tr><td>Tree of Life Necklace</td><td class="num">1,135</td><td class="num">$245,348</td><td>Family / generations piece</td></tr>
+<tr><td>Serenity Bracelet</td><td class="num">1,317</td><td class="num">$179,713</td><td>Gift for him (+ Set of 2: 215 orders, $50,807)</td></tr>
+<tr><td>The Cross Necklace</td><td class="num">705</td><td class="num">$178,931</td><td></td></tr>
+<tr><td>Eternal Love Necklace</td><td class="num">806</td><td class="num">$142,913</td><td></td></tr>
+<tr><td>The Cross Bracelet</td><td class="num">775</td><td class="num">$138,921</td><td></td></tr>
+<tr><td>The Sacred Cross Necklace</td><td class="num">377</td><td class="num">$84,533</td><td>Lead SKU in 2026 b-roll (memory)</td></tr>
+<tr><td>TANAOR Shiny Necklace</td><td class="num">491</td><td class="num">$82,330</td><td></td></tr>
+<tr><td>Classic TANAOR Bracelet</td><td class="num">444</td><td class="num">$71,111</td><td></td></tr>
+<tr><td>14k Solid Gold Radiant Necklace</td><td class="num">41</td><td class="num">$56,269</td><td>Top gold piece</td></tr>
+<tr><td>TANAOR Classic Ring</td><td class="num">290</td><td class="num">$54,886</td><td></td></tr>
+<tr><td>14k Solid Gold Tree of Life Necklace</td><td class="num">24</td><td class="num">$42,813</td><td></td></tr>
+<tr><td>Gift Box</td><td class="num">2,035</td><td class="num">$39,651</td><td>Paid add-on</td></tr>
+<tr><td>Sets (Tree of Life Set 146 · Eternal Love set for Her 138 · Classic Set for Her 116 · Infinity set for Her 102 · Cross & Serenity Set For Him 67 · Cross Couples Set 65)</td><td class="num">634</td><td class="num">$174,389</td><td>"Two pieces" already sells</td></tr>
+<tr><td>Star Drop Necklace</td><td class="num">96</td><td class="num">$18,533</td><td>The star piece (Matthew 2:10)</td></tr>
+</tbody></table></div>
+<p class="small">Source: ShopifyQL <code>FROM sales SHOW orders, net_sales GROUP BY product_title SINCE 2025-11-01 UNTIL 2025-12-31</code>. "Orders" counts orders containing the product, so rows overlap. <span class="badge seen">SEEN</span></p>
+
+<h3>What the order data does NOT tell us</h3>
+<ul>
+<li><b>No gift messages.</b> All 50 sampled orders (Dec 17, 2025) had an empty order note and no gift-message field. We cannot read "who it was for" from last December's orders. <span class="badge seen">SEEN</span> (sample)</li>
+<li><b>Freebie lines in last year's orders:</b> "Mystery Gift", "$100 Gift", "Cross Ring". That was last year's offer mechanic; it is not this year's offer. <span class="badge seen">SEEN</span> (sample)</li>
+<li><b>Gift vs self last Christmas: unknown.</b> Fairing answers (54% "myself") are from Jul–Sep 2026. Christmas is almost certainly more gift-heavy (gift box attach ×4–6, men's pieces), but no measured share exists. <span class="badge inf">INFERRED</span></li>
+<li><b>Delivered-before-Christmas rate: not checked.</b> The fulfillment table is not clean enough to say how many Dec 19–22 orders arrived by Dec 25.</li>
+</ul>
+
+<h3>2024 for comparison</h3>
+<p class="small">Nov 2024: 1,949 orders / $621K net · Dec 2024: 4,164 orders / $1.23M net. Top days: Black Friday 270, Dec 2 240, Dec 9 224, Dec 17 221, Dec 16 213. Same shape: a second peak in mid-December and a fall after Dec 20. <span class="badge seen">SEEN</span></p>
+</section>
+<section id="angles"><h2><span class="n">7</span>Angles and hook bank</h2>
+<p class="lede"><b>Proposals only.</b> Nothing here is approved, and none of it is in the vault (Gal's rule). Every hook is a fascination about the viewer's benefit, built on RMBC 1's headline checklist (Module 8, Lesson 1) and fascination types (Module 6, Lesson 1). None of them is about Magali. Tags show which of the 7 headline elements each line carries.</p>
+<div class="card small"><b>The 7 elements:</b> <span class="pill">CUR</span> curiosity · <span class="pill">PAIN</span> call out the pain point · <span class="pill">PROM</span> promise the solution · <span class="pill">SPEC</span> specificity · <span class="pill">SIMP</span> simplicity · <span class="pill">CRED</span> credibility / address skepticism · <span class="pill">TIME</span> time frame.<br><b>Fascination types used:</b> Why · How · What · Secret · List · Never · Contrarian · Named oddity.<br><b>Guardrails on every line:</b> no prices, no % off, no stock counts; certification only in the approved wording; never "solid" for 18K; the product never replaces prayer, church or Scripture; no chip-content claim tied to the Sacred Cross until open question (a) is answered; "smaller than a grain of rice" (never "mustard-seed sized").</div>
+
+<div id="angle-list"><div class="card"><h3 style="margin-top:0">X1 · The Word made close (John 1:14)</h3>
+<p><b>Why it should work:</b> Christmas celebrates the Word becoming flesh and coming close. Her own phrase for the product is &quot;God&#x27;s Word close to my heart&quot;. No other Christmas gift can say it IS the Word. This is the one Christmas idea only Tanaor owns.</p>
+<p class="small"><b>Evidence:</b> ICP Bible driver language: &quot;God&#x27;s Word close to my heart&quot; (SEEN) · Pew 2017: 55% of Americans, 72% of Christians and 92% of white evangelicals celebrate Christmas as a religious holiday (SEEN) · Review: &quot;a constant reminder of God&#x27;s written love letters to His children in Scripture&quot; (Marie D., Christmas gift, SEEN) · Luke 2 is in the New Testament, so &quot;every word of Luke 2&quot; is true whichever chip answer (a) turns out to be</p>
+<p class="small"><b>Who:</b> Herself and every gift recipient · <b>Pieces:</b> Classic TANAOR Necklace, Infinity, Eternal Love, Tree of Life · <b>Verses:</b> John 1:1, 1:14; Revelation 19:13 · <b>Use:</b> LP hero, brand film, TOF VSL lead</p>
+<div class="hook"><div class="h">Why the only Christmas gift that holds every word of Luke 2 fits on a chip smaller than a grain of rice</div><div class="why">Why · <span class="pill">CUR</span> <span class="pill">SPEC</span> <span class="pill">SIMP</span> <span class="pill">CRED</span></div></div>
+<div class="hook"><div class="h">Christmas is the night the Word came close. This year, give the one gift that is the Word.</div><div class="why">Contrarian · <span class="pill">CUR</span> <span class="pill">PROM</span> <span class="pill">SIMP</span></div></div>
+<div class="hook"><div class="h">What &quot;the Word was made flesh&quot; means for the gift you give this Christmas</div><div class="why">What · <span class="pill">CUR</span> <span class="pill">CRED</span></div></div>
+<div class="hook"><div class="h">All 1,189 chapters, Genesis to Revelation, in a necklace she can wear to Christmas Eve service</div><div class="why">List / specific · <span class="pill">SPEC</span> <span class="pill">PROM</span> <span class="pill">TIME</span> · not for the Sacred Cross until (a) is answered</div></div>
+<div class="hook"><div class="h">The quiet reason 112,000 Christians wear God&#x27;s Word over their heart, and why Christmas is the day to start</div><div class="why">Secret · <span class="pill">CUR</span> <span class="pill">CRED</span> <span class="pill">TIME</span></div></div>
+<p class="small"><span class="badge caution">CAUTION</span> &quot;Genesis to Revelation&quot; depends on open question (a) for some crosses. Use &quot;every word of Luke 2&quot; when the piece is a cross.</p>
+</div>
+<div class="card"><h3 style="margin-top:0">X2 · Never alone through the holidays (Immanuel, God with us)</h3>
+<p><b>Why it should work:</b> The #1 buying reason in the ICP Bible is &quot;God is with me / I am not alone&quot;, and the touch habit is the most repeated sensory detail. December is when grief, loneliness and stress peak for this age group. Matthew 1:23 is literally the Christmas name of that promise.</p>
+<p class="small"><b>Evidence:</b> ICP Bible drivers #1 and #2 (SEEN) · Grief / missing someone is the #1 holiday worry: 48% (American Psychiatric Association, Nov 2025, SEEN) · 40% of adults 45+ are lonely (AARP 2025, SEEN) · 54% of Jul–Sep orders were for herself (Fairing, SEEN)</p>
+<p class="small"><b>Who:</b> Herself; someone in a hard season (cancer, first Christmas without someone) · <b>Pieces:</b> Infinity, Eternal Love, The Cross Necklace; Serenity for him · <b>Verses:</b> Matthew 1:23, Isaiah 9:2, 9:6, Hebrews 13:5, Psalm 34:18 · <b>Use:</b> TOF VO/b-roll, Magali-free testimonial mashup, LP block 7</p>
+<div class="hook"><div class="h">Why so many Christian women reach for their necklace when the holidays get heavy</div><div class="why">Why · <span class="pill">CUR</span> <span class="pill">PAIN</span> <span class="pill">SIMP</span></div></div>
+<div class="hook"><div class="h">&quot;God with us&quot; isn&#x27;t a December slogan. How to carry it every day after the tree comes down.</div><div class="why">Contrarian / How · <span class="pill">CUR</span> <span class="pill">PROM</span> <span class="pill">TIME</span></div></div>
+<div class="hook"><div class="h">What to give someone facing their first Christmas without him</div><div class="why">What · <span class="pill">PAIN</span> <span class="pill">PROM</span> <span class="pill">TIME</span></div></div>
+<div class="hook"><div class="h">How to give someone walking through a dark season a light they can hold in their hand</div><div class="why">How · <span class="pill">PAIN</span> <span class="pill">PROM</span> <span class="pill">SIMP</span></div></div>
+<div class="hook"><div class="h">The Prince of Peace, close enough to touch, in the most stressful month of the year</div><div class="why">Named / benefit · <span class="pill">PAIN</span> <span class="pill">PROM</span> <span class="pill">TIME</span></div></div>
+<p class="small"><span class="badge caution">CAUTION</span> Never imply the necklace heals, protects or replaces prayer. Grief lines must stay gentle.</p>
+</div>
+<div class="card"><h3 style="margin-top:0">X3 · The gift that won&#x27;t be in a drawer by January (meaningful vs material)</h3>
+<p><b>Why it should work:</b> She resents how commercial Christmas has become and wants Christ kept in it. Most gifts are forgotten; reviews say &quot;I never take it off&quot;. This angle sells against every other gift on her list, not against other jewelry.</p>
+<p class="small"><b>Evidence:</b> 65% say Christmas is over-commercialized (Rasmussen 2022, SEEN) · &quot;Christmas should be more about Jesus&quot;: Christians 81%, evangelicals 97% (Lifeway 2018, SEEN) · 53% expected at least one unwanted gift; $72 average unwanted gift (Finder 2024 forecast, SEEN) · 47% prefer one meaningful higher-cost gift over several smaller ones (Deloitte 2026, SEEN) · Reviews: &quot;has only worn the Tanaor Bible necklace&quot;, &quot;I don&#x27;t think she&#x27;s gone a day since without wearing it&quot; (SEEN)</p>
+<p class="small"><b>Who:</b> Gift buyers (wife, mother, daughter, friend) · <b>Pieces:</b> Bestsellers: Infinity, Classic, Tree of Life · <b>Verses:</b> Luke 2:10–11, John 14:27, Isaiah 40:8 · <b>Use:</b> Statics, gift-guide advertorial, LP block 3</p>
+<div class="hook"><div class="h">Most Christmas gifts are forgotten by January. Here&#x27;s the one women tell us they never take off.</div><div class="why">Contrarian · <span class="pill">PAIN</span> <span class="pill">PROM</span> <span class="pill">TIME</span> <span class="pill">CRED</span></div></div>
+<div class="hook"><div class="h">Tired of a Christmas with less and less Christ in it? Put the reason for the season back under the tree.</div><div class="why">Pain / promise · <span class="pill">PAIN</span> <span class="pill">PROM</span> <span class="pill">SIMP</span></div></div>
+<div class="hook"><div class="h">Why one more sweater can&#x27;t say what this gift says</div><div class="why">Why · <span class="pill">CUR</span> <span class="pill">SIMP</span></div></div>
+<div class="hook"><div class="h">The one gift under the tree that holds the whole Christmas story, every word of Luke 2</div><div class="why">Named oddity · <span class="pill">CUR</span> <span class="pill">SPEC</span></div></div>
+<div class="hook"><div class="h">Never give a &quot;nice&quot; Christmas gift again: give one she&#x27;ll still be wearing next Christmas</div><div class="why">Never · <span class="pill">PROM</span> <span class="pill">TIME</span> · &quot;still wearing&quot; leans on review language, keep it as their words</div></div>
+</div>
+<div class="card"><h3 style="margin-top:0">X4 · Grandmother to grandchild: the faith that dwelt first in thy grandmother (2 Timothy 1:5)</h3>
+<p><b>Why it should work:</b> Women 65+ are 35.7% of spend; 14 of 65 Fairing &quot;Other&quot; answers name grandchildren, at faith milestones. Her deepest outside fear is the next generation drifting from faith. 2 Tim 1:5 names her by role.</p>
+<p class="small"><b>Evidence:</b> Women 65+ = 35.7% of spend (Account Shift / ICP Bible, SEEN) · Fairing &#x27;Other&#x27; free text: 14 of 65 name grandchildren (SEEN) · 64% of young adults raised in church dropped out (Barna 2019); 51% of practicing Christian parents very concerned about their children&#x27;s faith (Barna 2022) (SEEN) · Over half of grandparents have a grandchild 200+ miles away (AARP, SEEN) · Review: &quot;I want them to feel the peace that I feel wearing mine&quot; (Dena M., Christmas, SEEN)</p>
+<p class="small"><b>Who:</b> Grandmother buying for grandchildren; mother for adult children · <b>Pieces:</b> Tree of Life Necklace / Set, The Cross Necklace, Cross Bracelet, matching pieces · <b>Verses:</b> 2 Timothy 1:5, Deuteronomy 6:7, Psalm 145:4, Proverbs 6:21–22 · <b>Use:</b> TOF AI-creator 65+, email, LP gift-finder tile</p>
+<div class="hook"><div class="h">What Paul knew about grandmothers that most Christmas gift guides forget</div><div class="why">What · <span class="pill">CUR</span> <span class="pill">CRED</span></div></div>
+<div class="hook"><div class="h">How to put God&#x27;s Word on your granddaughter before she leaves home</div><div class="why">How · <span class="pill">PAIN</span> <span class="pill">PROM</span> <span class="pill">SIMP</span> <span class="pill">TIME</span></div></div>
+<div class="hook"><div class="h">The Christmas gift your grandchildren will still have when they have grandchildren of their own</div><div class="why">Promise / heirloom · <span class="pill">PROM</span> <span class="pill">TIME</span></div></div>
+<div class="hook"><div class="h">Why more grandmothers are choosing the whole Bible, smaller than a grain of rice, for the grandkids this Christmas</div><div class="why">Why · <span class="pill">CUR</span> <span class="pill">SPEC</span> · no proof of a trend: drop &quot;more&quot; before use</div></div>
+<div class="hook"><div class="h">The 3 words in 2 Timothy that turn a Christmas gift into a family legacy</div><div class="why">List · <span class="pill">CUR</span> <span class="pill">SPEC</span> <span class="pill">CRED</span></div></div>
+<p class="small"><span class="badge caution">CAUTION</span> The cast must be a white American woman 50+ (her grandchild can be any age). Avoid death-heavy wording for 65+.</p>
+</div>
+<div class="card"><h3 style="margin-top:0">X5 · His Word on his wrist (wife → husband, son)</h3>
+<p><b>Why it should work:</b> Serenity Bracelet was the #4 product last Christmas (1,317 orders) and Set of 2 Serenity added 215. Men&#x27;s pieces are mostly gifts (76% not for self). The objection &quot;he doesn&#x27;t wear jewelry&quot; is the door.</p>
+<p class="small"><b>Evidence:</b> Serenity #4 product Nov–Dec 2025 (1,317 orders) + Set of 2 Serenity 215 (Shopify, SEEN) · Orders with a men&#x27;s piece 76% &#x27;not for myself&#x27; (Concept × Angle Map, SEEN) · Reviews: son &quot;has worn it every day since he opened it&quot; (Tamara H.); &quot;My husband is actually not one to wear jewelry often but this bracelet is so different&quot; (Tena M.) (SEEN)</p>
+<p class="small"><b>Who:</b> Wife buying for husband; mother for son · <b>Pieces:</b> Serenity Bracelet, Set of 2 Serenity, Stability, The Cross &amp; Serenity Set For Him · <b>Verses:</b> Ephesians 6:17, Deuteronomy 6:8, Song of Solomon 8:6 · <b>Use:</b> VSL-30 lane, statics, LP gift-finder tile</p>
+<div class="hook"><div class="h">Why men who &quot;don&#x27;t wear jewelry&quot; keep this one on</div><div class="why">Why / contrarian · <span class="pill">CUR</span> <span class="pill">PAIN</span> <span class="pill">CRED</span> · proof exists: Tamara H. and Tena M. reviews</div></div>
+<div class="hook"><div class="h">How to give your husband the sword of the Spirit for Christmas (Ephesians 6:17)</div><div class="why">How · <span class="pill">CUR</span> <span class="pill">PROM</span> <span class="pill">CRED</span> <span class="pill">TIME</span></div></div>
+<div class="hook"><div class="h">What to give the man who prays for your family</div><div class="why">What · <span class="pill">CUR</span> <span class="pill">SIMP</span></div></div>
+<div class="hook"><div class="h">Ties, wallets, cologne. None of them say what this says on Christmas morning.</div><div class="why">List / contrarian · <span class="pill">PAIN</span> <span class="pill">SIMP</span> <span class="pill">TIME</span></div></div>
+<div class="hook"><div class="h">The whole Bible on his wrist, in a leather bracelet he can wear to work</div><div class="why">Specific · <span class="pill">SPEC</span> <span class="pill">PROM</span> · Serenity = leather and steel; never call it gold</div></div>
+</div>
+<div class="card"><h3 style="margin-top:0">X10 · For the husband who never knows what to get her</h3>
+<p><b>Why it should work:</b> Christmas is the one season the man buys. In the 412 Christmas reviews, &quot;wife&quot; appears 110 times vs &quot;husband&quot; 33. The reviews are full of men who &#x27;never know what to get her&#x27; and then watch her cry. The account is now 82% women, so this buyer is probably under-served at Christmas.</p>
+<p class="small"><b>Evidence:</b> Christmas review recipients: wife 110 · daughter 53 · husband 33 (keyword counts, SEEN) · Reviews: &quot;My wife Kim usually doesn&#x27;t like jewelry but I took a chance&quot; (Jeffrey S.); &quot;I struggle to find a special gift year for my wife&quot; (Frank B.); &quot;A perfect Christmas gift for my difficult to shop for wife&quot; (James H.) (SEEN) · Caveat: those reviews are from 2022–25, when men were the majority of the account (Account Shift, SEEN)</p>
+<p class="small"><b>Who:</b> Men 50–75 buying for their wife (and daughters) · <b>Pieces:</b> Infinity, Tree of Life, Classic, Eternal Love; sets for Her · <b>Verses:</b> Proverbs 31:10, Song of Solomon 8:6, Ecclesiastes 4:12 · <b>Use:</b> Men 55+ ad set test, statics, a &#x27;for him to give her&#x27; LP tile</p>
+<div class="hook"><div class="h">Never know what to get her for Christmas? Here&#x27;s the gift wives say made them cry.</div><div class="why">Pain / promise · <span class="pill">PAIN</span> <span class="pill">PROM</span> <span class="pill">CRED</span> <span class="pill">TIME</span></div></div>
+<div class="hook"><div class="h">Why wives who &quot;don&#x27;t like jewelry&quot; haven&#x27;t taken this one off since Christmas</div><div class="why">Why / contrarian · <span class="pill">CUR</span> <span class="pill">PAIN</span> <span class="pill">CRED</span> · proof: Jeffrey S., Bill M. reviews</div></div>
+<div class="hook"><div class="h">What to give the woman who prays for you every day</div><div class="why">What · <span class="pill">CUR</span> <span class="pill">SIMP</span></div></div>
+<div class="hook"><div class="h">The 2-minute Christmas gift that tells your wife what 40 years of cards couldn&#x27;t</div><div class="why">Specific · <span class="pill">SPEC</span> <span class="pill">PROM</span> <span class="pill">SIMP</span> · &quot;2-minute&quot; = time to order; keep only if true on the page</div></div>
+<div class="hook"><div class="h">How to watch her face when she finds out the whole Bible is inside</div><div class="why">How · <span class="pill">CUR</span> <span class="pill">PROM</span> · the beauty → tears reveal pattern</div></div>
+<p class="small"><span class="badge caution">CAUTION</span> Proverbs 31:10-11 verified on Bible Gateway KJV (verse map). Casting: the wife is the avatar (white American woman 50+); the husband follows the story.</p>
+</div>
+<div class="card"><h3 style="margin-top:0">X6 · One for you, one for her (two of the same Word)</h3>
+<p><b>Why it should work:</b> The AOV lever. Fairing &#x27;Other&#x27; baskets ($455–$4,329) are mostly &quot;myself and someone else&quot;; sets already sold 634 orders last Nov–Dec. Genesis 31:49 and Song 8:6 give it Scripture.</p>
+<p class="small"><b>Evidence:</b> ICP Bible, Fairing free text (SEEN) · Shopify Nov–Dec 2025 sets: 634 orders, $174K (SEEN) · Decisions log #57: gift lines speak to the woman buying for herself AND her loved ones</p>
+<p class="small"><b>Who:</b> Her + daughter / sister / friend / husband · <b>Pieces:</b> Sets for Her, Couples Sets, Set of 2 Serenity · <b>Verses:</b> Genesis 31:49, Song of Solomon 8:6, Ecclesiastes 4:12, Ruth 1:16 · <b>Use:</b> Offer framing, cart/LP bundle block, email</p>
+<div class="hook"><div class="h">One for you, one for her: the Christmas gift that keeps two hearts on the same Word</div><div class="why">Promise · <span class="pill">PROM</span> <span class="pill">SIMP</span></div></div>
+<div class="hook"><div class="h">The Mizpah promise for families who can&#x27;t be together this Christmas</div><div class="why">Named oddity · <span class="pill">CUR</span> <span class="pill">PAIN</span> <span class="pill">TIME</span></div></div>
+<div class="hook"><div class="h">The Christmas gift you&#x27;ll want to buy twice: once for her, and once for you</div><div class="why">Promise · <span class="pill">CUR</span> <span class="pill">PROM</span> <span class="pill">SIMP</span> · reviews: &quot;I plan to get one for myself as well!&quot; (Mary C.)</div></div>
+<div class="hook"><div class="h">&quot;Set me as a seal upon thine heart&quot;: the couples&#x27; gift that holds the whole Bible twice</div><div class="why">Named / specific · <span class="pill">CUR</span> <span class="pill">SPEC</span> <span class="pill">CRED</span></div></div>
+<div class="hook"><div class="h">How to give your daughter the same Word you wear, so you&#x27;re never really apart</div><div class="why">How · <span class="pill">PAIN</span> <span class="pill">PROM</span> <span class="pill">SIMP</span></div></div>
+<p class="small"><span class="badge caution">CAUTION</span> No % or &quot;second piece X off&quot; until Gal sets the Christmas offer.</p>
+</div>
+<div class="card"><h3 style="margin-top:0">X7 · Gold for the King (Matthew 2:11)</h3>
+<p><b>Why it should work:</b> The first Christmas gifts were gold, chosen for a King. It gives the 14K solid gold collection a biblical reason, not a luxury reason (she dislikes &#x27;luxury&#x27; language). Gold is 0.8% of orders but 12.5% of revenue.</p>
+<p class="small"><b>Evidence:</b> ICP Bible avatar D (SEEN) · ICP: she does not care for &#x27;premium/luxury&#x27; language (SEEN)</p>
+<p class="small"><b>Who:</b> Premium buyer, heirloom gift · <b>Pieces:</b> 14K solid gold Radiant, Tree of Life, Infinity · <b>Verses:</b> Matthew 2:10–11, Psalm 145:4 · <b>Use:</b> Gold statics, OTO, a gold section on the LP</p>
+<div class="hook"><div class="h">Why gold was the first Christmas gift ever given</div><div class="why">Why · <span class="pill">CUR</span> <span class="pill">CRED</span></div></div>
+<div class="hook"><div class="h">The Magi brought gold to the King. This year, bring Him to the ones you love, in 14K solid gold.</div><div class="why">Contrarian · <span class="pill">CUR</span> <span class="pill">PROM</span> · &quot;bring Him&quot; may read as overclaim; alt: &quot;carry His Word&quot;</div></div>
+<div class="hook"><div class="h">What the Magi&#x27;s gold can teach you about the gift you give this year</div><div class="why">What · <span class="pill">CUR</span> <span class="pill">CRED</span></div></div>
+<div class="hook"><div class="h">An heirloom that carries all 1,189 chapters, in 14K solid gold</div><div class="why">Specific · <span class="pill">SPEC</span> <span class="pill">PROM</span> · not the 14K Sacred Cross (vermeil chain; chip question a)</div></div>
+<div class="hook"><div class="h">The gift she&#x27;ll pass to her granddaughter, and her granddaughter after that</div><div class="why">Promise / time · <span class="pill">PROM</span> <span class="pill">TIME</span></div></div>
+</div>
+<div class="card"><h3 style="margin-top:0">X8 · Small enough to hold (the biblical pattern of concentration)</h3>
+<p><b>Why it should work:</b> Existing Big Idea in the vault (Mechanism Lab v2): God keeps working through the smallest thing — a mustard seed, a shepherd boy, a baby in a manger. The whole Bible, smaller than a grain of rice, is a physical example of that pattern. Awe and gift-desire; the file itself says it won&#x27;t carry cold DR alone.</p>
+<p class="small"><b>Evidence:</b> Mechanism Lab v2 — Deep Mechanisms, lines 200–216 (existing vault idea, with its own guardrail)</p>
+<p class="small"><b>Who:</b> Everyone; brand film · <b>Pieces:</b> Any (chip macro) · <b>Verses:</b> Luke 2:7, 2:12, Micah 5:2 (&quot;though thou be little&quot;) · <b>Use:</b> Brand film, LP section 2, Christmas hero image</p>
+<div class="hook"><div class="h">Why God keeps choosing the smallest thing in the room: a seed, a shepherd boy, a baby in a manger</div><div class="why">Why · <span class="pill">CUR</span> <span class="pill">CRED</span> · the vault file&#x27;s own line; never call the chip mustard-seed sized</div></div>
+<div class="hook"><div class="h">3.1 million letters, smaller than a grain of rice: the most unbelievable gift under the tree</div><div class="why">Named oddity · <span class="pill">CUR</span> <span class="pill">SPEC</span> <span class="pill">SIMP</span></div></div>
+<div class="hook"><div class="h">How the biggest story ever told fits in the palm of her hand</div><div class="why">How · <span class="pill">CUR</span> <span class="pill">SIMP</span></div></div>
+<p class="small"><span class="badge caution">CAUTION</span> Micah 5:2 / Luke 2 used as principle only. &quot;Smaller than a grain of rice&quot; is the only size claim.</p>
+</div>
+<div class="card"><h3 style="margin-top:0">X9 · It&#x27;s not too late (deadline, functional)</h3>
+<p><b>Why it should work:</b> Last year&#x27;s three biggest days were Dec 16–18 and the fall came after Dec 19. Buyers pay for speed in the last week. A truthful order-by date is the strongest urgency we&#x27;re allowed to use.</p>
+<p class="small"><b>Evidence:</b> Shopify Dec 2025 days + shipping $/order (SEEN)</p>
+<p class="small"><b>Who:</b> Late gift buyers, Dec 10–21 · <b>Pieces:</b> Bestsellers · <b>Verses:</b> — · <b>Use:</b> Hero chip, statics, last-week ads, email</p>
+<div class="hook"><div class="h">Still looking for a gift that means something? Order by [date] and it&#x27;s under the tree by Christmas.</div><div class="why">Promise / time · <span class="pill">PAIN</span> <span class="pill">PROM</span> <span class="pill">TIME</span> <span class="pill">SPEC</span> · [date] only after ops confirms</div></div>
+<div class="hook"><div class="h">The last meaningful gift you can still get by Christmas</div><div class="why">Time · <span class="pill">TIME</span> <span class="pill">CUR</span></div></div>
+<p class="small"><span class="badge caution">CAUTION</span> Dates must be ops-confirmed; never a fake countdown.</p>
+</div></div>
+</section>
+<section id="lp"><h2><span class="n">8</span>LP inputs: for the Christmas landing page session</h2>
+<p class="lede">Everything the page builder needs, with the truth status of each fact. If a line says NEEDS GAL, the page must not state it until Gal answers.</p>
+
+<h3>8.1 Who lands on the page</h3>
+<ul>
+<li><b>A stranger.</b> In December 2025, 92–94% of customers each week were new. The page must sell the whole idea from zero: what the chip is, that it's real, why it's a gift. <span class="badge seen">SEEN</span></li>
+<li><b>On a phone.</b> 86.7% of Dec 1–24, 2025 sessions were mobile (491,903 of 567,312). Mobile converted at 1.49% vs desktop 2.67%. Mobile-first is not optional. <span class="badge seen">SEEN</span></li>
+<li><b>A woman 55–75 who reads.</b> Long-form works on cold traffic in this account (ICP Bible). Don't shorten it into a catalogue; make it easy to scan. <span class="badge seen">SEEN</span></li>
+<li><b>Shopping for someone else, more than in summer.</b> Men's pieces are mostly gifts (76% "not for myself" on orders with a men's piece, Concept × Angle Map). Measured gift share for December does not exist; the gift-box attach rate moves with site changes, so it is not proof. <span class="badge inf">INFERRED</span></li>
+<li><b>Racing a deadline.</b> Last year's peak was Dec 16–18 and paid shipping per order rose from $0.44 to $10.57. The page has to answer "will it arrive?" above the fold. <span class="badge seen">SEEN</span></li>
+</ul>
+
+<h3>8.2 The questions and objections the page must answer</h3>
+<div class="tablewrap"><table>
+<thead><tr><th>#</th><th>Her question</th><th>Answer we can give (fact on file)</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Will it arrive before Christmas?</td><td>Order-by table (8.5). Live policy: processing 1–2 business days; Standard 5–10 BD free; Express 3–5 BD $9.99; Priority 1–3 BD $35.</td><td><span class="badge caution">NEEDS OPS CONFIRMATION</span> of the cut-off dates</td></tr>
+<tr><td>2</td><td>Is the Bible really in there? How can I know?</td><td>The certificate line (only this one): "every order comes with a certificate of authenticity confirming that each piece is verified by an actual Nano-Science scientist from the US Nano-Science Center." Site FAQ adds 100x optical + 1,000x confocal inspection, signed by Chief Scientist R. Walia and endorsed by Lead Pastor Philip C. Morris, Jr.</td><td><span class="badge seen">SEEN</span> (site FAQ 21.10)</td></tr>
+<tr><td>3</td><td>Is it the whole Bible? KJV?</td><td>Site FAQ: "the complete King James Version (KJV) Bible — all 66 books". Facts on file: 1,189 chapters, 3.1 million letters, smaller than a grain of rice.</td><td><span class="badge caution">CAUTION</span> the 18K Sacred Cross page says "entire New Testament", a production note says the 14K Faith Cross is NT only, and Pastor Morris's letter "confirms the KJV New Testament" (vault extraction; open question a). Don't make a chip-content claim for the Sacred Cross until Gal answers.</td></tr>
+<tr><td>4</td><td>Real gold or plated?</td><td>Say only "18K gold" or "14K solid gold". Never "solid" for 18K, never "plated", don't explain (decisions log #26). Serenity = leather and steel.</td><td><span class="badge seen">SEEN</span> rule</td></tr>
+<tr><td>5</td><td>Will it tarnish? Can she shower in it?</td><td>Site FAQ: "the nano-Bible chip itself is completely waterproof", but avoid prolonged contact with water, soap and body oils to keep the finish; leather pieces kept dry.</td><td><span class="badge seen">SEEN</span> (site FAQ). Don't say "never tarnishes".</td></tr>
+<tr><td>6</td><td>Is this a real company? (Facebook-ad skepticism)</td><td>112,000+ wearing it (homepage shows "112,398+ Believers"), 5,000+ 5-star reviews, real-name reviews, the certificate.</td><td><span class="badge seen">SEEN</span></td></tr>
+<tr><td>7</td><td>Which one should I get for him / her / my granddaughter?</td><td>Gift finder by recipient (8.6). Last Christmas's best sellers by recipient lane are in section 6.</td><td><span class="badge seen">SEEN</span> sales</td></tr>
+<tr><td>8</td><td>What if she doesn't like it, or the size is wrong?</td><td>The site shows two lines that conflict: a "30-day money-back guarantee" ("refund every penny. No questions asked") AND a returns policy that excludes sale items (20%+ off) and the Solid Gold collection, with exchanges offered instead. The CEO's risk-reversal hold allows only "a lifetime warranty on the Bible chip" in copy. /pages/faq supports that line: "a lifetime warranty against any issues regarding your nano Bible chip" + 1-year manufacturer's defects; exchanges within 30 days of delivery.</td><td><span class="badge caution">NEEDS GAL</span> — see 8.7</td></tr>
+<tr><td>9</td><td>Does it come gift-ready?</td><td>Gift Box product exists ($14.95, /products/gift-box). Live bar: "Free Gift Over $225"; cart drawer: "Spend $225 more for a FREE Gold Bracelet".</td><td><span class="badge seen">SEEN</span> live 21.10. The Christmas offer itself is Gal's call.</td></tr>
+<tr><td>10</td><td>Is it worth the price?</td><td>Frame against what she already spends per person (section 4) and against gifts that are forgotten by January. No prices in copy unless Gal gives them.</td><td><span class="badge inf">INFERRED</span></td></tr>
+<tr><td>11</td><td>I missed the shipping date. Now what?</td><td>Gift cards exist ($20, $50, $75, $100, $250, $300, $500 on products.json).</td><td><span class="badge caution">NOT VERIFIED</span> whether they are emailed instantly</td></tr>
+<tr><td>12</td><td>Chain length / ring size for a gift?</td><td>Not read for this research. Pull from each PDP before writing.</td><td><span class="badge caution">NOT CHECKED</span></td></tr>
+<tr><td>13</td><td>Is it okay to wear the Bible? Is this "just jewelry"?</td><td>Scripture asks for it: Proverbs 3:3, Proverbs 6:21, Deuteronomy 6:8 (verse map). Never present it as a substitute for prayer, church or reading Scripture.</td><td><span class="badge seen">SEEN</span> rule</td></tr>
+</tbody></table></div>
+
+<h3>8.3 Proof to use</h3>
+<ul>
+<li>The certificate line, exactly as written above. Never Tel Aviv, Israel or "Made in Israel".</li>
+<li>112,000+ Christians wearing one · 5,000+ five-star reviews · all 1,189 chapters · 3.1 million letters · smaller than a grain of rice.</li>
+<li><b>Do NOT reuse the Christmas reviews in the Funnelish files</b> (George H. / Thomas B. "Christmas morning at the kitchen table", "Got this for my father for Christmas…"): they read as composed copy, not customer quotes (vault extraction 21.10). Only Loox reviews with real names.</li>
+<li><b>The reveal pattern, from 129 reviews:</b> first she sees a beautiful necklace, then someone tells her what's inside, then she cries. Build the page in that order: beauty first, then "what's inside", then the reactions. <span class="badge seen">SEEN</span> pattern</li>
+<li><b>Christmas review bank:</b> 412 real Christmas reviews (385 five-star) in <code>raw/christmas_reviews.jsonl</code>; best ones on this site, section 2.V. "wife" is the most-named Christmas recipient (110), then daughter (53), husband (33).</li>
+<li>Real reviews with real names (the Loox feed). Christmas and reveal verbatims: section 2 (RMBC) and the review bank below the angles.</li>
+<li>Macro footage of the chip (the 1,000x microscope video on the homepage FAQ).</li>
+<li>Pastor Philip C. Morris, Jr. endorses the certificate (site FAQ; memory note says he is real).</li>
+</ul>
+
+<h3>8.4 Offer and urgency facts</h3>
+<ul>
+<li><b>Live today (21.10.2026):</b> "FALL SALE • UP TO 40% + Free Gift Over $225", with a countdown timer. <span class="badge seen">SEEN</span></li>
+<li><b>Christmas offer:</b> not decided in any file I read. Decisions log #7: BFCM keeps the same offer. Holiday plan file (Peak Plans/Holiday.md) suggests gift sets, but it's a template. <span class="badge caution">NEEDS GAL</span></li>
+<li><b>Christmas ads are on hold until ~27.10</b> (decisions log #81). The page can be built now.</li>
+<li><b>Urgency we can state truthfully:</b> the shipping cut-off dates (once ops confirms). Not allowed: invented stock counts, "only X left", invented prices.</li>
+<li><b>Sets already sell:</b> 634 set orders in Nov–Dec 2025, $174K net (section 6). "One for you, one for her" is the AOV lever (ICP Bible: gift-basket orders ≈ $480–520 vs $332 for herself, Fairing Jul–Sep 2026).</li>
+</ul>
+
+<div class="callout"><b>Two traps from last Christmas's reviews:</b> (1) "Your ads promised that this would arrive before Christmas. It didn't." and "I paid for guaranteed by Christmas shipping but didn't get it until 2 business days after". Never write "guaranteed by Christmas" unless ops can keep it. (2) "went on sale at 40 percent off two days after Christmas… I feel that I got ripped off". A post-Christmas sale deeper than the Christmas offer creates angry December buyers. <span class="badge seen">SEEN</span></div>
+<h3>8.5 Shipping-deadline facts (Christmas 2026 = Friday, Dec 25)</h3>
+<p class="small">Computed from the live shipping policy (processing 1–2 business days + the method's transit time, Mon–Fri, delivery by Thu Dec 24). The policy also says orders are "dispatched the following business day" Sunday–Thursday, so a Friday order may wait until Monday. These are my calculations, not company deadlines. <span class="badge inf">INFERRED</span></p>
+<div class="tablewrap"><table>
+<thead><tr><th>Method (live policy)</th><th>Safe order-by (slowest case)</th><th>Best case</th></tr></thead>
+<tbody>
+<tr><td>Standard · free · 5–10 business days</td><td><b>Tue Dec 8</b></td><td>Wed Dec 16</td></tr>
+<tr><td>Express · $9.99 · 3–5 business days</td><td><b>Tue Dec 15</b></td><td>Fri Dec 18</td></tr>
+<tr><td>Priority · $35 · 1–3 business days</td><td><b>Thu Dec 17</b></td><td>Tue Dec 22</td></tr>
+</tbody></table></div>
+<p class="small"><b>Carriers 2026 (USPS published):</b> Ground Advantage Dec 17 · Priority Mail Dec 18 · Priority Mail Express Dec 19. Our free standard method is slower than USPS Ground because of the 5–10 business-day window. 53% of Boomers don't know holiday cut-off dates (Stamps.com 2024), so the page must state them. <span class="badge seen">SEEN</span></p>
+<p class="small">Last year's buyers behaved as if the cut-off was about <b>Dec 19</b>: the three biggest days were Dec 16–18, then −32% on Dec 20. Carrier deadlines for 2025/2026 are in section 4. <span class="badge seen">SEEN</span> behaviour</p>
+<div class="callout"><b>Recommendation for the page:</b> show one honest "order by" date per method in the hero and again above the final button, and switch the hero after the standard cut-off to "Express still arrives by Christmas". Ops has to confirm the dates first (where it ships from, carrier, holiday volume).</div>
+
+<h3>8.6 Gift finder (recipient lanes, from last year's sales and the avatars)</h3>
+<div class="tablewrap"><table>
+<thead><tr><th>Recipient</th><th>Pieces that sold / fit</th><th>Verse lane</th></tr></thead>
+<tbody>
+<tr><td>Her (wife, mother, daughter, friend)</td><td>Infinity · Classic Necklace · Tree of Life · Eternal Love · The Cross Necklace · sets for Her</td><td>John 1:14 · Luke 2:19 · Proverbs 3:3</td></tr>
+<tr><td>Him (husband, son, son-in-law)</td><td>Serenity Bracelet (1,317 orders) · Set of 2 Serenity · Stability · The Cross & Serenity Set For Him</td><td>Ephesians 6:17 · Deuteronomy 6:8 · Matthew 1:23</td></tr>
+<tr><td>Grandchild (baptism, 18th birthday, engagement)</td><td>Tree of Life · The Cross Necklace · Cross Bracelet</td><td>2 Timothy 1:5 · Proverbs 6:21–22 · Psalm 145:4</td></tr>
+<tr><td>The two of you / matching</td><td>Couples Sets · Set of 2 Serenity · sets for Her</td><td>Song of Solomon 8:6 · Ecclesiastes 4:12 · Genesis 31:49</td></tr>
+<tr><td>Someone in a hard season (cancer, grief, far away)</td><td>Any; Eternal Love · Infinity</td><td>Isaiah 9:2 · Isaiah 41:10 · Hebrews 13:5</td></tr>
+<tr><td>Premium / heirloom</td><td>14K solid gold (Radiant, Tree of Life, Infinity)</td><td>Matthew 2:11 (gold for the King) · Psalm 145:4</td></tr>
+<tr><td>Herself</td><td>Any (54% of orders Jul–Sep were "myself")</td><td>Matthew 1:23 · 1 John 1:1</td></tr>
+</tbody></table></div>
+
+<h3>8.7 Decisions the page needs from Gal</h3>
+<ol>
+<li><b>Guarantee line.</b> The site's FAQ shows a 30-day money-back guarantee AND a returns policy that excludes sale items. Which one is true for Christmas orders? My recommendation: the page shows only what ops confirms, plus "a lifetime warranty on the Bible chip". Until then, no money-back line on the page.</li>
+<li><b>Order-by dates.</b> Ops confirms the three dates in 8.5 (or gives the real ones).</li>
+<li><b>The Christmas offer</b> (same as Fall Sale, BFCM, or a gift-set offer?).</li>
+<li><b>Sacred Cross chip content</b> (entire Bible or New Testament) before it's a hero piece.</li>
+</ol>
+
+<h3>8.8 Recommended section order (mobile-first)</h3>
+<ol>
+<li><b>Hero:</b> one Christmas fascination headline + the piece on a Christmas setting + the "order by" chip + button.</li>
+<li><b>The wow fact</b> (1,189 chapters smaller than a grain of rice) + chip macro + the certificate line.</li>
+<li><b>Why this gift is different:</b> the Word made flesh at Christmas → the Word close to her heart (John 1:14). Short.</li>
+<li><b>The reveal:</b> 3–5 real-name reviews about opening it ("she teared up").</li>
+<li><b>Gift finder</b> tiles by recipient (8.6), each linking to its piece.</li>
+<li><b>Scripture asks for it:</b> Proverbs 3:3 / Deuteronomy 6:8, shown as KJV text.</li>
+<li><b>Never alone:</b> the anxiety / hard-season block (touch it, Immanuel).</li>
+<li><b>Offer + gift box + free gift</b> (Gal's Christmas offer).</li>
+<li><b>Shipping table</b> (8.5).</li>
+<li><b>FAQ</b> (8.2 rows 2–13).</li>
+<li><b>Final button</b> + the order-by date again.</li>
+</ol>
+</section>
+<section id="sources"><h2><span class="n">9</span>Sources</h2>
+<h3>Our own data (read-only, 21.10.2026)</h3>
+<ul class="small">
+<li>Shopify Admin, store "TANAOR Jewelry US" (verified with get-shop-info). ShopifyQL day rows Nov 1–Dec 31 2025 and 2024; products; new vs returning by week; Gift Box by week; shipping charges by day; sessions by device Dec 1–24 2025; Oct 1–20 2026 totals. GraphQL: 50 orders created Dec 17 2025 (notes, shipping lines, line items). Files: <code>~/tanaor-org/christmas-research/data/</code></li>
+<li>tanaorjewelry.com public pages read 21.10.2026: homepage (offer bar, FAQ), <code>/policies/shipping-policy</code>, <code>/products.json</code> (128 products). Saved in <code>raw/</code>.</li>
+<li>Bible Gateway KJV, 58 passages fetched by script 21.10.2026 (<code>data/kjv_verified.json</code>). Each verse card links its page.</li>
+</ul>
+<h3>Vault files</h3>
+<ul class="small">
+<li>ICP Bible · Tanaor US — Account Shift (July 2026) · Customer Verbatims — 56 CS Calls · Sub-Avatar List · Main Avatar List · Objections Research · Avatar Research — Problems & What They Tried Before · Avatar — Men · Avatar — Pastor Appreciation · Avatar — Cancer Diagnosis · Avatar — Anxiety · RESEARCH KIT — Reddit · Christian Avatar Intelligence (mostly placeholders) · Mechanism Lab v2 · Concept × Angle Map · Peak Plans/Holiday.md + BFCM.md (templates, see Not found) · Decisions Log #7, #26, #57, #68, #81, #90, #91 · Growth CEO handoff (guarantee hold) · Creative Strategist handoff · Forecast note (side-session notes, 20.10).</li>
+<li>RMBC 1 course: RMBC1-01 The Map; Module 8 Lesson 1 (Headline Elements Checklist); Module 6 Lesson 1 (Fascination types). FASCINA M2 Research Doc (question structure only).</li>
+</ul>
+<h3>Web sources</h3>
+<div id="websources"><p class="small">C = page opened · S = confirmed on a secondary re-publisher · U = snippet only. Agents' full reports were read in-session; source lists saved in <code>raw/web-sources-*.md</code>.</p><h4>Budgets research</h4><ul class="small">
+<li>NRF 2026 forecast, Oct 15 2026 — <a href="https://nrf.com/media-center/press-releases/nrf-forecasts-2026-holiday-sales-growth-as-consumers-remain-resilient" target="_blank" rel="noopener">https://nrf.com/media-center/press-releases/nrf-forecasts-2026-holiday-sales-gro…</a> — C</li>
+<li>NRF 2025 forecast, Nov 6 2025 — <a href="https://nrf.com/media-center/press-releases/nrf-expects-holiday-sales-to-surpass-1-trillion-for-the-first-time-in-2025" target="_blank" rel="noopener">https://nrf.com/media-center/press-releases/nrf-expects-holiday-sales-to-surpass…</a> — C</li>
+<li>NRF/Prosper 2025 holiday survey, Oct 16 2025 — <a href="https://nrf.com/media-center/press-releases/consumers-to-spend-second-highest-amount-on-record-according-to-nrf-holiday-survey" target="_blank" rel="noopener">https://nrf.com/media-center/press-releases/consumers-to-spend-second-highest-am…</a> — C</li>
+<li>NRF/Prosper 2025 via Medill Spiegel — <a href="https://spiegel.medill.northwestern.edu/2025-holiday-shopping-trends/" target="_blank" rel="noopener">https://spiegel.medill.northwestern.edu/2025-holiday-shopping-trends/</a> — S</li>
+<li>NRF 2026 consumer survey, Oct 20 2026 — <a href="https://nrf.com/media-center/press-releases/affordability-shapes-winter-holiday-shopping-according-to-nrf-holiday-survey" target="_blank" rel="noopener">https://nrf.com/media-center/press-releases/affordability-shapes-winter-holiday-…</a> — C</li>
+<li>Deloitte 2026 Holiday Retail Survey PDF, Oct 15 2026 — <a href="https://www.deloitte.com/content/dam/insights/articles/2026/amer189387_cic_holiday-retail-survey/pdf/DI_2026-Holiday-Retail-Survey.pdf" target="_blank" rel="noopener">https://www.deloitte.com/content/dam/insights/articles/2026/amer189387_cic_holid…</a> — C</li>
+<li>Gallup Oct 2025 — <a href="https://news.gallup.com/poll/697061/holiday-shoppers-plan-spend-briskly.aspx" target="_blank" rel="noopener">https://news.gallup.com/poll/697061/holiday-shoppers-plan-spend-briskly.aspx</a> — C</li>
+<li>Gallup Dec 2025 — <a href="https://news.gallup.com/poll/699311/economic-confidence-slips-holiday-spending-plans-plummet.aspx" target="_blank" rel="noopener">https://news.gallup.com/poll/699311/economic-confidence-slips-holiday-spending-p…</a> — C</li>
+<li>PwC 2026 via ConsumerGoods, Sep 8 2026 — <a href="https://consumergoods.com/consumers-use-ai-coupon-clipping-holiday-season" target="_blank" rel="noopener">https://consumergoods.com/consumers-use-ai-coupon-clipping-holiday-season</a> — S</li>
+<li>PwC late-Oct 2025 via Talk Business, Dec 16 2025 — <a href="https://talkbusiness.net/?p=292644" target="_blank" rel="noopener">https://talkbusiness.net/?p=292644</a> — S</li>
+<li>PwC 2025 via Chain Drug Review, Sep 5 2025 — <a href="https://chaindrugreview.com/pwc-holiday-outlook-2025-spending-lips/" target="_blank" rel="noopener">https://chaindrugreview.com/pwc-holiday-outlook-2025-spending-lips/</a> — S</li>
+<li>KPMG 2025 infographic — <a href="https://kpmg.com/kpmg-us/content/dam/kpmg/pdf/2025/consumer-pulse-holiday-2025-infographic.pdf" target="_blank" rel="noopener">https://kpmg.com/kpmg-us/content/dam/kpmg/pdf/2025/consumer-pulse-holiday-2025-i…</a> — C</li>
+<li>Bain 2026 via JCK, Sep 14 2026 — <a href="https://www.jckonline.com/?p=244992" target="_blank" rel="noopener">https://www.jckonline.com/?p=244992</a> — S</li>
+<li>Adobe 2026 forecast, Sep 28 2026 — <a href="https://news.adobe.com/news/downloads/pdfs/2026/09/adi-holiday-forecast-release-9-28.pdf" target="_blank" rel="noopener">https://news.adobe.com/news/downloads/pdfs/2026/09/adi-holiday-forecast-release-…</a> — C</li>
+<li>Adobe 2025 via Talk Business, Jan 9 2026 — <a href="https://talkbusiness.net/2026/01/adobe-analytics-online-holiday-sales-grew-6-8-to-257-8-billion/" target="_blank" rel="noopener">https://talkbusiness.net/2026/01/adobe-analytics-online-holiday-sales-grew-6-8-t…</a> — S</li>
+<li>Mastercard SpendingPulse 2025, Dec 23 2025 — <a href="https://s25.q4cdn.com/479285134/files/doc_news/Mastercard-SpendingPulse-Savvy-Shoppers-and-E-Commerce-Fuel-U-S--Holiday-Retail-Sales-Growth-by-3-9-YOY-2025.pdf" target="_blank" rel="noopener">https://s25.q4cdn.com/479285134/files/doc_news/Mastercard-SpendingPulse-Savvy-Sh…</a> — C</li>
+<li>Salesforce 2025, Jan 8 2026 — <a href="https://www.salesforce.com/news/stories/2025-holiday-shopping-data/" target="_blank" rel="noopener">https://www.salesforce.com/news/stories/2025-holiday-shopping-data/</a> — C</li>
+<li>Bankrate 2025, Oct 8 2025 — <a href="https://www.bankrate.com/credit-cards/news/holiday-shopping/" target="_blank" rel="noopener">https://www.bankrate.com/credit-cards/news/holiday-shopping/</a> — C</li>
+<li>Empower via AOL/GOBankingRates, Dec 17 2025 — <a href="https://www.aol.com/finance/see-average-gift-spending-amounts-180720646.html" target="_blank" rel="noopener">https://www.aol.com/finance/see-average-gift-spending-amounts-180720646.html</a> — S (year unclear)</li>
+<li>Tawkify, Dec 3 2025 — <a href="https://tawkify.com/blog/dating/holiday-dating-spend-index" target="_blank" rel="noopener">https://tawkify.com/blog/dating/holiday-dating-spend-index</a> — C</li>
+<li>AARP 2026 grandparents, Jun 15 2026 — <a href="https://www.aarp.org/press/releases/2026-06-15-grandparents-study.html" target="_blank" rel="noopener">https://www.aarp.org/press/releases/2026-06-15-grandparents-study.html</a> — C</li>
+<li>AARP grandparent study 2018 — <a href="https://www.aarp.org/grandparentstudy" target="_blank" rel="noopener">https://www.aarp.org/grandparentstudy</a> — C</li>
+<li>NRF gift cards blog, Dec 11 2025 — <a href="https://nrf.com/blog/gift-cards-gain-popularity-as-top-choice-for-holiday-shoppers-in-2025" target="_blank" rel="noopener">https://nrf.com/blog/gift-cards-gain-popularity-as-top-choice-for-holiday-shoppe…</a> — C</li>
+<li>Hardware Retailing (NRF gift cards by age), Dec 22 2025 — <a href="https://hardwareretailing.com/gift-cards-remain-popular-holiday-gift-option-driving-billions-in-spending" target="_blank" rel="noopener">https://hardwareretailing.com/gift-cards-remain-popular-holiday-gift-option-driv…</a> — S</li>
+<li>Exploding Topics (NRF jewelry wanted by gender/age), upd. Oct 19 2026 — <a href="https://explodingtopics.com/blog/christmas-spending-stats" target="_blank" rel="noopener">https://explodingtopics.com/blog/christmas-spending-stats</a> — S</li>
+<li>Stamps.com via DC Velocity, Dec 5 2024 — <a href="https://www.dcvelocity.com/survey-older-generations-are-unaware-of-holiday-shipping-deadlines" target="_blank" rel="noopener">https://www.dcvelocity.com/survey-older-generations-are-unaware-of-holiday-shipp…</a> — S</li>
+<li>Census 2017 blog (jewelry Dec share) — <a href="https://www.census.gov/newsroom/blogs/random-samplings/2017/11/holiday-shopping.html" target="_blank" rel="noopener">https://www.census.gov/newsroom/blogs/random-samplings/2017/11/holiday-shopping.…</a> — C</li>
+<li>Signet FY2026 results, Mar 19 2026 — <a href="https://www.sec.gov/Archives/edgar/data/832988/000083298826000054/fy27ex9913x19x26pressrelea.htm" target="_blank" rel="noopener">https://www.sec.gov/Archives/edgar/data/832988/000083298826000054/fy27ex9913x19x…</a> — C</li>
+<li>Finder unwanted gifts, upd. Dec 17 2024 — <a href="https://www.finder.com/credit-cards/unwanted-gifts" target="_blank" rel="noopener">https://www.finder.com/credit-cards/unwanted-gifts</a> — C</li>
+<li>NRF Thanksgiving weekend forecast, Nov 20 2025 — <a href="https://nrf.com/media-center/press-releases/thanksgiving-weekend-expected-to-draw-largest-number-of-shoppers-on-record" target="_blank" rel="noopener">https://nrf.com/media-center/press-releases/thanksgiving-weekend-expected-to-dra…</a> — C</li>
+<li>NRF Super Saturday via Retail Insight Network, Dec 16 2025 — <a href="https://www.retail-insight-network.com/news/us-retailers-record-super-saturday-2025/" target="_blank" rel="noopener">https://www.retail-insight-network.com/news/us-retailers-record-super-saturday-2…</a> — S</li>
+<li>Adobe BOPIS via EasyPost, Feb 5 2026 — <a href="https://www.easypost.com/blog/what-adobes-holiday-shopping-data-means-for-your-shipping/" target="_blank" rel="noopener">https://www.easypost.com/blog/what-adobes-holiday-shopping-data-means-for-your-s…</a> — S</li>
+<li>USPS holiday dates — <a href="https://www.usps.com/holiday/holiday-shipping-dates.htm" target="_blank" rel="noopener">https://www.usps.com/holiday/holiday-shipping-dates.htm</a> — C ; Dakota News Now Sep 23 2026 — <a href="https://www.dakotanewsnow.com/2026/09/23/usps-announces-recommended-2026-holiday-mailing-shipping-deadlines/" target="_blank" rel="noopener">https://www.dakotanewsnow.com/2026/09/23/usps-announces-recommended-2026-holiday…</a> — C</li>
+<li>FedEx/UPS 2026 via Value Added Resource, Sep 24 2026 — <a href="https://www.valueaddedresource.net/2026-holiday-shipping-deadlines/" target="_blank" rel="noopener">https://www.valueaddedresource.net/2026-holiday-shipping-deadlines/</a> — S</li>
+<li>2025 carrier dates via FOX 29 — <a href="https://www.fox29.com/news/2025-holiday-shipping-deadlines-usps-fedex-ups-important-dates-remember" target="_blank" rel="noopener">https://www.fox29.com/news/2025-holiday-shipping-deadlines-usps-fedex-ups-import…</a> — S</li>
+<li>Blue Yonder via iTWire, Nov 14 2025 — <a href="https://itwire.com/guest-articles/guest-research/blue-yonder-survey-reveals-key-shifts-in-consumer-shopping-behaviours-and-delivery-expectations-this-holiday-season.html" target="_blank" rel="noopener">https://itwire.com/guest-articles/guest-research/blue-yonder-survey-reveals-key-…</a> — S</li>
+<li>Digital Commerce 360 2023 retailer cutoffs — <a href="https://www.digitalcommerce360.com/2023/12/11/new-survey-shows-retailers-most-common-holiday-shipping-deadlines/" target="_blank" rel="noopener">https://www.digitalcommerce360.com/2023/12/11/new-survey-shows-retailers-most-co…</a> — U</li>
+</ul><h4>Beliefs research</h4><ul class="small">
+<li>Pew 2013 Christmas — <a href="https://www.pewresearch.org/religion/2013/12/18/celebrating-christmas-and-the-holidays-then-and-now/" target="_blank" rel="noopener">https://www.pewresearch.org/religion/2013/12/18/celebrating-christmas-and-the-ho…</a> — C</li>
+<li>Pew 2017 Christmas — <a href="https://www.pewresearch.org/religion/2017/12/12/americans-say-religious-aspects-of-christmas-are-declining-in-public-life/" target="_blank" rel="noopener">https://www.pewresearch.org/religion/2017/12/12/americans-say-religious-aspects-…</a> — C</li>
+<li>Lifeway 2024 Christmas attendance — <a href="https://news.lifeway.com/2024/12/03/less-than-half-of-americans-attend-church-at-christmas/" target="_blank" rel="noopener">https://news.lifeway.com/2024/12/03/less-than-half-of-americans-attend-church-at…</a> — C</li>
+<li>Lifeway 2018 — <a href="https://news.lifeway.com/2018/12/11/survey-finds-americans-want-more-christ-this-christmas/" target="_blank" rel="noopener">https://news.lifeway.com/2018/12/11/survey-finds-americans-want-more-christ-this…</a> — C</li>
+<li>Gallup 2024 — <a href="https://news.gallup.com/poll/272357/percentage-americans-celebrate-christmas.aspx" target="_blank" rel="noopener">https://news.gallup.com/poll/272357/percentage-americans-celebrate-christmas.asp…</a> — C</li>
+<li>Gallup 2010 — <a href="https://news.gallup.com/poll/145367/christmas-strongly-religious-half-celebrate.aspx" target="_blank" rel="noopener">https://news.gallup.com/poll/145367/christmas-strongly-religious-half-celebrate.…</a> — C</li>
+<li>Rasmussen 2022 — <a href="https://www.rasmussenreports.com/public_content/lifestyle/holidays/bah_humbug_nearly_two_thirds_say_christmas_is_too_commercialized" target="_blank" rel="noopener">https://www.rasmussenreports.com/public_content/lifestyle/holidays/bah_humbug_ne…</a> — C</li>
+<li>PRRI 2016 — <a href="https://prri.org/research/poll-post-election-holiday-war-christmas/" target="_blank" rel="noopener">https://prri.org/research/poll-post-election-holiday-war-christmas/</a> — C</li>
+<li>APA (psychological) 2023 via Newswise — <a href="https://www.newswise.com/articles/even-a-joyous-holiday-season-can-cause-stress-for-most-americans" target="_blank" rel="noopener">https://www.newswise.com/articles/even-a-joyous-holiday-season-can-cause-stress-…</a> — C</li>
+<li>American Psychiatric Assn 2025 — <a href="https://www.psychiatry.org/news-room/news-releases/americans-more-anxious-about-the-holidays" target="_blank" rel="noopener">https://www.psychiatry.org/news-room/news-releases/americans-more-anxious-about-…</a> — C</li>
+<li>AARP 2017 holiday loneliness — <a href="https://www.aarp.org/pri/topics/social-leisure/relationships/holiday-season/" target="_blank" rel="noopener">https://www.aarp.org/pri/topics/social-leisure/relationships/holiday-season/</a> — C</li>
+<li>AARP 2025 via WTOP — <a href="https://wtop.com/life-style/2025/12/4-in-10-adults-over-the-age-of-45-are-lonely-per-aarp-study-tips-to-combat-holiday-loneliness/" target="_blank" rel="noopener">https://wtop.com/life-style/2025/12/4-in-10-adults-over-the-age-of-45-are-lonely…</a> — S</li>
+<li>AARP grandparenting study — <a href="https://www.aarp.org/pri/topics/social-leisure/relationships/aarp-grandparenting-study/" target="_blank" rel="noopener">https://www.aarp.org/pri/topics/social-leisure/relationships/aarp-grandparenting…</a> — C</li>
+<li>Cornell estrangement — <a href="https://news.cornell.edu/node/319960" target="_blank" rel="noopener">https://news.cornell.edu/node/319960</a> — C</li>
+<li>Barna 2019 resilient disciples — <a href="https://www.barna.com/research/resilient-disciples/" target="_blank" rel="noopener">https://www.barna.com/research/resilient-disciples/</a> — C</li>
+<li>Barna 2022 parents&#x27; concerns — <a href="https://access.barna.com/articles/christian-parents-concerns" target="_blank" rel="noopener">https://access.barna.com/articles/christian-parents-concerns</a> — C</li>
+<li>Pew RLS decline slowed, Feb 26 2025 — <a href="https://www.pewresearch.org/religion/2025/02/26/decline-of-christianity-in-the-us-has-slowed-may-have-leveled-off/" target="_blank" rel="noopener">https://www.pewresearch.org/religion/2025/02/26/decline-of-christianity-in-the-u…</a> — C</li>
+<li>Pew RLS identity — <a href="https://www.pewresearch.org/religion/2025/02/26/religious-landscape-study-religious-identity/" target="_blank" rel="noopener">https://www.pewresearch.org/religion/2025/02/26/religious-landscape-study-religi…</a> — C</li>
+<li>ABS via Christian Post, May 17 2026 — <a href="https://www.christianpost.com/books/less-than-a-third-of-parents-say-they-pray-often-with-their-kids.html" target="_blank" rel="noopener">https://www.christianpost.com/books/less-than-a-third-of-parents-say-they-pray-o…</a> — C</li>
+<li>Pew 2024 religion influence — <a href="https://www.pewresearch.org/religion/2024/03/15/8-in-10-americans-say-religion-is-losing-influence-in-public-life/" target="_blank" rel="noopener">https://www.pewresearch.org/religion/2024/03/15/8-in-10-americans-say-religion-i…</a> — C</li>
+<li>Pew 2026 religion influence — <a href="https://www.pewresearch.org/religion/2026/05/14/how-americans-feel-about-religions-influence-in-government-and-public-life/" target="_blank" rel="noopener">https://www.pewresearch.org/religion/2026/05/14/how-americans-feel-about-religio…</a> — C</li>
+<li>Reddit (archive): r/GriefSupport 1hn1svn, 1hmj1pl, 1hmk3o0; r/widowers 1hodctw, 1hmop2k; r/AskOldPeople 1hb3nlh, 1h870tk; r/GiftIdeas 1haun9d, 1hakfqm, 1hb05ps — C (archive copy)</li>
+<li>National Catholic Register, Jan 5 2024 — <a href="https://www.ncregister.com/blog/all-i-wanted-for-christmas" target="_blank" rel="noopener">https://www.ncregister.com/blog/all-i-wanted-for-christmas</a> — C</li>
+<li>Trustpilot: holyfaith.shop, violegrace.com, jamesavery.com, christianbook.com, dayspring.com — C</li>
+<li>NBC 2014 Jerusalem Nano Bible — <a href="https://www.nbcnews.com/news/religion/nano-sized-new-testament-could-be-worlds-smallest-bible-n264456" target="_blank" rel="noopener">https://www.nbcnews.com/news/religion/nano-sized-new-testament-could-be-worlds-s…</a> — C</li>
+<li>Lunar Bible (AP via Bangor Daily News, May 15 2014) — <a href="https://www.bangordailynews.com/2014/05/15/news/lunar-bible-sells-at-dallas-auction-for-75000/" target="_blank" rel="noopener">https://www.bangordailynews.com/2014/05/15/news/lunar-bible-sells-at-dallas-auct…</a> — C ; RNS 2018 — <a href="https://religionnews.com/2018/07/25/apollo-bible/" target="_blank" rel="noopener">https://religionnews.com/2018/07/25/apollo-bible/</a> — C</li>
+<li>Museum of the Bible, Heart Shield Bibles — <a href="https://museumofthebible.org/book-minute/heart-shield-bibles" target="_blank" rel="noopener">https://museumofthebible.org/book-minute/heart-shield-bibles</a> — C</li>
+<li>Library of Congress phylacteries — <a href="https://www.loc.gov/exhibits/scrolls/scr2.html" target="_blank" rel="noopener">https://www.loc.gov/exhibits/scrolls/scr2.html</a> — C</li>
+<li>Pitt Rivers Museum jet — <a href="https://web.prm.ox.ac.uk/bodyarts/index.php/body-arts-and-lifecycles/death/118-jet-necklace-and-black-silk-tie.html" target="_blank" rel="noopener">https://web.prm.ox.ac.uk/bodyarts/index.php/body-arts-and-lifecycles/death/118-j…</a> — C</li>
+<li>Catholic Answers Magi gifts — <a href="https://www.catholic.com/qa/why-gold-frankincense-and-myrrh-as-gifts" target="_blank" rel="noopener">https://www.catholic.com/qa/why-gold-frankincense-and-myrrh-as-gifts</a> — C</li>
+<li>St Nicholas Center — <a href="https://www.stnicholascenter.org/who-is-st-nicholas" target="_blank" rel="noopener">https://www.stnicholascenter.org/who-is-st-nicholas</a> — C</li>
+<li>Mass Moments 1659 — <a href="https://www.massmoments.org/moment-details/christmas-celebration-outlawed.html" target="_blank" rel="noopener">https://www.massmoments.org/moment-details/christmas-celebration-outlawed.html</a> — C</li>
+<li>NPR/KUNC Christmas Truce — <a href="https://www.kunc.org/2023-12-25/the-christmas-truce-of-1914-the-day-the-guns-fell-silent" target="_blank" rel="noopener">https://www.kunc.org/2023-12-25/the-christmas-truce-of-1914-the-day-the-guns-fel…</a> — C</li>
+<li>EWTN Xmas — <a href="https://www.ewtnnews.com/world/us/don-t-be-afraid-to-write-merry-xmas-inside-the-thousand-year-old-christian-tradition" target="_blank" rel="noopener">https://www.ewtnnews.com/world/us/don-t-be-afraid-to-write-merry-xmas-inside-the…</a> — C</li>
+<li>Deseret News (AP) 2007 Technion — <a href="https://www.deseret.com/2007/12/24/20061059/israelis-etch-the-smallest-bible-ever/" target="_blank" rel="noopener">https://www.deseret.com/2007/12/24/20061059/israelis-etch-the-smallest-bible-eve…</a> — C</li>
+<li>Israel21c 2020 (brand-risk) — <a href="https://archive.israel21c.org/a-nanochip-bible-embedded-in-a-bracelet-ring-or-pendant/" target="_blank" rel="noopener">https://archive.israel21c.org/a-nanochip-bible-embedded-in-a-bracelet-ring-or-pe…</a> — C</li>
+<li>NRF 2023 outlook (start before Nov) — <a href="https://nrf.com/blog/2023-holiday-shopping-outlook" target="_blank" rel="noopener">https://nrf.com/blog/2023-holiday-shopping-outlook</a> — C</li>
+<li>ABS via Christian Post Apr 2025 — <a href="https://www.christianpost.com/news/more-men-turning-to-the-bible-across-every-generation.html" target="_blank" rel="noopener">https://www.christianpost.com/news/more-men-turning-to-the-bible-across-every-ge…</a> — C</li>
+<li>Religion Unplugged Apr 2024 — <a href="https://religionunplugged.com/news/2024/4/17/state-of-the-bible-americans-less-engaged-but-gen-z-bucking-trend" target="_blank" rel="noopener">https://religionunplugged.com/news/2024/4/17/state-of-the-bible-americans-less-e…</a> — C</li>
+<li>Baptist Courier Apr 2026 — <a href="https://baptistcourier.com/2026/04/growth-in-bible-use-reverses-in-2026-but-trend-uncertain/" target="_blank" rel="noopener">https://baptistcourier.com/2026/04/growth-in-bible-use-reverses-in-2026-but-tren…</a> — C</li>
+<li>Pew 2015 mobile etiquette — <a href="https://www.pewresearch.org/internet/2015/08/26/americans-views-on-mobile-etiquette/" target="_blank" rel="noopener">https://www.pewresearch.org/internet/2015/08/26/americans-views-on-mobile-etique…</a> — C</li>
+</ul>
+</ul><h4>Thanksgiving research sources</h4><ul class="small">
+<li>LendingTree 2025 Thanksgiving study, Nov 11 2025 — <a href="https://www.lendingtree.com/credit-cards/study/thanksgiving-higher-costs/" target="_blank" rel="noopener">https://www.lendingtree.com/credit-cards/study/thanksgiving-higher-costs/</a> — C</li>
+<li>LendingTree 2023 hosting study, Nov 13 2023 — <a href="https://www.lendingtree.com/credit-cards/study/thanksgiving-hosting/" target="_blank" rel="noopener">https://www.lendingtree.com/credit-cards/study/thanksgiving-hosting/</a> — C</li>
+<li>Deloitte Thanksgiving food costs, Nov 19 2024 — <a href="https://www.deloitte.com/us/en/insights/industry/retail-distribution/how-consumers-are-managing-thanksgiving-food-costs.html" target="_blank" rel="noopener">https://www.deloitte.com/us/en/insights/industry/retail-distribution/how-consume…</a> — C</li>
+<li>Circana Thanksgiving tracker, Nov 14 2023 — <a href="https://www.circana.com/post/thanksgiving-tracker" target="_blank" rel="noopener">https://www.circana.com/post/thanksgiving-tracker</a> — C</li>
+<li>Emily Post &quot;All About Hosting Gifts&quot;, Jul 10 2025 — <a href="https://emilypost.substack.com/p/etiquette-today-all-about-hosting" target="_blank" rel="noopener">https://emilypost.substack.com/p/etiquette-today-all-about-hosting</a> — C</li>
+<li>Emily Post Thanksgiving roles, Nov 14 2024 — <a href="https://emilypost.substack.com/p/etiquette-today-thanksgiving-guest" target="_blank" rel="noopener">https://emilypost.substack.com/p/etiquette-today-thanksgiving-guest</a> — C</li>
+<li>WCPO host gift guide (©2026) — <a href="https://www.wcpo.com/money/consumer/dont-waste-your-money/holiday-host-gift-guide-expert-tips-for-staying-on-budget" target="_blank" rel="noopener">https://www.wcpo.com/money/consumer/dont-waste-your-money/holiday-host-gift-guid…</a> — C</li>
+<li>Diane Gottsman, May 4 2026 — <a href="https://dianegottsman.com/2026/05/04/hostess-gift-etiquette-what-when-and-how-much-to-give/" target="_blank" rel="noopener">https://dianegottsman.com/2026/05/04/hostess-gift-etiquette-what-when-and-how-mu…</a> — C</li>
+<li>USPS facts on paper (GCA card counts), Sep 26 2019 — <a href="https://news.usps.com/2019/09/26/facts-on-paper/" target="_blank" rel="noopener">https://news.usps.com/2019/09/26/facts-on-paper/</a> — C</li>
+<li>CivicScience Friendsgiving, Nov 20 2023 — <a href="https://civicscience.com/?p=41115" target="_blank" rel="noopener">https://civicscience.com/?p=41115</a> — C</li>
+<li>Google Trends pulls (agent, 21.10.2026) — C (relative index)</li>
+<li>AFBF 2025, Nov 19 2025 — <a href="https://www.fb.org/news-release/cost-of-thanksgiving-dinner-declines" target="_blank" rel="noopener">https://www.fb.org/news-release/cost-of-thanksgiving-dinner-declines</a> — C</li>
+<li>AFBF 2024, Nov 20 2024 — <a href="https://www.fb.org/news-release/cost-of-thanksgiving-dinner-declines-remains-higher-than-pre-pandemic-levels" target="_blank" rel="noopener">https://www.fb.org/news-release/cost-of-thanksgiving-dinner-declines-remains-hig…</a> — C</li>
+<li>Talker Research/Chime, Nov 14 2025 — <a href="https://talkerresearch.com/how-the-holidays-stretch-americans-budgets/" target="_blank" rel="noopener">https://talkerresearch.com/how-the-holidays-stretch-americans-budgets/</a> — C</li>
+<li>NRF Thanksgiving weekend 2025, Dec 2 2025 — <a href="https://nrf.com/media-center/press-releases/thanksgiving-holiday-weekend-draws-a-record-203-million-shoppers" target="_blank" rel="noopener">https://nrf.com/media-center/press-releases/thanksgiving-holiday-weekend-draws-a…</a> — C</li>
+<li>NRF Thanksgiving weekend 2024, Dec 3 2024 — <a href="https://nrf.com/media-center/press-releases/197-million-consumers-shop-over-thanksgiving-holiday-weekend" target="_blank" rel="noopener">https://nrf.com/media-center/press-releases/197-million-consumers-shop-over-than…</a> — C</li>
+<li>NRF 2025 weekend forecast, Nov 20 2025 — <a href="https://nrf.com/media-center/press-releases/thanksgiving-weekend-expected-to-draw-largest-number-of-shoppers-on-record" target="_blank" rel="noopener">https://nrf.com/media-center/press-releases/thanksgiving-weekend-expected-to-dra…</a> — C</li>
+<li>NRF 2025 holiday forecast, Oct 16 2025 — <a href="https://nrf.com/media-center/press-releases/consumers-to-spend-second-highest-amount-on-record-according-to-nrf-holiday-survey" target="_blank" rel="noopener">https://nrf.com/media-center/press-releases/consumers-to-spend-second-highest-am…</a> — C</li>
+<li>Adobe 2025 season recap PDF, Jan 7 2026 — <a href="https://news.adobe.com/news/downloads/pdfs/2026/01/010726-holiday-shopping-season-2025.pdf" target="_blank" rel="noopener">https://news.adobe.com/news/downloads/pdfs/2026/01/010726-holiday-shopping-seaso…</a> — C</li>
+<li>Adobe 2024 Cyber Monday recap PDF, Dec 3 2024 — <a href="https://news.adobe.com/news/downloads/pdfs/2024/12/120324-adi-cyber-monday-recap.pdf" target="_blank" rel="noopener">https://news.adobe.com/news/downloads/pdfs/2024/12/120324-adi-cyber-monday-recap…</a> — C</li>
+<li>ICSC, Nov 17 2025 — <a href="https://www.icsc.com/news-and-views/icsc-exchange/consumers-expected-to-spend-127-billion-over-thanksgiving-weekend-2025" target="_blank" rel="noopener">https://www.icsc.com/news-and-views/icsc-exchange/consumers-expected-to-spend-12…</a> — C</li>
+<li>Deloitte BFCM 2025, Nov 24 2025 — <a href="https://www.deloitte.com/us/en/about/press-room/deloitte-survey-black-friday-cyber-monday.html" target="_blank" rel="noopener">https://www.deloitte.com/us/en/about/press-room/deloitte-survey-black-friday-cyb…</a> — C</li>
+<li>Deloitte BFCM 2024 PDF — <a href="https://www.deloitte.com/content/dam/insights/articles/2024/us187582_cic_bfcm/2024-Black-Friday-Cyber-Monday-Survey.pdf" target="_blank" rel="noopener">https://www.deloitte.com/content/dam/insights/articles/2024/us187582_cic_bfcm/20…</a> — C</li>
+<li>Shopify-Gallup via Fox5, Nov 7 2023 — <a href="https://www.fox5ny.com/news/some-holiday-shoppers-are-buying-for-themselves-instead-of-gift-giving" target="_blank" rel="noopener">https://www.fox5ny.com/news/some-holiday-shoppers-are-buying-for-themselves-inst…</a> — C</li>
+<li>NIQ, Oct 30 2025 — <a href="https://nielseniq.com/global/en/insights/analysis/2025/gifts-gadgets-and-glam-whats-driving-holiday-2025-shopping" target="_blank" rel="noopener">https://nielseniq.com/global/en/insights/analysis/2025/gifts-gadgets-and-glam-wh…</a> — C</li>
+<li>Pew Thanksgiving, Nov 21 2024 — <a href="https://www.pewresearch.org/short-reads/2024/11/21/the-vast-majority-of-americans-celebrate-thanksgiving-but-their-traditions-and-activities-vary-widely/" target="_blank" rel="noopener">https://www.pewresearch.org/short-reads/2024/11/21/the-vast-majority-of-american…</a> — C</li>
+<li>Lifeway 2015, Nov 12 2015 — <a href="https://news.lifeway.com/2015/11/12/thankfulness-still-priority-at-thanksgiving/" target="_blank" rel="noopener">https://news.lifeway.com/2015/11/12/thankfulness-still-priority-at-thanksgiving/</a> — C</li>
+<li>Lifeway 2016, Nov 15 2016 — <a href="https://news.lifeway.com/2016/11/15/lifeway-research-friends-and-family-matter-more-than-money-this-thanksgiving/" target="_blank" rel="noopener">https://news.lifeway.com/2016/11/15/lifeway-research-friends-and-family-matter-m…</a> — C</li>
+<li>Washington 1789 proclamation (Yale Avalon) — <a href="https://avalon.law.yale.edu/18th_century/gwproc01.asp" target="_blank" rel="noopener">https://avalon.law.yale.edu/18th_century/gwproc01.asp</a> — C</li>
+<li>Lincoln 1863 proclamation — <a href="https://abrahamlincolnonline.org/lincoln/speeches/thanks.htm" target="_blank" rel="noopener">https://abrahamlincolnonline.org/lincoln/speeches/thanks.htm</a> — C</li>
+<li>Hale letter (Presidential Lincoln Library blog) — <a href="https://presidentlincoln.illinois.gov/Blog/Posts/169/" target="_blank" rel="noopener">https://presidentlincoln.illinois.gov/Blog/Posts/169/</a> — C</li>
+<li>Pilgrim Hall religion — <a href="https://www.pilgrimhall.org/ap_religion.htm" target="_blank" rel="noopener">https://www.pilgrimhall.org/ap_religion.htm</a> — C</li>
+<li>Pilgrim Hall first Thanksgiving — <a href="https://www.pilgrimhall.org/thanksgiving-national-day-of-mourning/the-first-thanksgiving/" target="_blank" rel="noopener">https://www.pilgrimhall.org/thanksgiving-national-day-of-mourning/the-first-than…</a> — C</li>
+<li>American Psychiatric Assn, Nov 25 2024 — <a href="https://www.psychiatry.org/news-room/news-releases/one-quarter-of-americans-say-they-are-more-stresse" target="_blank" rel="noopener">https://www.psychiatry.org/news-room/news-releases/one-quarter-of-americans-say-…</a> — C</li>
+<li>YouGov Nov 21 2025 — <a href="https://yougov.com/en-us/daily-results/20251121-d07e7-2" target="_blank" rel="noopener">https://yougov.com/en-us/daily-results/20251121-d07e7-2</a> — C</li>
+<li>AAA 2025, Nov 17 2025 — <a href="https://newsroom.aaa.com/2025/11/aaa-thanksgiving-travel-forecast-2025/" target="_blank" rel="noopener">https://newsroom.aaa.com/2025/11/aaa-thanksgiving-travel-forecast-2025/</a> — C</li>
+<li>AAA 2024, Nov 18 2024 — <a href="https://newsroom.aaa.com/2024/11/nearly-80-million-americans-expected-to-travel-over-thanksgiving/" target="_blank" rel="noopener">https://newsroom.aaa.com/2024/11/nearly-80-million-americans-expected-to-travel-…</a> — C</li>
+<li>AARP grandparents, Apr 12 2019 — <a href="https://www.aarp.org/family-relationships/grandparents-money/" target="_blank" rel="noopener">https://www.aarp.org/family-relationships/grandparents-money/</a> — C (86% buy gifts, $805/yr on gifts, $2,562 total/yr)</li>
+</ul></div>
+</section>
+<section id="gaps"><h2><span class="n">10</span>What I couldn't find, and what's still open</h2>
+
+<h3>Open truth questions (need Gal or ops)</h3>
+<ol>
+<li><b>Chip content.</b> Homepage FAQ: "complete King James Version (KJV) Bible — all 66 books". 18K Sacred Cross page: "entire New Testament". Production note: 14K Faith Cross NT only. Pastor Morris's letter: "confirms the KJV New Testament". A SKU code reads "K = KJV NT". An older file says the OT is in Hebrew. A Christmas page built on "the entire Bible" needs one written answer per piece.</li>
+<li><b>Guarantee.</b> "30-day money-back guarantee… refund every penny" (homepage FAQ) vs no returns on items 20%+ off or Solid Gold (same FAQ) vs "exchange within 30 days" (/pages/faq). The CEO's hold allows only "a lifetime warranty on the Bible chip" in copy.</li>
+<li><b>Christmas cut-off dates.</b> Ops must confirm where orders ship from (Shopify location "Moby Dick 3PL"), the carrier, and the last safe order day per method. My dates in 8.5 are calculated from the policy, not company deadlines. Last year's reviews show some "guaranteed by Christmas" orders arrived late.</li>
+<li><b>Christmas offer.</b> Not decided in any file I read (decisions log #7 says BFCM keeps the same offer). The Holiday.md peak plan is a template linked to an Eden hub, last edited May 2026; its dates (Dec 14 / Dec 18) and offers (engraving, digital gift card) are not Tanaor facts.</li>
+<li><b>Gift cards:</b> they exist ($20–$500), but I didn't check if they're delivered instantly by email.</li>
+<li><b>Brand-risk article:</b> Israel21c (Dec 10 2020, still online) says Tanaor "worked with scientists at the Tel Aviv University Center for Nanoscience and Nanotechnology". One real customer review also mentions Tel Aviv University. Copy must never say it; a skeptical buyer may find it.</li>
+</ol>
+
+<h3>Data that doesn't exist or I couldn't reach</h3>
+<ul>
+<li><b>Gift vs self share at Christmas</b> for our store: no December Fairing data, and no gift messages on orders (50-order sample, all notes empty).</li>
+<li><b>NRF 2026 per-person spend</b> (not in the Oct 20 2026 release), NRF spend by age, Gallup 2026 (not published yet), Salesforce / Mastercard / Bankrate 2026 forecasts, UPS 2026 last-ship dates.</li>
+<li><b>Per recipient:</b> no clean 2025–26 per-grandchild Christmas figure; no data at all on gifts to a pastor; Empower's spouse/parent/kids figures may be 2024 data.</li>
+<li><b>Jewelry:</b> no 2024–26 share of shoppers planning to give jewelry; no average jewelry-gift spend; no Census December jewelry share after 2018.</li>
+<li><b>Thanksgiving:</b> no survey of non-food gifts at Thanksgiving or an average "Thanksgiving gift" budget; no data on grandparents giving keepsakes at Thanksgiving.</li>
+<li><b>Christian gifts market:</b> Amazon, Etsy and Facebook reviews were blocked; no verbatim reviews for Willow Tree, DaySpring products, Jesus Calling, Kendra Scott's faith line, Hobby Lobby or Mardel; no data on whether faith gifts or devotionals actually get used; no Christian gift market size.</li>
+<li><b>Pew Christmas surveys after 2017</b>, Barna Christmas data after 1996, a Lifeway "too commercial" figure (Rasmussen used instead), the NAMI 2014 page (blocked).</li>
+<li><b>Delivered-before-Christmas rate</b> for our Dec 19–22, 2025 orders: not checked (the fulfillment table isn't clean enough).</li>
+<li><b>Chain length / ring size</b> facts per piece: not read for this research.</li>
+<li>The vault folder <b>Christian Avatar Intelligence</b> is mostly empty placeholders.</li>
+</ul>
+
+<h3>What I didn't do</h3>
+<ul>
+<li>No Meta/AdManage read of last year's Christmas ads (not in the brief).</li>
+<li>No Triple Whale (rule).</li>
+<li>Reddit voices skew younger than our buyer; Amazon/Etsy/Facebook couldn't be read. External customer quotes on this site are paraphrased except one short line.</li>
+<li>Recipient counts in the review bank are keyword counts, not verified recipients; ~450 of the 1,770 gift reviews were read closely, not all of them.</li>
+</ul>
+</section>
+</main>
+<footer>Read-only research. Nothing was changed in Shopify, Meta, Klaviyo or any other system. Hook and angle lines on this page are proposals and are not in the vault. Certification line, the only allowed one: "every order comes with a certificate of authenticity confirming that each piece is verified by an actual Nano-Science scientist from the US Nano-Science Center."</footer>
+<script>
+const CD = {"days": ["11-01", "11-02", "11-03", "11-04", "11-05", "11-06", "11-07", "11-08", "11-09", "11-10", "11-11", "11-12", "11-13", "11-14", "11-15", "11-16", "11-17", "11-18", "11-19", "11-20", "11-21", "11-22", "11-23", "11-24", "11-25", "11-26", "11-27", "11-28", "11-29", "11-30", "12-01", "12-02", "12-03", "12-04", "12-05", "12-06", "12-07", "12-08", "12-09", "12-10", "12-11", "12-12", "12-13", "12-14", "12-15", "12-16", "12-17", "12-18", "12-19", "12-20", "12-21", "12-22", "12-23", "12-24", "12-25", "12-26", "12-27", "12-28", "12-29", "12-30", "12-31"], "o25": [23, 30, 25, 33, 47, 58, 68, 62, 56, 51, 54, 80, 72, 87, 76, 75, 87, 86, 84, 91, 81, 103, 85, 79, 94, 108, 139, 363, 288, 260, 318, 292, 264, 319, 380, 434, 491, 541, 538, 541, 414, 461, 446, 442, 472, 558, 563, 564, 515, 351, 259, 150, 102, 103, 86, 56, 60, 51, 51, 50, 58], "o24": [21, 13, 27, 17, 19, 20, 71, 45, 51, 68, 57, 41, 71, 58, 44, 50, 54, 47, 56, 64, 70, 54, 74, 76, 82, 69, 98, 107, 270, 155, 133, 240, 153, 178, 174, 135, 151, 162, 224, 183, 206, 183, 198, 172, 184, 213, 221, 192, 177, 141, 93, 93, 72, 62, 38, 47, 27, 29, 24, 28, 31], "n25": [5894, 5262, 4379, 5904, 9644, 15043, 16941, 12124, 12494, 9899, 10734, 16192, 12803, 23061, 19841, 18404, 19546, 18872, 16908, 20662, 21003, 26997, 18271, 19986, 20121, 27411, 31142, 84434, 67662, 62083, 77598, 62604, 57635, 74498, 103984, 98846, 125242, 131257, 133087, 117191, 94057, 112442, 105388, 122954, 112133, 129063, 129739, 144468, 115297, 78241, 60802, 37725, 23988, 27749, 19894, 10407, 13197, 12899, 10978, 8226, 12021], "n24": [10662, 3465, 10495, 6581, 6030, 8674, 22998, 12657, 19802, 21731, 15450, 14254, 20737, 17790, 21692, 11441, 14288, 12836, 16749, 19922, 19744, 20000, 28728, 20092, 28090, 21159, 24929, 31435, 83395, 54976, 39650, 66710, 48070, 51814, 57947, 43047, 46233, 45022, 80309, 52534, 56700, 47559, 56509, 50098, 52487, 56166, 60274, 50030, 50040, 42372, 26876, 28567, 17574, 20728, 12758, 11937, 9161, 17358, 8574, 7911, 19294]};
+(function(){
+  // theme toggle
+  const b=document.getElementById('themebtn');
+  try{const t=localStorage.getItem('xr-theme'); if(t) document.documentElement.setAttribute('data-theme',t);}catch(e){}
+  b.addEventListener('click',()=>{
+    const cur=document.documentElement.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+    const nx=cur==='dark'?'light':'dark';
+    document.documentElement.setAttribute('data-theme',nx);
+    try{localStorage.setItem('xr-theme',nx);}catch(e){}
+  });
+  // active nav
+  const links=[...document.querySelectorAll('#toc a')];
+  const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id)); const on=links.find(a=>a.classList.contains('on')); if(on) on.scrollIntoView({block:'nearest',inline:'center'});}})},{rootMargin:'-45% 0px -50% 0px'});
+  document.querySelectorAll('main section').forEach(s=>obs.observe(s));
+})();
+function css(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim();}
+function fmt(n){return n>=1000?('$'+Math.round(n/1000)+'K'):String(n);}
+function lineChart(id, labels, series, opts){
+  const el=document.getElementById(id); if(!el) return;
+  const pw=el.querySelector('.plot').clientWidth||900; const W=Math.max(320,Math.round(pw)),H=W<600?240:(opts.h||300),P={l:40,r:10,t:14,b:28}; const xE=W<600?(opts.xEvery||1)*2:(opts.xEvery||1);
+  const max=Math.max(...series.flatMap(s=>s.data))*1.08;
+  const x=i=>P.l+(W-P.l-P.r)*i/(labels.length-1);
+  const y=v=>H-P.b-(H-P.t-P.b)*v/max;
+  const ns='http://www.w3.org/2000/svg';
+  const svg=document.createElementNS(ns,'svg'); svg.setAttribute('viewBox',`0 0 ${W} ${H}`); svg.setAttribute('role','img'); svg.setAttribute('aria-label',opts.aria||'chart');
+  let g='';
+  const ticks=5; for(let k=0;k<=ticks;k++){const v=max*k/ticks; g+=`<g class="grid"><line x1="${P.l}" x2="${W-P.r}" y1="${y(v)}" y2="${y(v)}"/></g><g class="axis"><text x="${P.l-6}" y="${y(v)+4}" text-anchor="end">${opts.money?fmt(Math.round(v)):Math.round(v)}</text></g>`;}
+  labels.forEach((l,i)=>{ if(i%xE===0){ g+=`<g class="axis"><text x="${x(i)}" y="${H-10}" text-anchor="middle">${l}</text></g>`;}});
+  (opts.marks||[]).forEach(m=>{const i=labels.indexOf(m.at); if(i<0)return; g+=`<line x1="${x(i)}" x2="${x(i)}" y1="${P.t}" y2="${H-P.b}" stroke="${css('--ink-3')}" stroke-dasharray="3 4" stroke-width="1"/><text x="${x(i)+4}" y="${P.t+10+(m.dy||0)}" font-size="11.5" fill="${css('--ink-2')}">${m.text}</text>`;});
+  series.forEach(s=>{const d=s.data.map((v,i)=>(i?'L':'M')+x(i).toFixed(1)+','+y(v).toFixed(1)).join(''); g+=`<path d="${d}" fill="none" stroke="${css(s.color)}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>`;});
+  g+=`<line id="${id}-x" x1="0" x2="0" y1="${P.t}" y2="${H-P.b}" stroke="${css('--ink-3')}" stroke-width="1" opacity="0"/>`;
+  series.forEach((s,si)=>{g+=`<circle id="${id}-d${si}" r="4.5" fill="${css(s.color)}" stroke="${css('--surface')}" stroke-width="2" opacity="0"/>`;});
+  g+=`<rect x="${P.l}" y="${P.t}" width="${W-P.l-P.r}" height="${H-P.t-P.b}" fill="transparent" id="${id}-hit"/>`;
+  svg.innerHTML=g; el.querySelector('.plot').appendChild(svg);
+  const tip=el.querySelector('.tip'); const hit=svg.querySelector('#'+id+'-hit');
+  function move(ev){const r=svg.getBoundingClientRect(); const cx=(ev.touches?ev.touches[0].clientX:ev.clientX); const sx=(cx-r.left)*W/r.width; let i=Math.round((sx-P.l)/(W-P.l-P.r)*(labels.length-1)); i=Math.max(0,Math.min(labels.length-1,i));
+    const xl=svg.querySelector('#'+id+'-x'); xl.setAttribute('x1',x(i)); xl.setAttribute('x2',x(i)); xl.setAttribute('opacity','1');
+    series.forEach((s,si)=>{const c=svg.querySelector('#'+id+'-d'+si); c.setAttribute('cx',x(i)); c.setAttribute('cy',y(s.data[i])); c.setAttribute('opacity','1');});
+    tip.innerHTML='<b>'+labels[i]+'</b> · '+series.map(s=>s.name+': '+(opts.money?('$'+s.data[i].toLocaleString()):s.data[i].toLocaleString())+(opts.unit||'')).join(' · ');
+    const er=el.getBoundingClientRect(); tip.style.left=Math.min(er.width-90,Math.max(90,(x(i)/W)*r.width + (r.left-er.left)))+'px'; tip.style.top=(y(Math.max(...series.map(s=>s.data[i])))/H*r.height + (r.top-er.top))+'px'; tip.style.opacity='1';}
+  function out(){tip.style.opacity='0'; svg.querySelectorAll('circle,#'+id+'-x').forEach(c=>c.setAttribute('opacity','0'));}
+  hit.addEventListener('mousemove',move); hit.addEventListener('touchstart',move,{passive:true}); hit.addEventListener('touchmove',move,{passive:true}); hit.addEventListener('mouseleave',out);
+}
+function barChart(id, labels, data, opts){
+  const el=document.getElementById(id); if(!el) return;
+  const pw=el.querySelector('.plot').clientWidth||900; const W=Math.max(320,Math.round(pw)),H=W<600?220:(opts.h||240),P={l:36,r:8,t:18,b:28}; const max=Math.max(...data)*1.15; const fs=W<600?9.5:11;
+  const bw=(W-P.l-P.r)/labels.length; const y=v=>H-P.b-(H-P.t-P.b)*v/max;
+  let g=''; for(let k=0;k<=4;k++){const v=max*k/4; g+=`<g class="grid"><line x1="${P.l}" x2="${W-P.r}" y1="${y(v)}" y2="${y(v)}"/></g><g class="axis"><text x="${P.l-6}" y="${y(v)+4}" text-anchor="end">${(Math.round(v*10)/10)}${opts.unit||''}</text></g>`;}
+  data.forEach((v,i)=>{const x0=P.l+i*bw+bw*0.18, w=bw*0.64, top=y(v), h=H-P.b-top, r=Math.min(4,w/2);
+    g+=`<path d="M${x0},${H-P.b} L${x0},${top+r} Q${x0},${top} ${x0+r},${top} L${x0+w-r},${top} Q${x0+w},${top} ${x0+w},${top+r} L${x0+w},${H-P.b} Z" fill="${css(opts.color||'--series-1')}"><title>${labels[i]}: ${v}${opts.unit||''}</title></path>`;
+    g+=`<g class="axis"><text x="${x0+w/2}" y="${H-10}" text-anchor="middle" font-size="${fs}">${labels[i]}</text></g>`;
+    if(opts.labels) g+=`<text x="${x0+w/2}" y="${top-5}" text-anchor="middle" font-size="${fs}" fill="${css('--ink-2')}">${v}${opts.unit||''}</text>`;});
+  const ns='http://www.w3.org/2000/svg'; const svg=document.createElementNS(ns,'svg'); svg.setAttribute('viewBox',`0 0 ${W} ${H}`); svg.setAttribute('role','img'); svg.setAttribute('aria-label',opts.aria||'bar chart'); svg.innerHTML=g; el.querySelector('.plot').appendChild(svg);
+}
+function drawAll(){
+  document.querySelectorAll('.chart .plot').forEach(p=>p.innerHTML='');
+  lineChart('ch-orders', CD.days, [{name:'2025',data:CD.o25,color:'--series-1'},{name:'2024',data:CD.o24,color:'--series-2'}], {xEvery:7,aria:'Daily orders Nov 1 to Dec 31, 2025 vs 2024',marks:[{at:'11-28',text:'Black Friday 2025'},{at:'12-18',text:'Dec 18: peak',dy:14},{at:'12-25',text:'Christmas',dy:28}]});
+  if(window.EXTRA_CHARTS) window.EXTRA_CHARTS.forEach(f=>f());
+}
+drawAll();
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',drawAll);
+let _rt; addEventListener('resize',()=>{clearTimeout(_rt); _rt=setTimeout(drawAll,150);});
+document.getElementById('themebtn').addEventListener('click',()=>setTimeout(drawAll,0));
+</script>
+</body>
+</html>
